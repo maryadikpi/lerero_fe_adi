@@ -13,17 +13,17 @@ const Login = () => (
                 <b>Lerero</b> Learning
               </a>
             </div>
-            <p className="login-box-msg">Login to Application</p>
+            <p className="login-box-msg">Login Application</p>
             <form action="../../index3.html" method="post">
               <div className="input-group mb-3">
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
-                  placeholder="Email"
+                  placeholder="Username"
                 />
                 <div className="input-group-append">
                   <div className="input-group-text">
-                    <span className="fas fa-envelope"></span>
+                    <span className="fas fa-user"></span>
                   </div>
                 </div>
               </div>
@@ -40,38 +40,22 @@ const Login = () => (
                 </div>
               </div>
               <div className="row">
-                <div className="col-8">
-                  <div className="icheck-primary">
-                    <input type="checkbox" id="remember" />
-                    <label htmlFor="remember">Remember Me</label>
-                  </div>
+                <div className="col-12 input-group mb-4">
+                  <Link href="/admin/user/forgetPassword">
+                    <a className="text-right container-fluid">
+                      I forgot my password
+                    </a>
+                  </Link>
                 </div>
-                <div className="col-4">
+                <div className="col-12">
                   <Link href="../../admin/dashboard">
                     <button type="submit" className="btn btn-primary btn-block">
-                      Sign In
+                      Login
                     </button>
                   </Link>
                 </div>
               </div>
             </form>
-
-            <div className="social-auth-links text-center mb-3">
-              <p>- OR -</p>
-              <a href="#" className="btn btn-block btn-primary">
-                <i className="fab fa-facebook mr-2"></i> Sign in using Facebook
-              </a>
-              <a href="#" className="btn btn-block btn-danger">
-                <i className="fab fa-google-plus mr-2"></i> Sign in using
-                Google+
-              </a>
-            </div>
-
-            <p className="mb-1">
-              <Link href="/admin/user/forgetPassword">
-                <a>I forgot my password</a>
-              </Link>
-            </p>
           </div>
         </div>
       </div>

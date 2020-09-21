@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const Sidebar = () => (
-  <aside className="main-sidebar sidebar-light-primary margin-top--60">
+  <aside className="main-sidebar sidebar-dark-danger margin-top--60">
     <Link as="/admin/dashboard" href="/admin/dashboard">
       <a className="brand-link">
         <img
@@ -39,8 +39,56 @@ const Sidebar = () => (
           <li className="nav-item">
             <Link as="/admin/dashboard" href="/admin/dashboard">
               <a className="nav-link">
-                <i className="nav-icon fa fa-tachometer-alt"></i>
+                <i className="nav-icon fa fa-home"></i>
                 <p>Dashboard</p>
+              </a>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link as="/admin/dashboard" href="/admin/dashboard">
+              <a className="nav-link">
+                <i className="nav-icon fa fa-road"></i>
+                <p>Learning Path</p>
+              </a>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link as="/admin/dashboard" href="/admin/dashboard">
+              <a className="nav-link">
+                <i className="nav-icon fa fa-tasks"></i>
+                <p>Tasks</p>
+              </a>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link as="/admin/dashboard" href="/admin/dashboard">
+              <a className="nav-link">
+                <i className="nav-icon fa fa-tachometer-alt"></i>
+                <p>Quiz</p>
+              </a>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link as="/admin/dashboard" href="/admin/dashboard">
+              <a className="nav-link">
+                <i className="nav-icon fa fa-user"></i>
+                <p>User</p>
+              </a>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link as="/admin/dashboard" href="/admin/dashboard">
+              <a className="nav-link">
+                <i className="nav-icon fa fa-users"></i>
+                <p>User Groups</p>
+              </a>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link as="/admin/dashboard" href="/admin/dashboard">
+              <a className="nav-link">
+                <i className="nav-icon fa fa-shield-alt"></i>
+                <p>Badges</p>
               </a>
             </Link>
           </li>

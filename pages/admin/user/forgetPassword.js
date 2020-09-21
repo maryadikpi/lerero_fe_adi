@@ -14,8 +14,7 @@ const ForgetPassword = () => (
               </a>
             </div>
             <p className="login-box-msg">
-              You forgot your password? Here you can easily retrieve a new
-              password.
+              Enter your email address to reset your password
             </p>
 
             <form action="recover-password.html" method="post">
@@ -32,19 +31,20 @@ const ForgetPassword = () => (
                 </div>
               </div>
               <div className="row">
-                <div className="col-12">
+                <div className="col-12 mb-2">
                   <button type="submit" className="btn btn-primary btn-block">
-                    Request new password
+                    Reset Password
                   </button>
+                </div>
+                <div className="col-12">
+                  <Link href="/admin/user/login">
+                    <button type="submit" className="btn btn-danger btn-block">
+                      Login
+                    </button>
+                  </Link>
                 </div>
               </div>
             </form>
-
-            <p className="mt-3 mb-1">
-              <Link href="/admin/user/login">
-                <a>Login</a>
-              </Link>
-            </p>
           </div>
         </div>
       </div>
