@@ -11,7 +11,7 @@ const Profile = () => (
   <>
     <Header />
     <Navbar />
-    <body className="hold-transition sidebar-mini">
+    <section className="hold-transition sidebar-mini">
       <div className="wrapper">
         <Sidebar />
         <div className="content-wrapper">
@@ -33,37 +33,37 @@ const Profile = () => (
             </div>
           </div>
 
-          <div class="content">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-3">
+          <div className="content">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-md-3">
                   <UserProfileDetail />
                 </div>
-                <div class="col-md-9">
-                  <div class="card">
-                    <div class="card-header p-2">
-                      <ul class="nav nav-pills">
-                        <li class="nav-item">
+                <div className="col-md-9">
+                  <div className="card">
+                    <div className="card-header p-2">
+                      <ul className="nav nav-pills">
+                        <li className="nav-item">
                           <a
-                            class="nav-link active"
+                            className="nav-link active"
                             href="#activity"
                             data-toggle="tab"
                           >
                             Activity
                           </a>
                         </li>
-                        <li class="nav-item">
+                        <li className="nav-item">
                           <a
-                            class="nav-link"
+                            className="nav-link"
                             href="#timeline"
                             data-toggle="tab"
                           >
                             Timeline
                           </a>
                         </li>
-                        <li class="nav-item">
+                        <li className="nav-item">
                           <a
-                            class="nav-link"
+                            className="nav-link"
                             href="#settings"
                             data-toggle="tab"
                           >
@@ -72,8 +72,8 @@ const Profile = () => (
                         </li>
                       </ul>
                     </div>
-                    <div class="card-body">
-                      <div class="tab-content">
+                    <div className="card-body">
+                      <div className="tab-content">
                         <UserProfileTabActivity />
                         <UserProfileTabTimeline />
                         <UserProfileTabSettings />
@@ -86,7 +86,7 @@ const Profile = () => (
           </div>
         </div>
       </div>
-    </body>
+    </section>
   </>
 );
 

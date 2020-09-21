@@ -6,7 +6,7 @@ const Homepage = () => (
   <>
     <Header />
     <Navbar />
-    <body className="hold-transition sidebar-mini">
+    <section className="hold-transition sidebar-mini">
       <div className="wrapper">
         <Sidebar />
         <div className="content-wrapper">
@@ -107,7 +107,7 @@ const Homepage = () => (
           </div>
         </div>
       </div>
-    </body>
+    </section>
   </>
 );
 
