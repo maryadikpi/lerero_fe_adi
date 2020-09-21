@@ -36,18 +36,18 @@ const Sidebar = () => (
           role="menu"
           data-accordion="false"
         >
-          <li class="nav-item">
+          <li className="nav-item">
             <Link as="/admin/dashboard" href="/admin/dashboard">
-              <a class="nav-link">
-                <i class="nav-icon fa fa-tachometer-alt"></i>
+              <a className="nav-link">
+                <i className="nav-icon fa fa-tachometer-alt"></i>
                 <p>Dashboard</p>
               </a>
             </Link>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <Link as="/admin/user/login" href="/admin/user/login">
-              <a class="nav-link">
-                <i class="nav-icon fa fa-sign-out-alt"></i>
+              <a className="nav-link">
+                <i className="nav-icon fa fa-sign-out-alt"></i>
                 <p>Logout</p>
               </a>
             </Link>
