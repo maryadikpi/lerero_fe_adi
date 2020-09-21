@@ -1,7 +1,10 @@
 import Header from "../../../components/admin/header";
 import Navbar from "../../../components/admin/navbar";
 import Sidebar from "../../../components/admin/sidebar";
-import TblUserActivity from "../../../components/dashboard/tblUserActivity";
+
+import TblUserActivity from "../../../components/dashboard/table_UserActivity";
+import ChartTaskProgress from "../../../components/dashboard/chart_TaskProgress";
+import ChartQuizProgress from "../../../components/dashboard/chart_QuizProgress";
 
 const Homepage = () => (
   <>
@@ -130,68 +133,14 @@ const Homepage = () => (
               </div>
               <TblUserActivity />
               <div className="row mb-10 text-dark">
-                <div className="col-lg-6">
-                  <div className="card">
-                    <div className="card-header border-0">
-                      <div className="d-flex justify-content-between">
-                        <h3 className="card-title">Task Progress</h3>
-                        <a href="">View Report</a>
-                      </div>
-                    </div>
-                    <div className="card-body">
-                      <div className="position-relative mb-4">
-                        <canvas id="visitors-chart" height="200"></canvas>
-                      </div>
-
-                      <div className="d-flex flex-row justify-content-end">
-                        <span className="mr-2">
-                          <i className="fas fa-square text-primary"></i> This
-                          Week
-                        </span>
-
-                        <span>
-                          <i className="fas fa-square text-gray"></i> Last Week
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6">
-                  <div className="card">
-                    <div className="card-header border-0">
-                      <div className="d-flex justify-content-between">
-                        <h3 className="card-title">Quiz Progress</h3>
-                        <a href="">View Report</a>
-                      </div>
-                    </div>
-                    <div className="card-body">
-                      <div className="position-relative mb-4">
-                        <canvas id="sales-chart" height="200"></canvas>
-                      </div>
-
-                      <div className="d-flex flex-row justify-content-end">
-                        <span className="mr-2">
-                          <i className="fas fa-square text-primary"></i> This
-                          year
-                        </span>
-
-                        <span>
-                          <i className="fas fa-square text-gray"></i> Last year
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ChartTaskProgress />
+                <ChartQuizProgress />
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <script src="../../plugins/chart.js/Chart.min.js"></script>
-    <script src="../../dist/js/demo.js"></script>
-    <script src="../../dist/js/pages/dashboard3.js"></script>
   </>
 );
 
