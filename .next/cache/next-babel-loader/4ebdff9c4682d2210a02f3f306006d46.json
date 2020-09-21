@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\n\nvar List = function List() {\n  return __jsx(\"ul\", null, __jsx(\"li\", null, \" Learcn React \"), __jsx(\"li\", null, \" Testing \"), __jsx(\"li\", null, \" Profit \"), __jsx(\"li\", null, \" Further \"));\n};\n\nexport default List;","map":null,"metadata":{},"sourceType":"module"}
