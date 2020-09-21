@@ -4,15 +4,16 @@ import Link from "next/link";
 const Login = () => (
   <>
     <Header />
-    <div className="hold-transition login-page bg-white">
+    <div className="hold-transition login-page">
       <div className="login-box">
-        <div className="login-logo">
-          <a href="../../index2.html">
-            <b>Lerero</b> Learning
-          </a>
-        </div>
         <div className="card border-none">
           <div className="card-body login-card-body">
+            <div className="login-logo">
+              <a href="../../index2.html">
+                <b>Lerero</b> Learning
+              </a>
+            </div>
+            <p className="login-box-msg">Login to Application</p>
             <form action="../../index3.html" method="post">
               <div className="input-group mb-3">
                 <input
@@ -67,7 +68,9 @@ const Login = () => (
             </div>
 
             <p className="mb-1">
-              <a href="forgot-password.html">I forgot my password</a>
+              <Link href="/admin/user/forgetPassword">
+                <a>I forgot my password</a>
+              </Link>
             </p>
           </div>
         </div>
