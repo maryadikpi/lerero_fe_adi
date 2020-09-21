@@ -1,7 +1,27 @@
 import Header from "../../../components/admin/header";
+import kpiStore from "../../../store"
 import Link from "next/link";
 
-const Login = () => (
+const Login = () => {
+
+  kpiStore.addNewStore('e', 'adistore', {
+    name: 'Caitlyn',
+    status: 'logged-in',
+    data: {
+      hobby: 'hrt',
+      level: 37,
+      gameData: {
+        wings: true,
+        wood: 456,
+        stone: 890
+      }
+    }
+  });
+  
+  console.log(kpiStore.getGlobalStore());
+
+
+  return (
   <>
     <Header />
     <div className="hold-transition login-page bg-white">
@@ -74,6 +94,7 @@ const Login = () => (
       </div>
     </div>
   </>
-);
+  )
+};
 
 export default Login;
