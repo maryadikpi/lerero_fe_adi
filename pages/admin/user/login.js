@@ -1,25 +1,46 @@
+import { useRouter } from 'next/router'
+
 import Header from "../../../components/admin/header";
-import kpiStore from "../../../store"
-import Link from "next/link";
+import kpiHelper from "../../../kpi_helper"
+import {ADMIN_DAHSBOARD} from "../../../config/const_url"
 
-const Login = () => {
 
-  kpiStore.addNewStore('e', 'adistore', {
-    name: 'Caitlyn',
-    status: 'logged-in',
-    data: {
-      hobby: 'hrt',
-      level: 37,
-      gameData: {
-        wings: true,
-        wood: 456,
-        stone: 890
+
+function Login() {
+  const router = useRouter()
+
+
+  // Test adding new var to kpiStore
+  // @adi will delete this later
+  kpiHelper.addNewStore({
+    login:{
+      name: 'Caitlyn',
+      status: 'logged-in',
+      data: {
+        hobby: 'hrt',
+        level: 37,
+        gameData: {
+          wings: true,
+          wood: 456,
+          stone: 890
+        }
       }
     }
   });
-  
-  console.log(kpiStore.getGlobalStore());
 
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    // Do login process here with backend
+    
+    // Change authStatus
+    kpiHelper.setLogin()
+  
+    // Redirect to dashboard
+      // @to do
+      // Use CONSTANT PATH HERE
+      router.push({pathname: ADMIN_DAHSBOARD})
+  }
 
   return (
   <>
@@ -66,11 +87,13 @@ const Login = () => {
                   </div>
                 </div>
                 <div className="col-4">
-                  <Link href="../../admin/dashboard">
-                    <button type="submit" className="btn btn-primary btn-block">
+                    <button 
+                      type="button" 
+                      className="btn btn-primary btn-block" 
+                      onClick={handleLogin}
+                      >
                       Sign In
                     </button>
-                  </Link>
                 </div>
               </div>
             </form>

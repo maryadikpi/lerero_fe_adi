@@ -1,10 +1,18 @@
+import { useRouter } from 'next/router'
 import Header from "../../../components/admin/header";
 import Navbar from "../../../components/admin/navbar";
 import Sidebar from "../../../components/admin/sidebar";
-import kpiStore from "../../../store"
+import kpiHelper from "../../../kpi_helper"
 
-const Homepage = () => {
-  console.log(kpiStore.getGlobalStore());
+function Homepage() {
+  if (typeof window !== 'undefined') {
+    if (!kpiHelper.getLoginStatus()) {
+      const router = useRouter()
+      router.push("/admin/user/login");
+    }
+}
+  
+ 
   return (
     <>
       <Header />
