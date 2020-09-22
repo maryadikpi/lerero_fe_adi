@@ -1,4 +1,4 @@
-import Header from "../../../components/admin/header";
+import Header from "components/admin/header";
 import Link from "next/link";
 
 const ForgetPassword = () => (

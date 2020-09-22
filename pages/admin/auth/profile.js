@@ -1,11 +1,11 @@
-import Header from "../../../components/admin/header";
-import Navbar from "../../../components/admin/navbar";
-import Sidebar from "../../../components/admin/sidebar";
+import Header from "components/admin/header";
+import Navbar from "components/admin/navbar";
+import Sidebar from "components/admin/sidebar";
 
-import UserProfileDetail from "../../../components/user/profileDetail";
-import UserProfileTabActivity from "../../../components/user/profileTabActivity";
-import UserProfileTabTimeline from "../../../components/user/profileTabTimeline";
-import UserProfileTabSettings from "../../../components/user/profileTabSettings";
+import UserProfileDetail from "components/user/profileDetail";
+import UserProfileTabActivity from "components/user/profileTabActivity";
+import UserProfileTabTimeline from "components/user/profileTabTimeline";
+import UserProfileTabSettings from "components/user/profileTabSettings";
 
 const Profile = () => (
   <>
