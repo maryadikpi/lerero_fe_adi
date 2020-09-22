@@ -2,3 +2,5 @@
 /lte
 /.next
 .next/cache
+.vercel
+*.orig
