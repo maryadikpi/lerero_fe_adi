@@ -1,0 +1,5 @@
+div[role=alert] {
+    height: 30px;
+    padding-top: 3px;
+    width: 70%;
+}
