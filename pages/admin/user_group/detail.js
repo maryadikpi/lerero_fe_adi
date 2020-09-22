@@ -2,7 +2,7 @@ import Header from "components/admin/header";
 import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
 
-import TabelDetailGroup from "components/user_group/management/table_DetailGroup";
+// import TabelDetailGroup from "components/user_group/management/table_DetailGroup";
 
 const UserGroupDetail = () => (
   <>
@@ -32,7 +32,9 @@ const UserGroupDetail = () => (
 
           <div className="content">
             <div className="container-fluid">
-              <TabelGroupDetail />
+              {/* @to do will be fixed by mas Chalid hehe
+                <TabelGroupDetail /> 
+              */}
             </div>
           </div>
         </div>
