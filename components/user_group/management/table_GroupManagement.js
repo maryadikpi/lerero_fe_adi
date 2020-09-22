@@ -1,4 +1,5 @@
-const TableUserActivity = () => (
+import Link from "next/link";
+const TabelDetailGroup = () => (
   <>
     <div className="row mb-10">
       <div className="col-12">
@@ -30,7 +31,11 @@ const TableUserActivity = () => (
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>Sales</td>
+                  <Link href="/admin/user_group/detail">
+                    <td>
+                      <a>Sales</a>
+                    </td>
+                  </Link>
                   <td>12</td>
                   <td>
                     <span className="right badge badge-success">Active</span>
@@ -40,7 +45,7 @@ const TableUserActivity = () => (
                       type="button"
                       data-toggle="modal"
                       data-target="#actionBtn"
-                      className="btn btn-danger btn-sm"
+                      className="btn btn-danger width-80px btn-sm"
                     >
                       Deactive
                     </button>
@@ -48,7 +53,11 @@ const TableUserActivity = () => (
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>Finance</td>
+                  <Link href="/admin/user_group/detail">
+                    <td>
+                      <a>Finance</a>
+                    </td>
+                  </Link>
                   <td>15</td>
                   <td>
                     <span className="right badge badge-success">Active</span>
@@ -58,7 +67,7 @@ const TableUserActivity = () => (
                       type="button"
                       data-toggle="modal"
                       data-target="#actionBtn"
-                      className="btn btn-danger btn-sm"
+                      className="btn btn-danger width-80px btn-sm"
                     >
                       Deactive
                     </button>
@@ -66,7 +75,11 @@ const TableUserActivity = () => (
                 </tr>
                 <tr>
                   <td>3</td>
-                  <td>Warehouse</td>
+                  <Link href="/admin/user_group/detail">
+                    <td>
+                      <a>Warehouse</a>
+                    </td>
+                  </Link>
                   <td>20</td>
                   <td>
                     <span className="right badge badge-success">Active</span>
@@ -76,7 +89,7 @@ const TableUserActivity = () => (
                       type="button"
                       data-toggle="modal"
                       data-target="#actionBtn"
-                      className="btn btn-danger btn-sm"
+                      className="btn btn-danger width-80px btn-sm"
                     >
                       Deactive
                     </button>
@@ -84,7 +97,11 @@ const TableUserActivity = () => (
                 </tr>
                 <tr>
                   <td>4</td>
-                  <td>Engineer</td>
+                  <Link href="/admin/user_group/detail">
+                    <td>
+                      <a>Engineer</a>
+                    </td>
+                  </Link>
                   <td>26</td>
                   <td>
                     <span className="right badge badge-danger">Inactive</span>
@@ -94,7 +111,7 @@ const TableUserActivity = () => (
                       type="button"
                       data-toggle="modal"
                       data-target="#actionBtn"
-                      className="btn btn-success btn-sm"
+                      className="btn btn-success width-80px btn-sm"
                     >
                       Publish
                     </button>
@@ -102,7 +119,11 @@ const TableUserActivity = () => (
                 </tr>
                 <tr>
                   <td>5</td>
-                  <td>Executive</td>
+                  <Link href="/admin/user_group/detail">
+                    <td>
+                      <a>Executive</a>
+                    </td>
+                  </Link>
                   <td>12</td>
                   <td>
                     <span className="right badge badge-danger">Inactive</span>
@@ -112,7 +133,7 @@ const TableUserActivity = () => (
                       type="button"
                       data-toggle="modal"
                       data-target="#actionBtn"
-                      className="btn btn-success btn-sm"
+                      className="btn btn-success width-80px btn-sm"
                     >
                       Publish
                     </button>
@@ -299,4 +320,4 @@ const TableUserActivity = () => (
   </>
 );
 
-export default TableUserActivity;
+export default TabelDetailGroup;

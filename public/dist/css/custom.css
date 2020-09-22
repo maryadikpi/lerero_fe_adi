@@ -7,6 +7,13 @@
   box-shadow: none;
 }
 
+.width-10 {
+  width: 10%;
+}
+
+.width-80px {
+  width: 80px;
+}
 
 .width-30 {
   width: 30%;

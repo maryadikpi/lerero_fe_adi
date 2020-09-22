@@ -2,9 +2,9 @@ import Header from "../../../components/admin/header";
 import Navbar from "../../../components/admin/navbar";
 import Sidebar from "../../../components/admin/sidebar";
 
-import TableGroupManagement from "../../../components/user_group/management/table_GroupManagement";
+import TabelDetailGroup from "../../../components/user_group/management/table_DetailGroup";
 
-const UserGroupManagement = () => (
+const UserGroupDetail = () => (
   <>
     <Header />
     <Navbar />
@@ -23,7 +23,7 @@ const UserGroupManagement = () => (
                     <li className="breadcrumb-item">
                       <a href="#">User Group</a>
                     </li>
-                    <li className="breadcrumb-item active">Management</li>
+                    <li className="breadcrumb-item active">Detail</li>
                   </ol>
                 </div>
               </div>
@@ -32,7 +32,7 @@ const UserGroupManagement = () => (
 
           <div className="content">
             <div className="container-fluid">
-              <TableGroupManagement />
+              <TabelDetailGroup />
             </div>
           </div>
         </div>
@@ -41,4 +41,4 @@ const UserGroupManagement = () => (
   </>
 );
 
-export default UserGroupManagement;
+export default UserGroupDetail;
