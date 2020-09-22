@@ -1,5 +1,5 @@
 {
-  "name": "nusantara",
+  "name": "lerero-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "eslint": "^7.9.0"
+    "eslint": "^7.9.0",
+    "webpack": "^4.44.2"
   }
 }

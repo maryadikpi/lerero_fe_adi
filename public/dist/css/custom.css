@@ -11,10 +11,6 @@
   width: 10%;
 }
 
-.width-80px {
-  width: 80px;
-}
-
 .width-30 {
   width: 30%;
 }
@@ -49,4 +45,13 @@
 
 .icon-width-50 {
   font-size: 50px;
+}
+
+
+.width-80px {
+  width: 80px;
+}
+
+.width-100px {
+  width: 100px;
 }

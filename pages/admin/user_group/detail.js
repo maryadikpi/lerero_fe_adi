@@ -2,7 +2,7 @@ import Header from "../../../components/admin/header";
 import Navbar from "../../../components/admin/navbar";
 import Sidebar from "../../../components/admin/sidebar";
 
-import TabelDetailGroup from "../../../components/user_group/management/table_DetailGroup";
+import TabelGroupDetail from "../../../components/user_group/management/table_DetailGroup";
 
 const UserGroupDetail = () => (
   <>
@@ -16,7 +16,7 @@ const UserGroupDetail = () => (
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1 className="m-0 text-dark">User Group Management</h1>
+                  <h1 className="m-0 text-dark">Group Sales</h1>
                 </div>
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
@@ -32,7 +32,7 @@ const UserGroupDetail = () => (
 
           <div className="content">
             <div className="container-fluid">
-              <TabelDetailGroup />
+              <TabelGroupDetail />
             </div>
           </div>
         </div>
