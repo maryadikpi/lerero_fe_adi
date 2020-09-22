@@ -23,7 +23,7 @@ const Sidebar = () => (
           />
         </div>
         <div className="info">
-          <Link as="/admin/user/profile" href="/admin/user/profile">
+          <Link as="/admin/auth/profile" href="/admin/auth/profile">
             <a className="d-block">Alexander Pierce</a>
           </Link>
         </div>
@@ -77,7 +77,7 @@ const Sidebar = () => (
             </Link>
           </li>
           <li className="nav-item">
-            <Link as="/admin/dashboard" href="/admin/dashboard">
+            <Link href="/admin/user_group/management">
               <a className="nav-link">
                 <i className="nav-icon fa fa-users"></i>
                 <p>User Groups</p>
@@ -93,7 +93,7 @@ const Sidebar = () => (
             </Link>
           </li>
           <li className="nav-item">
-            <Link as="/admin/user/login" href="/admin/user/login">
+            <Link as="/admin/auth/login" href="/admin/auth/login">
               <a className="nav-link">
                 <i className="nav-icon fa fa-sign-out-alt"></i>
                 <p>Logout</p>

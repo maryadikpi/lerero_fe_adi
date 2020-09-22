@@ -37,7 +37,7 @@ const ForgetPassword = () => (
                   </button>
                 </div>
                 <div className="col-12">
-                  <Link href="/admin/user/login">
+                  <Link href="/admin/auth/login">
                     <button type="submit" className="btn btn-danger btn-block">
                       Login
                     </button>

@@ -41,7 +41,7 @@ const Login = () => (
               </div>
               <div className="row">
                 <div className="col-12 input-group mb-4">
-                  <Link href="/admin/user/forgetPassword">
+                  <Link href="/admin/auth/forgetPassword">
                     <a className="text-right container-fluid">
                       I forgot my password
                     </a>
