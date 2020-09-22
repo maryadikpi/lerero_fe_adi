@@ -1,6 +1,10 @@
 import { useRouter } from 'next/router'
-import Link from "next/link";
-import Header from "components/admin/header";
+import Link from "next/link"
+import {useForm} from "react-hook-form"
+import {Alert, Toast} from "react-bootstrap"
+
+//import 'styles/login.css'
+import Header from "components/admin/header"
 import kpiHelper from "kpi_helper"
 import {ADMIN_DAHSBOARD, FORGET_PASSWORD} from "config/const_url"
 
@@ -8,6 +12,19 @@ import {ADMIN_DAHSBOARD, FORGET_PASSWORD} from "config/const_url"
 
 function Login() {
   const router = useRouter()
+  var showToast = false;
+
+  // useForm()
+  // 1. register -> register input
+  // 2. handleSubmit -> extract data from the form
+  // 3. errors -> object containing errors
+  const { register, handleSubmit, errors } = useForm();
+
+  const alert_style = {
+    height: '30px',
+    paddingTop: '2px',
+    width: '70%'
+  }
 
 
   // Test adding new var to kpiStore
@@ -29,15 +46,25 @@ function Login() {
   });
 
 
-  const handleLogin = (e) => {
-    e.preventDefault()
+  const handleLogin = (formData) => {
+    //e.preventDefault()
+
     // Do login process here with backend
-    
-    // Change authStatus
-    kpiHelper.setLogin()
+
+    // alert(JSON.stringify(formData))
+
+    if(formData.username === 'kpiadmin' && formData.password === 'kpiadmin123') {
+      // Change authStatus
+      kpiHelper.setLogin()
   
-    // Redirect to dashboard
+      // Redirect to dashboard
       router.push({pathname: ADMIN_DAHSBOARD})
+    } else {
+      alert('wrong username or password');
+      showToast = true;
+      console.log(showToast)
+    }
+
   }
 
   return (
@@ -56,6 +83,8 @@ function Login() {
             <form action="../../index3.html" method="post">
               <div className="input-group mb-3">
                 <input
+                  ref={register({required: true})}
+                  name="username" 
                   type="text"
                   className="form-control"
                   placeholder="Username"
@@ -66,8 +95,16 @@ function Login() {
                   </div>
                 </div>
               </div>
+              {
+                  errors.username &&
+                  <Alert variant="danger" style={alert_style}>
+                    {errors.username.type === 'required' && <span> Username is required</span>}
+                  </Alert>
+                }
               <div className="input-group mb-3">
                 <input
+                  ref={register({required: true})}
+                  name="password" 
                   type="password"
                   className="form-control"
                   placeholder="Password"
@@ -78,6 +115,12 @@ function Login() {
                   </div>
                 </div>
               </div>
+              {
+                  errors.password &&
+                  <Alert variant="danger" style={alert_style}>
+                    {errors.password.type === 'required' && <span> Password is required</span>}
+                  </Alert>
+                }
               <div className="row">
                 <div className="col-12 input-group mb-4">
                   <Link href={FORGET_PASSWORD}>
@@ -90,7 +133,7 @@ function Login() {
                     <button 
                       type="button" 
                       className="btn btn-primary btn-block" 
-                      onClick={handleLogin}
+                      onClick={handleSubmit(handleLogin)}
                       >
                       Login
                     </button>
@@ -100,6 +143,14 @@ function Login() {
           </div>
         </div>
       </div>
+      
+      <Toast onClose={() => {showToast = false}} show={showToast} delay={2000} autohide>
+          <Toast.Header>
+            <strong className="mr-auto">Error</strong>
+            {/* <small>11 mins ago</small> */}
+          </Toast.Header>
+          <Toast.Body>Wrong username or password</Toast.Body>
+        </Toast>
     </div>
   </>
   )

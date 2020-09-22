@@ -2,9 +2,9 @@
     "compilerOptions": {
       "baseUrl": ".",
       "paths": {
-        "@/layout/*": ["components/Layout/*"]
+        "@/layout/*": ["components/Layout/*"] //import Container from '@/layout/Container';
       }
     }
   }
 
-  //import Container from '@/layout/Container';
+  
