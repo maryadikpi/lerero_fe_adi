@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import Link from "next/link";
-import Header from "../../../components/admin/header";
-import kpiHelper from "../../../kpi_helper"
-import {ADMIN_DAHSBOARD, FORGET_PASSWORD} from "../../../config/const_url"
+import Header from "components/admin/header";
+import kpiHelper from "kpi_helper"
+import {ADMIN_DAHSBOARD, FORGET_PASSWORD} from "config/const_url"
 
 
 

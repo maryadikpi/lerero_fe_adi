@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/layout/*": ["components/Layout/*"]
+      }
+    }
+  }
+
+  //import Container from '@/layout/Container';

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from 'next/router'
-import kpiHelper from "../../kpi_helper"
-import {USER_LOGIN} from "../../config/const_url"
+import kpiHelper from "kpi_helper"
+import {USER_LOGIN} from "config/const_url"
 
 function  Sidebar() {
   const router = useRouter()

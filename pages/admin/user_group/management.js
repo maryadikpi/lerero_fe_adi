@@ -1,8 +1,8 @@
-import Header from "../../../components/admin/header";
-import Navbar from "../../../components/admin/navbar";
-import Sidebar from "../../../components/admin/sidebar";
+import Header from "components/admin/header";
+import Navbar from "components/admin/navbar";
+import Sidebar from "components/admin/sidebar";
 
-import TableGroupManagement from "../../../components/user_group/management/table_GroupManagement";
+import TableGroupManagement from "components/user_group/management/table_GroupManagement";
 
 const UserGroupManagement = () => (
   <>

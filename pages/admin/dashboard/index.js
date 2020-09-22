@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router'
 
-import Header from "../../../components/admin/header";
-import Navbar from "../../../components/admin/navbar";
-import Sidebar from "../../../components/admin/sidebar";
+import Header from "components/admin/header";
+import Navbar from "components/admin/navbar";
+import Sidebar from "components/admin/sidebar";
 
-import TblUserActivity from "../../../components/dashboard/table_UserActivity";
-import ChartTaskProgress from "../../../components/dashboard/chart_TaskProgress";
-import ChartQuizProgress from "../../../components/dashboard/chart_QuizProgress";
+import TblUserActivity from "components/dashboard/table_UserActivity";
+import ChartTaskProgress from "components/dashboard/chart_TaskProgress";
+import ChartQuizProgress from "components/dashboard/chart_QuizProgress";
 
-import kpiHelper from "../../../kpi_helper"
-import {USER_LOGIN} from "../../../config/const_url"
+import kpiHelper from "kpi_helper"
+import {USER_LOGIN} from "config/const_url"
 
 function Homepage() {
   if (typeof window !== 'undefined') {
