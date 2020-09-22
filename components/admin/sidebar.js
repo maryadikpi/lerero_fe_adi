@@ -13,11 +13,7 @@ function  Sidebar() {
     // Change authStatus
     kpiHelper.unsetLogin()
   
-      console.log('login okie')
-  
-    // Redirect to dashboard
-      // @to do
-      // Use CONSTANT PATH HERE
+    // Redirect to login page
       router.push({pathname: USER_LOGIN})
   }
   return (

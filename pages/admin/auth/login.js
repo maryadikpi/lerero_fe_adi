@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import Link from "next/link";
 import Header from "../../../components/admin/header";
 import kpiHelper from "../../../kpi_helper"
-import {ADMIN_DAHSBOARD} from "../../../config/const_url"
+import {ADMIN_DAHSBOARD, FORGET_PASSWORD} from "../../../config/const_url"
 
 
 
@@ -37,8 +37,6 @@ function Login() {
     kpiHelper.setLogin()
   
     // Redirect to dashboard
-      // @to do
-      // Use CONSTANT PATH HERE
       router.push({pathname: ADMIN_DAHSBOARD})
   }
 
@@ -82,7 +80,7 @@ function Login() {
               </div>
               <div className="row">
                 <div className="col-12 input-group mb-4">
-                  <Link href="/admin/auth/forgetPassword">
+                  <Link href={FORGET_PASSWORD}>
                     <a className="text-right container-fluid">
                       I forgot my password
                     </a>
