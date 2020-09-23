@@ -24,15 +24,15 @@ const ModalDetailGroup = () => (
           <div className="modal-body p-0">
             <div className="row align-center">
               <div className="col-12">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text bg-white border-0">
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text bg-white border-0">
                       <i className="fas fa-search"></i>
                     </span>
                   </div>
                   <input
                     type="text"
-                    class="form-control border-left-0 border-0"
+                    className="form-control border-left-0 border-0"
                     placeholder="Search Name"
                   />
                 </div>
