@@ -60,188 +60,41 @@ const TabelUserManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-100px btn-sm m-1"
+                        data-target="#blockUser"
+                        className="btn btn-success width-110px btn-sm m-1"
                       >
                         Block
                       </button>
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deleteBadge"
-                        className="btn btn-danger width-100px btn-sm m-1"
+                        data-target="#deleteUser"
+                        className="btn btn-danger width-110px btn-sm m-1"
                       >
                         Delete
                       </button>
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-primary width-100px btn-sm m-1"
+                        data-target="#changeEmail"
+                        className="btn btn-primary width-110px btn-sm m-1"
                       >
                         Change Email
                       </button>
-                      <button
+                      <select
                         type="button"
-                        data-toggle="modal"
-                        data-target="#deactiveBadge"
-                        className="btn btn-warning width-100px btn-sm m-1"
+                        className="btn btn-warning width-110px btn-sm m-1"
                       >
-                        Change Role
-                      </button>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src="/public/dist/img/default-150x150.png"
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-100px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteBadge"
-                        className="btn btn-danger width-100px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-primary width-100px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deactiveBadge"
-                        className="btn btn-warning width-100px btn-sm m-1"
-                      >
-                        Change Role
-                      </button>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src="/public/dist/img/default-150x150.png"
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-100px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteBadge"
-                        className="btn btn-danger width-100px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-primary width-100px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deactiveBadge"
-                        className="btn btn-warning width-100px btn-sm m-1"
-                      >
-                        Change Role
-                      </button>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src="/public/dist/img/default-150x150.png"
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-100px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteBadge"
-                        className="btn btn-danger width-100px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-primary width-100px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deactiveBadge"
-                        className="btn btn-warning width-100px btn-sm m-1"
-                      >
-                        Change Role
-                      </button>
+                        <option selected="" disabled="" className="white">
+                          Change Role
+                        </option>
+                        <option data-toggle="modal" data-target="#changeRole">
+                          Standard User
+                        </option>
+                        <option data-toggle="modal" data-target="#changeRole">
+                          Client Admin
+                        </option>
+                      </select>
                     </center>
                   </td>
                 </tr>
@@ -265,34 +118,211 @@ const TabelUserManagement = () => (
                         type="button"
                         data-toggle="modal"
                         data-target="#blockUser"
-                        className="btn btn-success width-100px btn-sm m-1"
+                        className="btn btn-success width-110px btn-sm m-1"
                       >
                         Block
                       </button>
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deleteBadge"
-                        className="btn btn-danger width-100px btn-sm m-1"
+                        data-target="#deleteUser"
+                        className="btn btn-danger width-110px btn-sm m-1"
                       >
                         Delete
                       </button>
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-primary width-100px btn-sm m-1"
+                        data-target="#changeEmail"
+                        className="btn btn-primary width-110px btn-sm m-1"
                       >
                         Change Email
+                      </button>
+                      <select
+                        type="button"
+                        className="btn btn-warning width-110px btn-sm m-1"
+                      >
+                        <option selected="" disabled="" className="white">
+                          Change Role
+                        </option>
+                        <option data-toggle="modal" data-target="#changeRole">
+                          Standard User
+                        </option>
+                        <option data-toggle="modal" data-target="#changeRole">
+                          Client Admin
+                        </option>
+                      </select>
+                    </center>
+                  </td>
+                </tr>
+                <tr>
+                  <td>251</td>
+                  <td>
+                    <img
+                      src="/public/dist/img/default-150x150.png"
+                      alt="Product 1"
+                      className="img-circle img-size-32 mr-2"
+                    />
+                  </td>
+                  <td>Makaryo Sregep</td>
+                  <td>makaryo132</td>
+                  <td>Sales</td>
+                  <td>Role</td>
+                  <td>Active</td>
+                  <td>
+                    <center>
+                      <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#blockUser"
+                        className="btn btn-success width-110px btn-sm m-1"
+                      >
+                        Block
                       </button>
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deactiveBadge"
-                        className="btn btn-warning width-100px btn-sm m-1"
+                        data-target="#deleteUser"
+                        className="btn btn-danger width-110px btn-sm m-1"
                       >
-                        Change Role
+                        Delete
                       </button>
+                      <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#changeEmail"
+                        className="btn btn-primary width-110px btn-sm m-1"
+                      >
+                        Change Email
+                      </button>
+                      <select
+                        type="button"
+                        className="btn btn-warning width-110px btn-sm m-1"
+                      >
+                        <option selected="" disabled="" className="white">
+                          Change Role
+                        </option>
+                        <option data-toggle="modal" data-target="#changeRole">
+                          Standard User
+                        </option>
+                        <option data-toggle="modal" data-target="#changeRole">
+                          Client Admin
+                        </option>
+                      </select>
+                    </center>
+                  </td>
+                </tr>
+                <tr>
+                  <td>251</td>
+                  <td>
+                    <img
+                      src="/public/dist/img/default-150x150.png"
+                      alt="Product 1"
+                      className="img-circle img-size-32 mr-2"
+                    />
+                  </td>
+                  <td>Makaryo Sregep</td>
+                  <td>makaryo132</td>
+                  <td>Sales</td>
+                  <td>Role</td>
+                  <td>Active</td>
+                  <td>
+                    <center>
+                      <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#blockUser"
+                        className="btn btn-success width-110px btn-sm m-1"
+                      >
+                        Block
+                      </button>
+                      <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#deleteUser"
+                        className="btn btn-danger width-110px btn-sm m-1"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#changeEmail"
+                        className="btn btn-primary width-110px btn-sm m-1"
+                      >
+                        Change Email
+                      </button>
+                      <select
+                        type="button"
+                        className="btn btn-warning width-110px btn-sm m-1"
+                      >
+                        <option selected="" disabled="" className="white">
+                          Change Role
+                        </option>
+                        <option data-toggle="modal" data-target="#changeRole">
+                          Standard User
+                        </option>
+                        <option data-toggle="modal" data-target="#changeRole">
+                          Client Admin
+                        </option>
+                      </select>
+                    </center>
+                  </td>
+                </tr>
+                <tr>
+                  <td>251</td>
+                  <td>
+                    <img
+                      src="/public/dist/img/default-150x150.png"
+                      alt="Product 1"
+                      className="img-circle img-size-32 mr-2"
+                    />
+                  </td>
+                  <td>Makaryo Sregep</td>
+                  <td>makaryo132</td>
+                  <td>Sales</td>
+                  <td>Role</td>
+                  <td>Active</td>
+                  <td>
+                    <center>
+                      <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#blockUser"
+                        className="btn btn-success width-110px btn-sm m-1"
+                      >
+                        Block
+                      </button>
+                      <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#deleteUser"
+                        className="btn btn-danger width-110px btn-sm m-1"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#changeEmail"
+                        className="btn btn-primary width-110px btn-sm m-1"
+                      >
+                        Change Email
+                      </button>
+                      <select
+                        type="button"
+                        className="btn btn-warning width-110px btn-sm m-1"
+                      >
+                        <option selected="" disabled="" className="white">
+                          Change Role
+                        </option>
+                        <option data-toggle="modal" data-target="#changeRole">
+                          Standard User
+                        </option>
+                        <option data-toggle="modal" data-target="#changeRole">
+                          Client Admin
+                        </option>
+                      </select>
                     </center>
                   </td>
                 </tr>

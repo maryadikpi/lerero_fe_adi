@@ -3,6 +3,7 @@ import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
 
 import TableUserManagement from "components/user/management/table_UserManagement";
+import ModalUserManagement from "components/user/management/modal_UserManagement";
 
 const UserManagement = () => (
   <>
@@ -33,6 +34,7 @@ const UserManagement = () => (
           <div className="content">
             <div className="container-fluid">
               <TableUserManagement />
+              <ModalUserManagement />
             </div>
           </div>
         </div>
