@@ -10,11 +10,11 @@ function  Sidebar() {
     e.preventDefault()
     // Do logout process here with backend
     
-    // Change authStatus
-    kpiHelper.unsetLogin()
   
     // Redirect to login page
+    if(kpiHelper.unsetLogin()) {
       router.push({pathname: USER_LOGIN})
+    }
   }
   return (
     <aside className="main-sidebar sidebar-dark-danger margin-top--60">
