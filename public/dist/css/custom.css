@@ -55,3 +55,11 @@
 .width-100px {
   width: 100px;
 }
+
+.absolute {
+  position: absolute;
+}
+
+.left-10 {
+  left: 12%;
+}
