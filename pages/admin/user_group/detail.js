@@ -3,6 +3,7 @@ import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
 
 import TabelDetailGroup from "components/user_group/management/table_DetailGroup";
+import ModalDetailGroup from "components/user_group/management/modal_DetailGroup";
 
 const UserGroupDetail = () => (
   <>
@@ -33,6 +34,7 @@ const UserGroupDetail = () => (
           <div className="content">
             <div className="container-fluid">
               <TabelDetailGroup />
+              <ModalDetailGroup />
             </div>
           </div>
         </div>
