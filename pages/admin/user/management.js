@@ -2,10 +2,10 @@ import Header from "components/admin/header";
 import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
 
-import TabelDetailGroup from "components/user_group/management/table_DetailGroup";
-import ModalDetailGroup from "components/user_group/management/modal_DetailGroup";
+import TableUserManagement from "components/user/management/table_UserManagement";
+import ModalUserManagement from "components/user/management/modal_UserManagement";
 
-const UserGroupDetail = () => (
+const UserManagement = () => (
   <>
     <Header />
     <Navbar />
@@ -17,14 +17,14 @@ const UserGroupDetail = () => (
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1 className="m-0 text-dark">Group Sales</h1>
+                  <h1 className="m-0 text-dark">User Management</h1>
                 </div>
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
                     <li className="breadcrumb-item">
-                      <a href="#">User Group</a>
+                      <a href="#">User</a>
                     </li>
-                    <li className="breadcrumb-item active">Detail</li>
+                    <li className="breadcrumb-item active">Management</li>
                   </ol>
                 </div>
               </div>
@@ -33,8 +33,8 @@ const UserGroupDetail = () => (
 
           <div className="content">
             <div className="container-fluid">
-              <TabelDetailGroup />
-              <ModalDetailGroup />
+              <TableUserManagement />
+              <ModalUserManagement />
             </div>
           </div>
         </div>
@@ -43,4 +43,4 @@ const UserGroupDetail = () => (
   </>
 );
 
-export default UserGroupDetail;
+export default UserManagement;
