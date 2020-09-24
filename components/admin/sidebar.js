@@ -37,9 +37,14 @@ function Sidebar() {
                 className="img-circle elevation-1"
                 alt="User Image"
               />
-              <span className="brand-text font-weight-light">Lerero</span>
+          </div>
+          <div className="info">
+            <Link as="/admin/auth/profile" href="/admin/auth/profile">
+              <a className="d-block">Alexander Pierce</a>
+            </Link>
           </div>
       </div>
+
       <nav className="mt-2">
           <ul
             className="nav nav-pills nav-sidebar flex-column"
