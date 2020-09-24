@@ -15,18 +15,18 @@ Eko --> This example branch development for each developer for all jobs
 Fix-*** --> Branch for bug fixing, the name adapts to the type of error and bug. Example: Fix-login
 ```
 
-### Deploy to Staging
+### Deploy to Staging (CSR)
 1. Add staging repo
     ```
    git remote add staging_repo ssh://staginglererowor@staging.lereroworld.com/home/staginglererowor/public_html/lerero_learning
    ```
 2. Pull from staging_repo
 
-   ```git pull staging_repo```
+   ```git pull staging_repo master```
 3. Pull from development repo in github (lerero_frontend) to get the latest source code
 
-   ```git pull your_lerero_repo```
-   
+   ```git pull your_remote_lerero_repo```
+
 4. Build lerero_frontend project
 
    ```npm run build```
@@ -42,3 +42,6 @@ Fix-*** --> Branch for bug fixing, the name adapts to the type of error and bug.
 
 8. See the result on 
 ```https://staging.lereroworld.com/lerero_learning```
+
+
+### Deploy to Staging (SSR)
