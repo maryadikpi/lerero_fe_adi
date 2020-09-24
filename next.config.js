@@ -1,4 +1,5 @@
+
 module.exports = {
-    basePath: '',
-    distDir: 'out_build'
-  }
+  basePath: '',
+  distDir: 'out_build',
+}

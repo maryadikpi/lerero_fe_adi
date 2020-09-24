@@ -8,9 +8,8 @@ function  Sidebar() {
 
   const handleLogout = (e) => {
     e.preventDefault()
-    // Do logout process here with backend
+    // Do logout process here with backend   
     
-  
     // Redirect to login page
     if(kpiHelper.unsetLogin()) {
       router.push({pathname: USER_LOGIN})
@@ -21,7 +20,7 @@ function  Sidebar() {
     <Link as="/admin/dashboard" href="/admin/dashboard">
       <a className="brand-link">
         <img
-          src="../../dist/img/AdminLTELogo.png"
+          src={process.env.NEXT_PUBLIC_IMG_PATH+"/dist/img/AdminLTELogo.png"}
           alt="AdminLTE Logo"
           className="brand-image img-circle elevation-1"
         />
@@ -33,7 +32,7 @@ function  Sidebar() {
       <div className="user-panel mt-3 pb-3 mb-3 d-flex">
         <div className="image">
           <img
-            src="../../dist/img/user2-160x160.jpg"
+            src={process.env.NEXT_PUBLIC_IMG_PATH+"/dist/img/user2-160x160.jpg"}
             className="img-circle elevation-1"
             alt="User Image"
           />
