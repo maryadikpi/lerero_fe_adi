@@ -1,3 +1,5 @@
+
 module.exports = {
-  experimental: { css: true }
-};
+  basePath: '',
+  distDir: 'out_build',
+}

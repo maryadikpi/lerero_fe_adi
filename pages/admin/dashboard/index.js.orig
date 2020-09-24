@@ -1,25 +1,48 @@
 import { useRouter } from 'next/router'
+import Header from "../../../components/admin/header";
+import Navbar from "../../../components/admin/navbar";
+import Sidebar from "../../../components/admin/sidebar";
+import kpiHelper from "../../../kpi_helper"
 
-import Header from "components/admin/header";
-import Navbar from "components/admin/navbar";
-import Sidebar from "components/admin/sidebar";
-
-import TblUserActivity from "components/dashboard/table_UserActivity";
-import ChartTaskProgress from "components/dashboard/chart_TaskProgress";
-import ChartQuizProgress from "components/dashboard/chart_QuizProgress";
-
-import kpiHelper from "kpi_helper"
-import {USER_LOGIN} from "config/const_url"
-
+<<<<<<< HEAD
 function Homepage() {
   if (typeof window !== 'undefined') {
     if (!kpiHelper.getLoginStatus()) {
       const router = useRouter()
-      router.push(USER_LOGIN);
+      router.push("/admin/user/login");
     }
-  }
+}
+  
+ 
   return (
     <>
+      <Header />
+      <Navbar />
+      <div className="hold-transition sidebar-mini">
+        <div className="wrapper">
+          <Sidebar />
+          <div className="content-wrapper">
+            <div className="content-header">
+              <div className="container-fluid">
+                <div className="row mb-2">
+                  <div className="col-sm-6">
+                    <h1 className="m-0 text-dark">Starter Page</h1>
+                  </div>
+                  <div className="col-sm-6">
+                    <ol className="breadcrumb float-sm-right">
+                      <li className="breadcrumb-item">
+                        <a href="#">Home</a>
+                      </li>
+                      <li className="breadcrumb-item active">Starter Page</li>
+                    </ol>
+                  </div>
+=======
+import TblUserActivity from "../../../components/dashboard/table_UserActivity";
+import ChartTaskProgress from "../../../components/dashboard/chart_TaskProgress";
+import ChartQuizProgress from "../../../components/dashboard/chart_QuizProgress";
+
+const Homepage = () => (
+  <>
     <Header />
     <Navbar />
     <section className="hold-transition sidebar-mini">
@@ -39,11 +62,50 @@ function Homepage() {
                     </li>
                     <li className="breadcrumb-item active">Dashboard</li>
                   </ol>
+>>>>>>> develop
                 </div>
               </div>
             </div>
-          </div>
 
+<<<<<<< HEAD
+            <div className="content">
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-lg-6">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title">Card title</h5>
+
+                        <p className="card-text">
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content.
+                        </p>
+
+                        <a href="#" className="card-link">
+                          Card link
+                        </a>
+                        <a href="#" className="card-link">
+                          Another link
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="card card-primary card-outline">
+                      <div className="card-body">
+                        <h5 className="card-title">Card title</h5>
+
+                        <p className="card-text">
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content.
+                        </p>
+                        <a href="#" className="card-link">
+                          Card link
+                        </a>
+                        <a href="#" className="card-link">
+                          Another link
+                        </a>
+                      </div>
+=======
           <div className="content">
             <div className="container-fluid">
               <div className="row mb-10">
@@ -72,11 +134,47 @@ function Homepage() {
                     </div>
                     <div className="icon">
                       <i className="fas fa-users"></i>
+>>>>>>> develop
                     </div>
                     <a href="#" className="small-box-footer">
                       More info <i className="fas fa-arrow-circle-right"></i>
                     </a>
                   </div>
+<<<<<<< HEAD
+                  <div className="col-lg-6">
+                    <div className="card">
+                      <div className="card-header">
+                        <h5 className="m-0">Featured</h5>
+                      </div>
+                      <div className="card-body">
+                        <h6 className="card-title">Special title treatment</h6>
+
+                        <p className="card-text">
+                          With supporting text below as a natural lead-in to
+                          additional content.
+                        </p>
+                        <a href="#" className="btn btn-primary">
+                          Go somewhere
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="card card-primary card-outline">
+                      <div className="card-header">
+                        <h5 className="m-0">Featured</h5>
+                      </div>
+                      <div className="card-body">
+                        <h6 className="card-title">Special title treatment</h6>
+
+                        <p className="card-text">
+                          With supporting text below as a natural lead-in to
+                          additional content.
+                        </p>
+                        <a href="#" className="btn btn-primary">
+                          Go somewhere
+                        </a>
+                      </div>
+=======
                 </div>
 
                 <div className="col-lg-2 col-6">
@@ -133,6 +231,7 @@ function Homepage() {
                       <h3>5</h3>
 
                       <p>Total Badge</p>
+>>>>>>> develop
                     </div>
                     <div className="icon">
                       <i className="fas fa-shield-alt"></i>
@@ -152,9 +251,14 @@ function Homepage() {
           </div>
         </div>
       </div>
-    </section>
-  </>
+<<<<<<< HEAD
+    </>
   )
 };
+=======
+    </section>
+  </>
+);
+>>>>>>> develop
 
 export default Homepage;
