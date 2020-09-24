@@ -7,3 +7,5 @@
 out/
 out_build/
 .env.local
+.htaccess
+/lerero_learning
