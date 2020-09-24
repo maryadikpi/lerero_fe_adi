@@ -105,7 +105,7 @@ function Sidebar() {
             </li>
             <li className="nav-item">
               <div>
-                <a onClick={handleLogout} className="nav-link">
+                <a onClick={handleLogout} className="nav-link cursor-pointer" role="button">
                   <i className="nav-icon fa fa-sign-out-alt"></i>
                   <p>Logout</p>
                 </a>
