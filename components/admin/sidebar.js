@@ -15,48 +15,32 @@ function Sidebar() {
       router.push({pathname: USER_LOGIN})
     }
   }
+
   return (
     <aside className="main-sidebar sidebar-dark-danger margin-top--60">
-    <Link as="/admin/dashboard" href="/admin/dashboard">
-      <a className="brand-link">
-        <img
-          src={process.env.NEXT_PUBLIC_IMG_PATH+"/dist/img/AdminLTELogo.png"}
-          alt="AdminLTE Logo"
-          className="brand-image img-circle elevation-1"
-        />
-        <span className="brand-text font-weight-light">Lerero</span>
-      </a>
-    </Link>
-
-    <div className="sidebar">
-      <div className="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div className="image">
+      <Link as="/admin/dashboard" href="/admin/dashboard">
+        <a className="brand-link">
           <img
-            src={process.env.NEXT_PUBLIC_IMG_PATH+"/dist/img/user2-160x160.jpg"}
-            className="img-circle elevation-1"
-            alt="User Image"
+            src={process.env.NEXT_PUBLIC_IMG_PATH+"/dist/img/AdminLTELogo.png"}
+            alt="AdminLTE Logo"
+            className="brand-image img-circle elevation-1"
           />
           <span className="brand-text font-weight-light">Lerero</span>
         </a>
       </Link>
 
       <div className="sidebar">
-        <div className="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div className="image">
-            <img
-              src="../../dist/img/user2-160x160.jpg"
-              className="img-circle elevation-1"
-              alt="User Image"
-            />
+          <div className="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div className="image">
+              <img
+                src={process.env.NEXT_PUBLIC_IMG_PATH+"/dist/img/user2-160x160.jpg"}
+                className="img-circle elevation-1"
+                alt="User Image"
+              />
+              <span className="brand-text font-weight-light">Lerero</span>
           </div>
-          <div className="info">
-            <Link as="/admin/auth/profile" href="/admin/auth/profile">
-              <a className="d-block">Alexander Pierce</a>
-            </Link>
-          </div>
-        </div>
-
-        <nav className="mt-2">
+      </div>
+      <nav className="mt-2">
           <ul
             className="nav nav-pills nav-sidebar flex-column"
             data-widget="treeview"
