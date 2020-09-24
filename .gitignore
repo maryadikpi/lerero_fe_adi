@@ -5,3 +5,5 @@
 .vercel
 *.orig
 out/
+out_build/
+.env.local

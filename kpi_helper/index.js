@@ -1,3 +1,4 @@
+import store from 'store';
 class kpiHelper {
     static globalStore = {
         init: {
@@ -20,14 +21,28 @@ class kpiHelper {
 
     static setLogin = () => {
         this.globalStore.isAuth = true;
+        store.set('kpi', this.globalStore);
     }
 
     static unsetLogin = () => {
-        this.globalStore.isAuth = false;
+        let kpi = store.get('kpi');
+        if(kpi) {
+            kpi.isAuth = false;
+            store.set('kpi', kpi);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     static getLoginStatus = () => {
-        return this.globalStore.isAuth;
+        let kpi = store.get('kpi');
+        if(kpi) {
+            return kpi.isAuth;
+        } else {
+            return false;
+        }
+        
     }
 }
 
