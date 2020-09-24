@@ -7,3 +7,4 @@
 out/
 out_build/
 .env.local
+.htaccess
