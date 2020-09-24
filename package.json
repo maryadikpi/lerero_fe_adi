@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "start-local": "forever start --minUptime 1000 --spinSleepTime 1000 next start",
+    "start-local": "next start",
     "export": "next export"
   },
   "dependencies": {
