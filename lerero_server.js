@@ -23,7 +23,7 @@ app.prepare().then(() => {
     // }
 
     handle(req, res, parsedUrl)
-  }).listen(80, (err) => {
+  }).listen(8080, (err) => {
     if (err) throw err
     console.log('> Ready on http://localhost:3000')
   })
