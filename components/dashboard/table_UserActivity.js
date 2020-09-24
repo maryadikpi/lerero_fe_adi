@@ -41,13 +41,13 @@ const TblUserActivity = () => (
                   <td>Makaryo Sregep</td>
                   <td>Sales</td>
                   <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar width-50 bg-warning"></div>
+                    <div className="progress progress-xs">
+                      <div className="progress-bar width-50 bg-warning"></div>
                     </div>
                   </td>
                   <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar width-70 bg-warning"></div>
+                    <div className="progress progress-xs">
+                      <div className="progress-bar width-70 bg-warning"></div>
                     </div>
                   </td>
                   <td>2.1 Breaking the new ..</td>
@@ -65,13 +65,13 @@ const TblUserActivity = () => (
                   <td>Makaryo Sregep</td>
                   <td>Sales</td>
                   <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar width-80 bg-warning"></div>
+                    <div className="progress progress-xs">
+                      <div className="progress-bar width-80 bg-warning"></div>
                     </div>
                   </td>
                   <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar width-100 bg-success"></div>
+                    <div className="progress progress-xs">
+                      <div className="progress-bar width-100 bg-success"></div>
                     </div>
                   </td>
                   <td>2.1 Breaking the new ..</td>
@@ -89,13 +89,13 @@ const TblUserActivity = () => (
                   <td>Makaryo Sregep</td>
                   <td>Sales</td>
                   <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar width-40 bg-danger"></div>
+                    <div className="progress progress-xs">
+                      <div className="progress-bar width-40 bg-danger"></div>
                     </div>
                   </td>
                   <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar width-80 bg-warning"></div>
+                    <div className="progress progress-xs">
+                      <div className="progress-bar width-80 bg-warning"></div>
                     </div>
                   </td>
                   <td>2.1 Breaking the new ..</td>
@@ -113,13 +113,13 @@ const TblUserActivity = () => (
                   <td>Makaryo Sregep</td>
                   <td>Sales</td>
                   <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar width-50 bg-danger"></div>
+                    <div className="progress progress-xs">
+                      <div className="progress-bar width-50 bg-danger"></div>
                     </div>
                   </td>
                   <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar width-90 bg-success"></div>
+                    <div className="progress progress-xs">
+                      <div className="progress-bar width-90 bg-success"></div>
                     </div>
                   </td>
                   <td>2.1 Breaking the new ..</td>
@@ -137,13 +137,13 @@ const TblUserActivity = () => (
                   <td>Makaryo Sregep</td>
                   <td>Sales</td>
                   <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar width-30 bg-danger"></div>
+                    <div className="progress progress-xs">
+                      <div className="progress-bar width-30 bg-danger"></div>
                     </div>
                   </td>
                   <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar width-70 bg-warning"></div>
+                    <div className="progress progress-xs">
+                      <div className="progress-bar width-70 bg-warning"></div>
                     </div>
                   </td>
                   <td>2.1 Breaking the new ..</td>
