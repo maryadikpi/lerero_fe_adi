@@ -20,6 +20,7 @@ class kpiHelper {
             ...data
         }
     }
+
     // Data contains access_token and refresh_token
     static setLogin = (data) => {
         this.globalStore.isAuth = true;
@@ -52,3 +53,26 @@ class kpiHelper {
 
 
 export default kpiHelper;
+
+// Helper for API
+export async function kpiFetch(fetchType, const_api_url, objData, putAuthToken = false) {
+    let header = {};
+    if (putAuthToken) {
+        header = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ ' tokenhere'
+        };
+    } else {
+        header = {
+            'Content-Type': 'application/json'
+        };
+    }
+    const resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
+    {
+      method: fetchType,
+      headers: header,
+      body: JSON.stringify(objData)
+    });
+    
+    return await resp.json()
+}
