@@ -5,7 +5,8 @@ import {Alert, Toast} from "react-bootstrap"
 
 //import 'styles/login.css'
 import Header from "components/admin/header"
-import kpiHelper from "kpi_helper"
+import kpiHelper, {kpiFetch} from "kpi_helper"
+import {LOGIN} from 'config/const_api_url'
 import {ADMIN_DAHSBOARD, FORGET_PASSWORD} from "config/const_url"
 
 
@@ -25,46 +26,23 @@ function Login() {
     paddingTop: '2px',
     width: '70%'
   }
-
-
-  // Test adding new var to kpiStore
-  // @adi will delete this later
-  kpiHelper.addNewStore({
-    login:{
-      name: 'Caitlyn',
-      status: 'logged-in',
-      data: {
-        hobby: 'hrt',
-        level: 37,
-        gameData: {
-          wings: true,
-          wood: 456,
-          stone: 890
-        }
-      }
-    }
-  });
-
-
-  const handleLogin = (formData) => {
-    //e.preventDefault()
-
-    // Do login process here with backend
-
-    // alert(JSON.stringify(formData))
-
-    if(formData.username === 'kpiadmin' && formData.password === 'kpiadmin123') {
-      // Change authStatus
-      kpiHelper.setLogin()
+  async function handleLogin (formData) {
+    const data = {
+      email: formData.username,
+      password: formData.password
+    };
+    const json = await kpiFetch('POST', LOGIN, data, false);
+    if (json.status) {
+      // Change authStatus & put token to store
+      // Everything will be handled by kpiHelper.setLogin
+      kpiHelper.setLogin(json.data)
   
       // Redirect to dashboard
       router.push({pathname: ADMIN_DAHSBOARD})
     } else {
-      alert('wrong username or password');
+      alert(json.message);
       showToast = true;
-      console.log(showToast)
     }
-
   }
 
   return (
