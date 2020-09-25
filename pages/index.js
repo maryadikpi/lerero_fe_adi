@@ -135,15 +135,15 @@ function Login() {
       <Toast 
       style={{
           position: 'absolute',
-          top: 0,
-          right: 0,
+          top: 17,
+          right: 17,
       }}
       onClose={() => setToast(false)} 
       show={toast} 
       delay={3000} 
       autohide>
           <Toast.Header>
-            <strong className="mr-auto">Login Error</strong>
+            <strong className="mr-auto" style={{color: 'red'}}>Login Error</strong>
           </Toast.Header>
           <Toast.Body>Invalid username or password</Toast.Body>
       </Toast>
