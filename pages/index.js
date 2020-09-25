@@ -58,7 +58,7 @@ function Login() {
     <Header />    
     <div className="hold-transition login-page">
       <div className="login-box">
-        <Row className="justify-content-md-center pb-4">
+        <Row className="justify-content-center pb-4">
           {loading ? (<Spinner animation="border" variant="primary"/>) : ''}
         </Row>
         <div className="card border-none">
@@ -135,15 +135,15 @@ function Login() {
       <Toast 
       style={{
           position: 'absolute',
-          top: 0,
-          right: 0,
+          top: 17,
+          right: 17,
       }}
       onClose={() => setToast(false)} 
       show={toast} 
       delay={3000} 
       autohide>
           <Toast.Header>
-            <strong className="mr-auto">Login Error</strong>
+            <strong className="mr-auto" style={{color: 'red'}}>Login Error</strong>
           </Toast.Header>
           <Toast.Body>Invalid username or password</Toast.Body>
       </Toast>
