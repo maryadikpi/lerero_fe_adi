@@ -58,7 +58,7 @@ function Login() {
     <Header />    
     <div className="hold-transition login-page">
       <div className="login-box">
-        <Row className="justify-content-md-center pb-4">
+        <Row className="justify-content-center pb-4">
           {loading ? (<Spinner animation="border" variant="primary"/>) : ''}
         </Row>
         <div className="card border-none">
