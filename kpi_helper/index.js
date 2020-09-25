@@ -1,9 +1,11 @@
 import store from 'store';
 class kpiHelper {
     static globalStore = {
-        init: {
+        loginInfo: {
             user: 'kpi@kpi.org',
-            password: 'kpi1234'
+            password: 'kpi1234',
+            accessToken: '',
+            refreshToken:''
         },
         isAuth: false
     };
@@ -18,9 +20,11 @@ class kpiHelper {
             ...data
         }
     }
-
-    static setLogin = () => {
+    // Data contains access_token and refresh_token
+    static setLogin = (data) => {
         this.globalStore.isAuth = true;
+        this.globalStore.loginInfo.accessToken = data.access_token;
+        this.globalStore.loginInfo.refreshToken = data.refresh_token;
         store.set('kpi', this.globalStore);
     }
 

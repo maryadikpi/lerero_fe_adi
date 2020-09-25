@@ -6,6 +6,7 @@ import {Alert, Toast} from "react-bootstrap"
 //import 'styles/login.css'
 import Header from "components/admin/header"
 import kpiHelper from "kpi_helper"
+import {LOGIN} from 'config/const_api_url'
 import {ADMIN_DAHSBOARD, FORGET_PASSWORD} from "config/const_url"
 
 
@@ -46,23 +47,39 @@ function Login() {
   });
 
 
-  const handleLogin = (formData) => {
+  async function handleLogin (formData) {
     //e.preventDefault()
 
-    // Do login process here with backend
-
-    // alert(JSON.stringify(formData))
-
-    if(formData.username === 'kpiadmin' && formData.password === 'kpiadmin123') {
+    // https://learning.lereroworld.com
+    const resp = await fetch(process.env.NEXT_PUBLIC_API_URL+LOGIN,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          email: formData.username,
+          password: formData.password
+      })
+    });
+    const json = await resp.json();
+    
+    if (json.success) {
       // Change authStatus
-      kpiHelper.setLogin()
+      kpiHelper.setLogin(json.data)
   
       // Redirect to dashboard
-      router.push({pathname: ADMIN_DAHSBOARD})
+      // router.push({pathname: ADMIN_DAHSBOARD})
     } else {
       alert('wrong username or password');
       showToast = true;
-      console.log(showToast)
+    }
+    // alert(JSON.stringify(formData))
+
+    if(formData.username === 'kpiadmin' && formData.password === 'kpiadmin123') {
+      
+    } else {
+      
     }
 
   }

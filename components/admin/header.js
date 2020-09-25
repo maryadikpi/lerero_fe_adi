@@ -4,7 +4,7 @@
 
 const Header = () => (
   <header>
-    {/* <link
+   <link
       rel="stylesheet"
       href="public/plugins/fontawesome-free/css/all.min.css"
     />
@@ -22,8 +22,8 @@ const Header = () => (
     <script src={process.env.NEXT_PUBLIC_JS_ASSET_PATH+"/plugins/bootstrap/js/bootstrap.bundle.min.js"}></script>
     <script src={process.env.NEXT_PUBLIC_JS_ASSET_PATH+"/dist/js/adminlte.min.js"}></script>
     <script src={process.env.NEXT_PUBLIC_JS_ASSET_PATH+"/plugins/chart.js/Chart.min.js"}></script>
-    <script src={process.env.NEXT_PUBLIC_JS_ASSET_PATH+"/dist/js/pages/dashboard3.js"}/> */
-    }
+    <script src={process.env.NEXT_PUBLIC_JS_ASSET_PATH+"/dist/js/pages/dashboard3.js"}/>
+    
   </header>
 );
 
