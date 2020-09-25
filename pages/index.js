@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router'
 import Link from "next/link"
 import {useForm} from "react-hook-form"
-import {Alert, Toast} from "react-bootstrap"
+import {useState} from "react"
+import {Alert, Toast, Spinner, Row} from "react-bootstrap"
 
 //import 'styles/login.css'
 import Header from "components/admin/header"
@@ -13,7 +14,8 @@ import {ADMIN_DAHSBOARD, FORGET_PASSWORD} from "config/const_url"
 
 function Login() {
   const router = useRouter()
-  var showToast = false;
+  const [loading, setLoading] = useState(false)
+  const [toast, setToast] = useState(false)
 
   // useForm()
   // 1. register -> register input
@@ -26,7 +28,13 @@ function Login() {
     paddingTop: '2px',
     width: '70%'
   }
+
+  /**
+   * Fired when login button is clicked
+   * @param {} formData 
+   */
   async function handleLogin (formData) {
+    setLoading(true);
     const data = {
       email: formData.username,
       password: formData.password
@@ -36,29 +44,32 @@ function Login() {
       // Change authStatus & put token to store
       // Everything will be handled by kpiHelper.setLogin
       kpiHelper.setLogin(json.data)
-  
+      setLoading(!loading);
       // Redirect to dashboard
       router.push({pathname: ADMIN_DAHSBOARD})
     } else {
-      alert(json.message);
-      showToast = true;
+      setToast(true);
+      setLoading(false);
     }
   }
 
   return (
   <>
-    <Header />
+    <Header />    
     <div className="hold-transition login-page">
       <div className="login-box">
+        <Row className="justify-content-md-center pb-4">
+          {loading ? (<Spinner animation="border" variant="primary"/>) : ''}
+        </Row>
         <div className="card border-none">
           <div className="card-body login-card-body">
             <div className="login-logo">
-              <a href="../../index2.html">
+              <a href="#">
                 <b>Lerero</b> Learning
               </a>
             </div>
             <p className="login-box-msg">Login Application</p>
-            <form action="../../index3.html" method="post">
+            <form>
               <div className="input-group mb-3">
                 <input
                   ref={register({required: true})}
@@ -121,14 +132,21 @@ function Login() {
           </div>
         </div>
       </div>
-      
-      <Toast onClose={() => {showToast = false}} show={showToast} delay={2000} autohide>
+      <Toast 
+      style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+      }}
+      onClose={() => setToast(false)} 
+      show={toast} 
+      delay={3000} 
+      autohide>
           <Toast.Header>
-            <strong className="mr-auto">Error</strong>
-            {/* <small>11 mins ago</small> */}
+            <strong className="mr-auto">Login Error</strong>
           </Toast.Header>
-          <Toast.Body>Wrong username or password</Toast.Body>
-        </Toast>
+          <Toast.Body>Invalid username or password</Toast.Body>
+      </Toast>
     </div>
   </>
   )
