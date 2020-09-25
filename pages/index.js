@@ -31,8 +31,8 @@ function Login() {
       email: formData.username,
       password: formData.password
     };
-    const json = await kpiFetch('POST', LOGIN, data);
-    if (json.success) {
+    const json = await kpiFetch('POST', LOGIN, data, false);
+    if (json.status) {
       // Change authStatus & put token to store
       // Everything will be handled by kpiHelper.setLogin
       kpiHelper.setLogin(json.data)
@@ -40,7 +40,7 @@ function Login() {
       // Redirect to dashboard
       router.push({pathname: ADMIN_DAHSBOARD})
     } else {
-      alert('wrong username or password');
+      alert(json.message);
       showToast = true;
     }
   }

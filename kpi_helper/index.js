@@ -2,8 +2,8 @@ import store from 'store';
 class kpiHelper {
     static globalStore = {
         loginInfo: {
-            user: 'kpi@kpi.org',
-            password: 'kpi1234',
+            user: '',
+            password: '',
             accessToken: '',
             refreshToken:''
         },
@@ -11,14 +11,25 @@ class kpiHelper {
     };
 
     static getGlobalStore() {
-        return this.globalStore;
+        let kpi = store.get('kpi');
+        if(kpi) {
+            return kpi;
+        } else {
+            return {};
+        }
     }
 
-    static addNewStore = (data) => {
-        this.globalStore = {
-            ...this.globalStore,
-            ...data
+    static addNewStoreData = (data) => {
+        let kpi = store.get('kpi');
+        let newKpi = {}
+        if(kpi) {
+            newKpi = {
+                ...kpi,
+                ...data
+            }
+            store.set('kpi', newKpi);
         }
+        return newKpi;
     }
 
     // Data contains access_token and refresh_token
@@ -56,25 +67,27 @@ export default kpiHelper;
 
 /**
 * Helper for API
+*
 * fetchType = GET, POST, DELETE, UPDATE, PUT etc
 *
 * const_api_url, please take a look at the api list from config/const_api_url.js
 *
 * objData. Example {username:'', password:''}
 *
-* putAuthToken means to put Authorization in fetch header
+* putAuthToken means to put Authorization token in fetch header
 */
-export async function kpiFetch(fetchType, const_api_url, objData, putAuthToken = false) {
-    let header = {};
+export async function kpiFetch(fetchType, const_api_url, objData, putAuthToken = true) {
+    let header = {
+        'Content-Type': 'application/json'
+    };
     if (putAuthToken) {
-        header = {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+ ' tokenhere'
-        };
-    } else {
-        header = {
-            'Content-Type': 'application/json'
-        };
+        let kpi = store.get('kpi');
+        if (kpi.loginInfo.accessToken) {
+            header = {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+ kpi.loginInfo.accessToken
+            };
+        }
     }
     const resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
     {

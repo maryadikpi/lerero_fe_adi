@@ -12,11 +12,8 @@ import kpiHelper from "kpi_helper"
 import {USER_LOGIN} from "config/const_url"
 
 function Homepage(data) {
-  console.log('isi data');
-  console.log(data);
   if (typeof window !== 'undefined') {
     if (!kpiHelper.getLoginStatus()) {
-      console.log(kpiHelper.getGlobalStore());
       const router = useRouter()
       router.push(USER_LOGIN);
     }
