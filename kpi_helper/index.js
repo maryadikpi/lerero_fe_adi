@@ -54,7 +54,16 @@ class kpiHelper {
 
 export default kpiHelper;
 
-// Helper for API
+/**
+* Helper for API
+* fetchType = GET, POST, DELETE, UPDATE, PUT etc
+*
+* const_api_url, please take a look at the api list from config/const_api_url.js
+*
+* objData. Example {username:'', password:''}
+*
+* putAuthToken means to put Authorization in fetch header
+*/
 export async function kpiFetch(fetchType, const_api_url, objData, putAuthToken = false) {
     let header = {};
     if (putAuthToken) {

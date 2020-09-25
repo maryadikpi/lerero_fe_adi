@@ -26,27 +26,6 @@ function Login() {
     paddingTop: '2px',
     width: '70%'
   }
-
-
-  // Test adding new var to kpiStore
-  // @adi will delete this later
-  kpiHelper.addNewStore({
-    login:{
-      name: 'Caitlyn',
-      status: 'logged-in',
-      data: {
-        hobby: 'hrt',
-        level: 37,
-        gameData: {
-          wings: true,
-          wood: 456,
-          stone: 890
-        }
-      }
-    }
-  });
-
-
   async function handleLogin (formData) {
     const data = {
       email: formData.username,
