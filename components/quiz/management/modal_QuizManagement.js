@@ -88,7 +88,7 @@ const ModalQuizManagement = () => (
                 <p>
                   <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
                 </p>
-                <p>Are you sure want to Deactive this Learning Path : </p>
+                <p>Are you sure want to Deactive this Quiz : </p>
               </div>
             </div>
             <br />
@@ -147,7 +147,7 @@ const ModalQuizManagement = () => (
                 <p>
                   <i className="fa fa-check-circle text-success icon-width-50"></i>
                 </p>
-                <p>Successfully deactivate this learning path</p>
+                <p>Successfully deactivate this Quiz</p>
               </div>
             </div>
             <br />
@@ -195,7 +195,7 @@ const ModalQuizManagement = () => (
                 <p>
                   <i className="fa fa-exclamation-triangle text-danger icon-width-50"></i>
                 </p>
-                <p>Are you sure want to Delete this Learning Path ? </p>
+                <p>Are you sure want to Delete this Quiz ? </p>
                 <p>Please note that this process cannot be reversed </p>
               </div>
             </div>
@@ -255,7 +255,7 @@ const ModalQuizManagement = () => (
                 <p>
                   <i className="fa fa-check-circle text-success icon-width-50"></i>
                 </p>
-                <p>Success Delete This Learning Path</p>
+                <p>Success Delete This Quiz</p>
               </div>
             </div>
             <br />
