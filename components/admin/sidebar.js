@@ -76,7 +76,7 @@ function Sidebar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link as="/admin/dashboard" href="/admin/dashboard">
+              <Link as="/admin/task/management" href="/admin/task/management">
                 <a className="nav-link">
                   <i className="nav-icon fa fa-tasks"></i>
                   <p>Tasks</p>
