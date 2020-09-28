@@ -22,6 +22,7 @@ const TabelDetailGroup = () => (
               <thead>
                 <tr>
                   <th width="5%">Id</th>
+                  <th>Icon</th>
                   <th>User Group Name</th>
                   <th>Total Member</th>
                   <th>Status</th>
@@ -31,6 +32,9 @@ const TabelDetailGroup = () => (
               <tbody>
                 <tr>
                   <td>1</td>
+                  <td>
+                    <i className="fa fa-shield-alt"></i>
+                  </td>
                   <Link href="/admin/user_group/detail">
                     <td>
                       <a>Sales</a>
@@ -53,6 +57,9 @@ const TabelDetailGroup = () => (
                 </tr>
                 <tr>
                   <td>2</td>
+                  <td>
+                    <i className="fa fa-home"></i>
+                  </td>
                   <Link href="/admin/user_group/detail">
                     <td>
                       <a>Finance</a>
@@ -75,6 +82,9 @@ const TabelDetailGroup = () => (
                 </tr>
                 <tr>
                   <td>3</td>
+                  <td>
+                    <i className="fa fa-briefcase"></i>
+                  </td>
                   <Link href="/admin/user_group/detail">
                     <td>
                       <a>Warehouse</a>
@@ -97,6 +107,9 @@ const TabelDetailGroup = () => (
                 </tr>
                 <tr>
                   <td>4</td>
+                  <td>
+                    <i className="fa fa-dollar-sign"></i>
+                  </td>
                   <Link href="/admin/user_group/detail">
                     <td>
                       <a>Engineer</a>
@@ -119,6 +132,9 @@ const TabelDetailGroup = () => (
                 </tr>
                 <tr>
                   <td>5</td>
+                  <td>
+                    <i className="fa fa-wrench"></i>
+                  </td>
                   <Link href="/admin/user_group/detail">
                     <td>
                       <a>Executive</a>

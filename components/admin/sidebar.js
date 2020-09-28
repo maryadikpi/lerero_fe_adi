@@ -84,7 +84,7 @@ function Sidebar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link as="/admin/dashboard" href="/admin/dashboard">
+              <Link as="/admin/quiz/management" href="/admin/quiz/management">
                 <a className="nav-link">
                   <i className="nav-icon fa fa-tachometer-alt"></i>
                   <p>Quiz</p>
