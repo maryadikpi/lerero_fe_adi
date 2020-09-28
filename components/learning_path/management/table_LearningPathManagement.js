@@ -5,7 +5,7 @@ const TableLearningPathManagement = () => (
       <div className="col-12">
         <div className="card text-dark card-primary card-outline">
           <div className="card-header border-0">
-            <h3 className="card-title">List of LearningPaths</h3>
+            <h3 className="card-title">List of Learning Paths</h3>
             <div className="card-tools">
               <button
                 type="button"
@@ -13,7 +13,7 @@ const TableLearningPathManagement = () => (
                 data-toggle="modal"
                 data-target="#addGroup"
               >
-                <i className="fas fa-shield-alt"></i> Add New LearningPaths
+                <i className="fas fa-shield-alt"></i> Add New Learning Paths
               </button>
             </div>
           </div>
@@ -22,10 +22,9 @@ const TableLearningPathManagement = () => (
               <thead>
                 <tr>
                   <th width="5%">Id</th>
-                  <th>Icon</th>
-                  <th>LearningPath Name</th>
+                  <th>Badge name</th>
                   <th>User Group</th>
-                  <th>Earner For</th>
+                  <th>Requirement</th>
                   <th>Status</th>
                   <th>Created On</th>
                   <th>Created By</th>
@@ -35,17 +34,14 @@ const TableLearningPathManagement = () => (
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>
-                    <i className="fas fa-shield-alt"></i>
-                  </td>
-                  <td>Gold User</td>
+                  <td>Learning Path 1</td>
                   <td>
                     <i className="fas fa-shield-alt m-1"></i>
                     <i className="fas fa-home m-1"></i>
                     <i className="fas fa-tasks m-1"></i>
                   </td>
-                  <td>1</td>
-                  <td>Inactive</td>
+                  <td>N/A</td>
+                  <td>Published</td>
                   <td>23/11/20</td>
                   <td>Thomas Wayne</td>
                   <td>
@@ -56,7 +52,7 @@ const TableLearningPathManagement = () => (
                         data-target="#actionBtn"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
-                        Detail
+                        Duplicate
                       </button>
                       <button
                         type="button"
@@ -70,9 +66,9 @@ const TableLearningPathManagement = () => (
                         type="button"
                         data-toggle="modal"
                         data-target="#deactiveLearningPath"
-                        className="btn btn-warning width-80px btn-sm m-1"
+                        className="btn btn-warning width-100px btn-sm m-1"
                       >
-                        Publish
+                        Deactivate
                       </button>
                       <button
                         type="button"
@@ -87,16 +83,13 @@ const TableLearningPathManagement = () => (
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>
-                    <i className="fas fa-shield-alt"></i>
-                  </td>
-                  <td>Gold User</td>
+                  <td>Learning Path 2</td>
                   <td>
                     <i className="fas fa-shield-alt m-1"></i>
                     <i className="fas fa-home m-1"></i>
                     <i className="fas fa-tasks m-1"></i>
                   </td>
-                  <td>1</td>
+                  <td>N/A</td>
                   <td>Published</td>
                   <td>23/11/20</td>
                   <td>Thomas Wayne</td>
@@ -108,7 +101,7 @@ const TableLearningPathManagement = () => (
                         data-target="#actionBtn"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
-                        Detail
+                        Duplicate
                       </button>
                       <button
                         type="button"
@@ -122,9 +115,9 @@ const TableLearningPathManagement = () => (
                         type="button"
                         data-toggle="modal"
                         data-target="#deactiveLearningPath"
-                        className="btn btn-warning width-80px btn-sm m-1"
+                        className="btn btn-warning width-100px btn-sm m-1"
                       >
-                        Deactive
+                        Deactivate
                       </button>
                       <button
                         type="button"
@@ -139,17 +132,14 @@ const TableLearningPathManagement = () => (
                 </tr>
                 <tr>
                   <td>3</td>
-                  <td>
-                    <i className="fas fa-shield-alt"></i>
-                  </td>
-                  <td>Gold User</td>
+                  <td>Learning Path 3</td>
                   <td>
                     <i className="fas fa-shield-alt m-1"></i>
                     <i className="fas fa-home m-1"></i>
                     <i className="fas fa-tasks m-1"></i>
                   </td>
-                  <td>3</td>
-                  <td>Inactive</td>
+                  <td>N/A</td>
+                  <td>Published</td>
                   <td>23/11/20</td>
                   <td>Thomas Wayne</td>
                   <td>
@@ -160,7 +150,7 @@ const TableLearningPathManagement = () => (
                         data-target="#actionBtn"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
-                        Detail
+                        Duplicate
                       </button>
                       <button
                         type="button"
@@ -174,9 +164,9 @@ const TableLearningPathManagement = () => (
                         type="button"
                         data-toggle="modal"
                         data-target="#deactiveLearningPath"
-                        className="btn btn-warning width-80px btn-sm m-1"
+                        className="btn btn-warning width-100px btn-sm m-1"
                       >
-                        Publish
+                        Deactivate
                       </button>
                       <button
                         type="button"
@@ -191,16 +181,13 @@ const TableLearningPathManagement = () => (
                 </tr>
                 <tr>
                   <td>4</td>
-                  <td>
-                    <i className="fas fa-shield-alt"></i>
-                  </td>
-                  <td>Gold User</td>
+                  <td>Learning Path 4</td>
                   <td>
                     <i className="fas fa-shield-alt m-1"></i>
                     <i className="fas fa-home m-1"></i>
                     <i className="fas fa-tasks m-1"></i>
                   </td>
-                  <td>4</td>
+                  <td>N/A</td>
                   <td>Published</td>
                   <td>23/11/20</td>
                   <td>Thomas Wayne</td>
@@ -212,7 +199,7 @@ const TableLearningPathManagement = () => (
                         data-target="#actionBtn"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
-                        Detail
+                        Duplicate
                       </button>
                       <button
                         type="button"
@@ -226,9 +213,9 @@ const TableLearningPathManagement = () => (
                         type="button"
                         data-toggle="modal"
                         data-target="#deactiveLearningPath"
-                        className="btn btn-warning width-80px btn-sm m-1"
+                        className="btn btn-warning width-100px btn-sm m-1"
                       >
-                        Deactive
+                        Deactivate
                       </button>
                       <button
                         type="button"
@@ -243,16 +230,13 @@ const TableLearningPathManagement = () => (
                 </tr>
                 <tr>
                   <td>5</td>
-                  <td>
-                    <i className="fas fa-shield-alt"></i>
-                  </td>
-                  <td>Gold User</td>
+                  <td>Learning Path 5</td>
                   <td>
                     <i className="fas fa-shield-alt m-1"></i>
                     <i className="fas fa-home m-1"></i>
                     <i className="fas fa-tasks m-1"></i>
                   </td>
-                  <td>1</td>
+                  <td>N/A</td>
                   <td>Published</td>
                   <td>23/11/20</td>
                   <td>Thomas Wayne</td>
@@ -264,7 +248,7 @@ const TableLearningPathManagement = () => (
                         data-target="#actionBtn"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
-                        Detail
+                        Duplicate
                       </button>
                       <button
                         type="button"
@@ -278,9 +262,9 @@ const TableLearningPathManagement = () => (
                         type="button"
                         data-toggle="modal"
                         data-target="#deactiveLearningPath"
-                        className="btn btn-warning width-80px btn-sm m-1"
+                        className="btn btn-warning width-100px btn-sm m-1"
                       >
-                        Deactive
+                        Deactivate
                       </button>
                       <button
                         type="button"

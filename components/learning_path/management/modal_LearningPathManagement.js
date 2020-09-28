@@ -88,7 +88,7 @@ const ModalLearningPathMenagement = () => (
                 <p>
                   <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
                 </p>
-                <p>Are you sure want to Deactive this badge : </p>
+                <p>Are you sure want to Deactive this Learning Path : </p>
               </div>
             </div>
             <br />
@@ -107,7 +107,57 @@ const ModalLearningPathMenagement = () => (
                 <button
                   type="button"
                   data-dismiss="modal"
+                  data-toggle="modal"
+                  data-target="#deactiveLearningPathSuccess"
                   className="btn width-90 btn-sm btn-primary"
+                >
+                  Ok
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      className="modal fade"
+      id="deactiveLearningPathSuccess"
+      tabIndex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog text-dark" role="document">
+        <div className="modal-content">
+          <div className="modal-header text-center">
+            <h5 className="modal-title width-100">Warning!</h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body p-3">
+            <div className="row align-center p-3">
+              <div className="col-12 text-center">
+                <p>
+                  <i className="fa fa-check-circle text-success icon-width-50"></i>
+                </p>
+                <p>Successfully deactivate this learning path</p>
+              </div>
+            </div>
+            <br />
+
+            <div className="row mb-5">
+              <div className="col-12 text-center">
+                <button
+                  type="button"
+                  data-dismiss="modal"
+                  className="btn width-30 btn-sm btn-primary"
                 >
                   Ok
                 </button>
@@ -145,7 +195,7 @@ const ModalLearningPathMenagement = () => (
                 <p>
                   <i className="fa fa-exclamation-triangle text-danger icon-width-50"></i>
                 </p>
-                <p>Are you sure want to Delete this badge ? </p>
+                <p>Are you sure want to Delete this Learning Path ? </p>
                 <p>Please note that this process cannot be reversed </p>
               </div>
             </div>
@@ -165,6 +215,8 @@ const ModalLearningPathMenagement = () => (
                 <button
                   type="button"
                   data-dismiss="modal"
+                  data-toggle="modal"
+                  data-target="#deleteLearningPathSuccess"
                   className="btn width-90 btn-sm btn-primary"
                 >
                   Ok
@@ -178,7 +230,7 @@ const ModalLearningPathMenagement = () => (
 
     <div
       className="modal fade"
-      id="actionMessage"
+      id="deleteLearningPathSuccess"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -187,7 +239,7 @@ const ModalLearningPathMenagement = () => (
       <div className="modal-dialog text-dark" role="document">
         <div className="modal-content">
           <div className="modal-header text-center">
-            <h5 className="modal-title width-100">Warning!</h5>
+            <h5 className="modal-title width-100">Success</h5>
             <button
               type="button"
               className="close"
@@ -203,9 +255,7 @@ const ModalLearningPathMenagement = () => (
                 <p>
                   <i className="fa fa-check-circle text-success icon-width-50"></i>
                 </p>
-                <p>Success Deative User Group</p>
-                <p>Sales</p>
-                <p>#1</p>
+                <p>Success Delete This Learning Path</p>
               </div>
             </div>
             <br />
