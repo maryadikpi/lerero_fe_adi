@@ -1,3 +1,5 @@
+import BlockUserButton from '../modal/modalBlockUser'
+import DeleteUserButton from '../modal/modalDeleteUser'
 export default function rowUserManagement (props) {
     const data = props.data
     return (
@@ -17,22 +19,9 @@ export default function rowUserManagement (props) {
             <td>{data.status}</td>
             <td>
             <center>
-                <button
-                type="button"
-                data-toggle="modal"
-                data-target="#blockUser"
-                className="btn btn-success width-110px btn-sm m-1"
-                >
-                Block
-                </button>
-                <button
-                type="button"
-                data-toggle="modal"
-                data-target="#deleteUser"
-                className="btn btn-danger width-110px btn-sm m-1"
-                >
-                Delete
-                </button>
+                <BlockUserButton id={data.id} username={data.username}/>
+                <DeleteUserButton id={data.id} username={data.username} />
+                
                 <button
                 type="button"
                 data-toggle="modal"
