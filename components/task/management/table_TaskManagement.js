@@ -5,7 +5,7 @@ const TableTaskManagement = () => (
       <div className="col-12">
         <div className="card text-dark card-primary card-outline">
           <div className="card-header border-0">
-            <h3 className="card-title">List of Learning Paths</h3>
+            <h3 className="card-title">List of Task</h3>
             <div className="card-tools">
               <button
                 type="button"
@@ -13,7 +13,7 @@ const TableTaskManagement = () => (
                 data-toggle="modal"
                 data-target="#addGroup"
               >
-                <i className="fas fa-shield-alt"></i> Add New Learning Paths
+                <i className="fas fa-shield-alt"></i> Add New Task
               </button>
             </div>
           </div>
@@ -22,34 +22,34 @@ const TableTaskManagement = () => (
               <thead>
                 <tr>
                   <th width="5%">Id</th>
-                  <th>Badge name</th>
-                  <th>User Group</th>
-                  <th>Requirement</th>
-                  <th>Status</th>
+                  <th>Task Name</th>
+                  <th>Point</th>
+                  <th>Learning Path</th>
+                  <th>Type</th>
+                  <th>Member</th>
                   <th>Created On</th>
                   <th>Created By</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>Learning Path 1</td>
-                  <td>
-                    <i className="fas fa-shield-alt m-1"></i>
-                    <i className="fas fa-home m-1"></i>
-                    <i className="fas fa-tasks m-1"></i>
-                  </td>
-                  <td>N/A</td>
-                  <td>Published</td>
+                  <td>Your Profile</td>
+                  <td>10</td>
+                  <td>101 Introduction</td>
+                  <td>Individual</td>
+                  <td>-</td>
                   <td>23/11/20</td>
                   <td>Thomas Wayne</td>
+                  <td>Published</td>
                   <td>
                     <center>
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#actionBtn"
+                        data-target="#duplicateTask"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
                         Duplicate
@@ -57,203 +57,7 @@ const TableTaskManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-primary width-80px btn-sm m-1"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deactiveTask"
-                        className="btn btn-warning width-100px btn-sm m-1"
-                      >
-                        Deactivate
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteTask"
-                        className="btn btn-danger width-80px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Learning Path 2</td>
-                  <td>
-                    <i className="fas fa-shield-alt m-1"></i>
-                    <i className="fas fa-home m-1"></i>
-                    <i className="fas fa-tasks m-1"></i>
-                  </td>
-                  <td>N/A</td>
-                  <td>Published</td>
-                  <td>23/11/20</td>
-                  <td>Thomas Wayne</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-80px btn-sm m-1"
-                      >
-                        Duplicate
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-primary width-80px btn-sm m-1"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deactiveTask"
-                        className="btn btn-warning width-100px btn-sm m-1"
-                      >
-                        Deactivate
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteTask"
-                        className="btn btn-danger width-80px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Learning Path 3</td>
-                  <td>
-                    <i className="fas fa-shield-alt m-1"></i>
-                    <i className="fas fa-home m-1"></i>
-                    <i className="fas fa-tasks m-1"></i>
-                  </td>
-                  <td>N/A</td>
-                  <td>Published</td>
-                  <td>23/11/20</td>
-                  <td>Thomas Wayne</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-80px btn-sm m-1"
-                      >
-                        Duplicate
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-primary width-80px btn-sm m-1"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deactiveTask"
-                        className="btn btn-warning width-100px btn-sm m-1"
-                      >
-                        Deactivate
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteTask"
-                        className="btn btn-danger width-80px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Learning Path 4</td>
-                  <td>
-                    <i className="fas fa-shield-alt m-1"></i>
-                    <i className="fas fa-home m-1"></i>
-                    <i className="fas fa-tasks m-1"></i>
-                  </td>
-                  <td>N/A</td>
-                  <td>Published</td>
-                  <td>23/11/20</td>
-                  <td>Thomas Wayne</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-80px btn-sm m-1"
-                      >
-                        Duplicate
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-primary width-80px btn-sm m-1"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deactiveTask"
-                        className="btn btn-warning width-100px btn-sm m-1"
-                      >
-                        Deactivate
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteTask"
-                        className="btn btn-danger width-80px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Learning Path 5</td>
-                  <td>
-                    <i className="fas fa-shield-alt m-1"></i>
-                    <i className="fas fa-home m-1"></i>
-                    <i className="fas fa-tasks m-1"></i>
-                  </td>
-                  <td>N/A</td>
-                  <td>Published</td>
-                  <td>23/11/20</td>
-                  <td>Thomas Wayne</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-80px btn-sm m-1"
-                      >
-                        Duplicate
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
+                        data-target="#editTask"
                         className="btn btn-primary width-80px btn-sm m-1"
                       >
                         Edit
