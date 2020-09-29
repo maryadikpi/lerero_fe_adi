@@ -45,7 +45,10 @@ const TabelUserManagement = () => (
                   <td>251</td>
                   <td>
                     <img
-                      src="/public/dist/img/default-150x150.png"
+                      src={
+                        process.env.NEXT_PUBLIC_IMG_PATH +
+                        "/dist/img/default-150x150.png"
+                      }
                       alt="Product 1"
                       className="img-circle img-size-32 mr-2"
                     />
@@ -102,7 +105,10 @@ const TabelUserManagement = () => (
                   <td>251</td>
                   <td>
                     <img
-                      src="/public/dist/img/default-150x150.png"
+                      src={
+                        process.env.NEXT_PUBLIC_IMG_PATH +
+                        "/dist/img/default-150x150.png"
+                      }
                       alt="Product 1"
                       className="img-circle img-size-32 mr-2"
                     />
@@ -159,7 +165,10 @@ const TabelUserManagement = () => (
                   <td>251</td>
                   <td>
                     <img
-                      src="/public/dist/img/default-150x150.png"
+                      src={
+                        process.env.NEXT_PUBLIC_IMG_PATH +
+                        "/dist/img/default-150x150.png"
+                      }
                       alt="Product 1"
                       className="img-circle img-size-32 mr-2"
                     />
@@ -216,7 +225,10 @@ const TabelUserManagement = () => (
                   <td>251</td>
                   <td>
                     <img
-                      src="/public/dist/img/default-150x150.png"
+                      src={
+                        process.env.NEXT_PUBLIC_IMG_PATH +
+                        "/dist/img/default-150x150.png"
+                      }
                       alt="Product 1"
                       className="img-circle img-size-32 mr-2"
                     />
@@ -273,7 +285,10 @@ const TabelUserManagement = () => (
                   <td>251</td>
                   <td>
                     <img
-                      src="/public/dist/img/default-150x150.png"
+                      src={
+                        process.env.NEXT_PUBLIC_IMG_PATH +
+                        "/dist/img/default-150x150.png"
+                      }
                       alt="Product 1"
                       className="img-circle img-size-32 mr-2"
                     />
