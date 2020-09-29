@@ -18,7 +18,7 @@ const TableLearningPathManagement = () => (
             </div>
           </div>
           <div className="card-body table-responsive p-0">
-            <table className="table text-center table-striped table-valign-middle">
+            <table className="table text-center table-valign-middle">
               <thead>
                 <tr>
                   <th width="5%">Id</th>
@@ -32,7 +32,13 @@ const TableLearningPathManagement = () => (
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr
+                  className="accordion-toggle collapsed"
+                  id="accordion1"
+                  data-toggle="collapse"
+                  data-parent="#accordion1"
+                  href="#collapseOne"
+                >
                   <td>1</td>
                   <td>Learning Path 1</td>
                   <td>
@@ -79,6 +85,29 @@ const TableLearningPathManagement = () => (
                         Delete
                       </button>
                     </center>
+                  </td>
+                </tr>
+                <tr className="hide-table-padding">
+                  <td></td>
+                  <td colspan="3">
+                    <div id="collapseOne" className="collapse in p-3">
+                      <div className="row">
+                        <div className="col-2">label</div>
+                        <div className="col-6">value 1</div>
+                      </div>
+                      <div className="row">
+                        <div className="col-2">label</div>
+                        <div className="col-6">value 2</div>
+                      </div>
+                      <div className="row">
+                        <div className="col-2">label</div>
+                        <div className="col-6">value 3</div>
+                      </div>
+                      <div className="row">
+                        <div className="col-2">label</div>
+                        <div className="col-6">value 4</div>
+                      </div>
+                    </div>
                   </td>
                 </tr>
                 <tr>
