@@ -11,7 +11,7 @@ import ChartQuizProgress from "components/dashboard/chart_QuizProgress";
 import kpiHelper from "kpi_helper"
 import {USER_LOGIN} from "config/const_url"
 
-function Homepage() {
+function Homepage(data) {
   if (typeof window !== 'undefined') {
     if (!kpiHelper.getLoginStatus()) {
       const router = useRouter()
@@ -156,5 +156,12 @@ function Homepage() {
   </>
   )
 };
+
+
+export async function getServerSideProps(context) {
+  return {
+    props: {authStatus: true}, // will be passed to the page component as props
+  }
+}
 
 export default Homepage;
