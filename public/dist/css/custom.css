@@ -92,3 +92,7 @@ tr.hide-table-padding td {
 {
   content: '+';
 }
+
+.modal-width-800 {
+  max-width: 800px;
+}

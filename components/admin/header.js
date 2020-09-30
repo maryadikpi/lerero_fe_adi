@@ -15,7 +15,21 @@ const Header = () => (
         "/plugins/bootstrap/js/bootstrap.bundle.min.js"
       }
     ></script>
-
+    <script
+      src={
+        process.env.NEXT_PUBLIC_JS_ASSET_PATH +
+        "/plugins/bootstrap/js/bootstrap.min.js"
+      }
+    ></script>
+    <script
+      src={
+        process.env.NEXT_PUBLIC_JS_ASSET_PATH +
+        "/plugins/jquery/jquery.easing.min.js"
+      }
+    ></script>
+    <script
+      src={process.env.NEXT_PUBLIC_JS_ASSET_PATH + "/dist/js/multiform.js"}
+    ></script>
     {/* <link
       rel="stylesheet"
       href="public/plugins/fontawesome-free/css/all.min.css"

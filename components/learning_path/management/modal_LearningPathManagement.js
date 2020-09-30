@@ -8,7 +8,7 @@ const ModalLearningPathMenagement = () => (
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog text-dark" role="document">
+      <div className="modal-dialog modal-width-800 text-dark" role="document">
         <div className="modal-content">
           <div className="modal-header text-center">
             <h5 className="modal-title width-100">Create User Group</h5>
@@ -24,19 +24,69 @@ const ModalLearningPathMenagement = () => (
           <div className="modal-body p-3">
             <div className="row align-center p-3">
               <div className="col-12">
-                <label htmlFor="groupName" className="container-fluid  p-2">
-                  User Group's Name
-                </label>
-                <input
-                  id="groupName"
-                  type="text"
-                  className="form-control border-top-0 border-right-0 border-left-0"
-                  placeholder="Type user's group name"
-                />
+                <section className="multi_step_form">
+                  <form id="msform">
+                    <div className="tittle">
+                      <h2>Verification Process</h2>
+                      <p>
+                        In order to use this service, you have to complete this
+                        verification process
+                      </p>
+                      <p id="testing">Testing</p>
+                    </div>
+                    <ul id="progressbar">
+                      <li className="active">Verify Phone</li>
+                      <li>Upload Documents</li>
+                      <li>Security Questions</li>
+                    </ul>
+                    <fieldset>
+                      <h3>Setup your phone</h3>
+                      <h6>We will send you a SMS. Input the code to verify.</h6>
+                      <button
+                        type="button"
+                        className="action-button previous_button"
+                      >
+                        Back
+                      </button>
+                      <button type="button" className="next action-button">
+                        Continue
+                      </button>
+                    </fieldset>
+                    <fieldset>
+                      <h3>Verify Your Identity</h3>
+                      <h6>
+                        Please upload any of these documents to verify your
+                        Identity.
+                      </h6>
+                      <button
+                        type="button"
+                        className="action-button previous previous_button"
+                      >
+                        Back
+                      </button>
+                      <button type="button" className="next action-button">
+                        Continue
+                      </button>
+                    </fieldset>
+                    <fieldset>
+                      <h3>Create Security Questions</h3>
+                      <h6>
+                        Please update your account with security questions
+                      </h6>
+                      <button
+                        type="button"
+                        className="action-button previous previous_button"
+                      >
+                        Back
+                      </button>
+                      <a href="#" className="action-button">
+                        Finish
+                      </a>
+                    </fieldset>
+                  </form>
+                </section>
               </div>
             </div>
-            <br />
-
             <div className="row mb-5">
               <div className="col-6">
                 <button
