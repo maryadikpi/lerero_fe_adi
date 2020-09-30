@@ -7,14 +7,11 @@ const TableLearningPathManagement = () => (
           <div className="card-header border-0">
             <h3 className="card-title">List of Learning Paths</h3>
             <div className="card-tools">
-              <button
-                type="button"
-                className="btn btn-primary btn-sm"
-                data-toggle="modal"
-                data-target="#addGroup"
-              >
-                <i className="fas fa-shield-alt"></i> Add New Learning Paths
-              </button>
+              <Link href="/admin/learning_path/add">
+                <a className="btn btn-primary btn-sm">
+                  <i className="fas fa-shield-alt"></i> Add New Learning Paths
+                </a>
+              </Link>
             </div>
           </div>
           <div className="card-body table-responsive p-0">
@@ -32,15 +29,17 @@ const TableLearningPathManagement = () => (
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  className="accordion-toggle collapsed"
-                  id="accordion1"
-                  data-toggle="collapse"
-                  data-parent="#accordion1"
-                  href="#collapseOne"
-                >
+                <tr>
                   <td>1</td>
-                  <td>Learning Path 1</td>
+                  <td
+                    className="accordion-toggle collapsed"
+                    id="accordion1"
+                    data-toggle="collapse"
+                    data-parent="#accordion1"
+                    href="#collapseOne"
+                  >
+                    Learning Path 1
+                  </td>
                   <td>
                     <i className="fas fa-shield-alt m-1"></i>
                     <i className="fas fa-home m-1"></i>
