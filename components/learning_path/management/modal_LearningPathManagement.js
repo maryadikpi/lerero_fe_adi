@@ -22,7 +22,7 @@ function ModalLearningPathMenagement() {
       <div className="modal-dialog modal-width-800 text-dark" role="document">
         <div className="modal-content">
           <div className="modal-header text-center">
-            <h5 className="modal-title width-100">Create User Group</h5>
+            <h5 className="modal-title width-100">Add New Learning Path</h5>
             <button
               type="button"
               className="close"
@@ -37,22 +37,52 @@ function ModalLearningPathMenagement() {
               <div className="col-12">
                 <section className="multi_step_form">
                   <form id="msform">
-                    <div className="tittle">
-                      <h2>Verification Process</h2>
-                      <p>
-                        In order to use this service, you have to complete this
-                        verification process
-                      </p>
-                      <p id="testing">Testing</p>
-                    </div>
                     <ul id="progressbar">
-                      <li className="active">Verify Phone</li>
+                      <li className="active">General Information</li>
                       <li>Upload Documents</li>
                       <li>Security Questions</li>
                     </ul>
                     <fieldset>
-                      <h3>Setup your phone</h3>
-                      <h6>We will send you a SMS. Input the code to verify.</h6>
+                      <div>
+                        <h3>General Information</h3>
+                        <hr className="width-30" />
+                      </div>
+                      <div className="row text-left">
+                        <div className="col-md-8">
+                          <p htmlFor="leraningPathname" className="">
+                            <b>Learning Path Name : </b>
+                          </p>
+                          <input
+                            id="leraningPathname"
+                            type="text"
+                            className="form-control border-top-0 border-right-0 border-left-0 mb-5"
+                            placeholder="Type user's group name"
+                          />
+                          <p htmlFor="leraningPathname" className="">
+                            <b>Learning Path Description : </b>
+                          </p>
+                          <textarea className="form-control mb-4"></textarea>
+                          <p htmlFor="leraningPathname" className="">
+                            <b>Learning Path Requirement : </b>
+                          </p>
+                          <button
+                            type="button"
+                            className="btn btn-sm text-left btn-success width-50 mb-5"
+                          >
+                            + Add Learning Path Requirement
+                          </button>
+                          <p htmlFor="leraningPathname" className="">
+                            <b> Milestone :</b>
+                          </p>
+                          <button
+                            type="button"
+                            className="btn btn-sm text-left btn-success width-50 mb-5"
+                          >
+                            + Add Milestone
+                          </button>
+                        </div>
+                        <div className="col-md-4"></div>
+                      </div>
                       <button
                         type="button"
                         className="action-button previous_button"
@@ -96,25 +126,6 @@ function ModalLearningPathMenagement() {
                     </fieldset>
                   </form>
                 </section>
-              </div>
-            </div>
-            <div className="row mb-5">
-              <div className="col-6">
-                <button
-                  type="button"
-                  className="btn btn-sm btn-danger width-90 float-right"
-                  data-dismiss="modal"
-                >
-                  Cancel
-                </button>
-              </div>
-              <div className="col-6">
-                <button
-                  type="button"
-                  className="btn width-90 btn-sm btn-primary"
-                >
-                  Create User Group
-                </button>
               </div>
             </div>
           </div>
