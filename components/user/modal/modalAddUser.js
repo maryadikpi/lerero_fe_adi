@@ -167,9 +167,9 @@ export default function modalAddUser(props) {
                               <div className="col-6">
                                   <button
                                   type="submit"
-                                  data-dismiss="modal"
-                                  data-toggle="modal"
-                                  data-target="#addSuccess"
+                                  //data-dismiss="modal"
+                                  //data-toggle="modal"
+                                  //data-target="#addSuccess"
                                   className="btn width-90 btn-sm btn-primary"
                                   >
                                   Create User
