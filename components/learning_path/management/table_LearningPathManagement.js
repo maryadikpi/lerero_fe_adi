@@ -89,7 +89,7 @@ const TableLearningPathManagement = () => (
                 </tr>
                 <tr className="hide-table-padding">
                   <td></td>
-                  <td colspan="3">
+                  <td colSpan="3">
                     <div id="collapseOne" className="collapse in p-3">
                       <div className="row">
                         <div className="col-2">label</div>

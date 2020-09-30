@@ -1,4 +1,8 @@
-const ModalLearningPathMenagement = () => (
+function ModalLearningPathMenagement() {
+  function showAlert() {
+    alert("hellow there")
+  }
+  return (
   <>
     <div
       className="modal fade"
@@ -32,7 +36,7 @@ const ModalLearningPathMenagement = () => (
                         In order to use this service, you have to complete this
                         verification process
                       </p>
-                      <p id="testing">Testing</p>
+                      <p id="testing" onClick={showAlert}>Testing</p>
                     </div>
                     <ul id="progressbar">
                       <li className="active">Verify Phone</li>
@@ -326,6 +330,7 @@ const ModalLearningPathMenagement = () => (
       </div>
     </div>
   </>
-);
+  )
+};
 
 export default ModalLearningPathMenagement;
