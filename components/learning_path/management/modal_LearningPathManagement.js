@@ -1,7 +1,14 @@
+import {useEffect} from "react"
 function ModalLearningPathMenagement() {
-  function showAlert() {
-    alert("hellow there")
-  }
+  // function showAlert() {
+  //   alert("hellow there")
+  // }
+
+  useEffect(() => {
+      $("#testing").click(function() {
+        alert("testing");
+      });
+  });
   return (
   <>
     <div
@@ -36,7 +43,7 @@ function ModalLearningPathMenagement() {
                         In order to use this service, you have to complete this
                         verification process
                       </p>
-                      <p id="testing" onClick={showAlert}>Testing</p>
+                      <p id="testing">Testing</p>
                     </div>
                     <ul id="progressbar">
                       <li className="active">Verify Phone</li>
