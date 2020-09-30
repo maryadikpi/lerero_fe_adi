@@ -1,4 +1,4 @@
-import store from 'store';
+import store from "store";
 class kpiHelper {
     static globalStore = {
         loginInfo: {
@@ -40,28 +40,26 @@ class kpiHelper {
         store.set('kpi', this.globalStore);
     }
 
-    static unsetLogin = () => {
-        let kpi = store.get('kpi');
-        if(kpi) {
-            kpi.isAuth = false;
-            store.set('kpi', kpi);
-            return true;
-        } else {
-            return false;
-        }
+  static unsetLogin = () => {
+    let kpi = store.get("kpi");
+    if (kpi) {
+      kpi.isAuth = false;
+      store.set("kpi", kpi);
+      return true;
+    } else {
+      return false;
     }
+  };
 
-    static getLoginStatus = () => {
-        let kpi = store.get('kpi');
-        if(kpi) {
-            return kpi.isAuth;
-        } else {
-            return false;
-        }
-        
+  static getLoginStatus = () => {
+    let kpi = store.get("kpi");
+    if (kpi) {
+      return kpi.isAuth;
+    } else {
+      return false;
     }
+  };
 }
-
 
 export default kpiHelper;
 
