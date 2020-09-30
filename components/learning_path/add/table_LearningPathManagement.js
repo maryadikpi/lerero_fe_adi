@@ -104,6 +104,23 @@ function TableLearningPathManagement() {
         }
       );
     });
+
+    $("#addMilestone").click(function() {
+      $("#milestone").append(
+        "<tr>" +
+          "<td width='20%'>Milestone Name</td>" +
+          "<td>" +
+          "<input type='text' class='form-control' />" +
+          "</td>" +
+          "</tr>" +
+          "<tr>" +
+          "<td>Milestone Description</td>" +
+          "<td>" +
+          "<textarea type='text' class='form-control'></textarea>" +
+          "</td>" +
+          "</tr>"
+      );
+    });
   });
   return (
     <>
@@ -117,8 +134,8 @@ function TableLearningPathManagement() {
                     <form id="msform">
                       <ul id="progressbar">
                         <li className="active">General Information</li>
-                        <li>Upload Documents</li>
-                        <li>Security Questions</li>
+                        <li>Association</li>
+                        <li>Milestone Configuration</li>
                       </ul>
                       <fieldset>
                         <div>
@@ -126,7 +143,7 @@ function TableLearningPathManagement() {
                           <hr className="width-40 mb-5" />
                         </div>
                         <div className="row text-left">
-                          <div className="col-md-6">
+                          <div className="col-md-7">
                             <p htmlFor="leraningPathname" className="">
                               <b>Learning Path Name : </b>
                             </p>
@@ -143,6 +160,42 @@ function TableLearningPathManagement() {
                             <p htmlFor="leraningPathname" className="">
                               <b>Learning Path Requirement : </b>
                             </p>
+                            <table className="table text-left font-size-12 table-valign-middle">
+                              <tbody>
+                                <tr>
+                                  <td>1</td>
+                                  <td
+                                    className="accordion-toggle collapsed"
+                                    id="accordion1"
+                                    data-toggle="collapse"
+                                    data-parent="#accordion1"
+                                    href="#collapseOne"
+                                  >
+                                    Learning Path 1
+                                  </td>
+                                  <td>Requirement : N/A</td>
+                                  <td>Status : Published</td>
+                                  <td>Created On : 23/11/20</td>
+                                  <td>Create By : Thomas Wayne</td>
+                                </tr>
+                                <tr>
+                                  <td>2</td>
+                                  <td
+                                    className="accordion-toggle collapsed"
+                                    id="accordion1"
+                                    data-toggle="collapse"
+                                    data-parent="#accordion1"
+                                    href="#collapseOne"
+                                  >
+                                    Learning Path 2
+                                  </td>
+                                  <td>Requirement : Learning Path 1</td>
+                                  <td>Status : Published</td>
+                                  <td>Created On : 23/11/20</td>
+                                  <td>Create By : Thomas Wayne</td>
+                                </tr>
+                              </tbody>
+                            </table>
                             <button
                               type="button"
                               data-toggle="modal"
@@ -154,15 +207,21 @@ function TableLearningPathManagement() {
                             <p htmlFor="leraningPathname" className="">
                               <b> Milestone :</b>
                             </p>
+                            <table
+                              id="milestone"
+                              class="table border-0"
+                              width="100%"
+                            ></table>
                             <button
                               type="button"
                               className="btn btn-sm text-left btn-success width-50 mb-5"
+                              id="addMilestone"
                             >
                               + Add Milestone
                             </button>
                           </div>
                           <div className="col-md-1"></div>
-                          <div className="col-md-5 text-center">
+                          <div className="col-md-4 text-center">
                             <p htmlFor="leraningPathname" className="">
                               <b>Learning Path Image Hero : </b>
                             </p>
