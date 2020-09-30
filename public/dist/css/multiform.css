@@ -8,8 +8,8 @@
   text-align: center;
   position: relative;
   padding-top: 50px;
-  min-height: 600px;
-  max-width: 810px;
+  min-height: 1100px;
+  width: 100%;
   margin: 0 auto;
   background: #ffffff;
   z-index: 1;
@@ -29,7 +29,7 @@
 }
 .multi_step_form #msform fieldset {
   border: 0;
-  padding: 20px 105px 0;
+  padding: 20px 20px 0;
   position: relative;
   width: 100%;
   left: 0;
