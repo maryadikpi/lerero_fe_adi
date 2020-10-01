@@ -1,55 +1,54 @@
 import Link from "next/link";
-import UserRow from './row_UserManagement'
+import UserRow from "./row_UserManagement";
 
-
- var userData = [
+var userData = [
   {
     id: 1,
-    name: 'test1',
-    username: 'test1',
-    usergroup: 'group1',
-    role: 'role1',
-    status: 'active'
+    name: "test1",
+    username: "test1",
+    usergroup: "group1",
+    role: "role1",
+    status: "active"
   },
   {
     id: 2,
-    name: 'test2',
-    username: 'test2',
-    usergroup: 'group2',
-    role: 'role2',
-    status: 'active'
+    name: "test2",
+    username: "test2",
+    usergroup: "group2",
+    role: "role2",
+    status: "active"
   },
   {
     id: 3,
-    name: 'test3',
-    username: 'test3',
-    usergroup: 'group3',
-    role: 'role3',
-    status: 'active'
+    name: "test3",
+    username: "test3",
+    usergroup: "group3",
+    role: "role3",
+    status: "active"
   },
   {
     id: 4,
-    name: 'test4',
-    username: 'test4',
-    usergroup: 'group4',
-    role: 'role4',
-    status: 'active'
+    name: "test4",
+    username: "test4",
+    usergroup: "group4",
+    role: "role4",
+    status: "active"
   },
   {
     id: 5,
-    name: 'test5',
-    username: 'test5',
-    usergroup: 'group5',
-    role: 'role5',
-    status: 'active'
+    name: "test5",
+    username: "test5",
+    usergroup: "group5",
+    role: "role5",
+    status: "active"
   }
-]
+];
 
 /**
  * userData will be fected using getStaticProps later
  */
 // const userData = [];
-const userRow = userData.map((dData) => <UserRow data={dData}/>)
+const userRow = userData.map(dData => <UserRow data={dData} />);
 const TabelUserManagement = () => (
   <>
     <div className="row mb-10">
@@ -62,7 +61,7 @@ const TabelUserManagement = () => (
                 type="button"
                 className="btn btn-primary btn-sm m-2"
                 data-toggle="modal"
-                data-target="#addGroup"
+                data-target="#importCSV"
               >
                 <i className="fas fa-file-alt"></i> Import CSV
               </button>

@@ -172,6 +172,195 @@ const ModalUserManagement = () => (
 
     <div
       className="modal fade"
+      id="importCSV"
+      tabIndex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog text-dark" role="document">
+        <div className="modal-content">
+          <div className="modal-header text-center">
+            <h5 className="modal-title width-100">Import User List</h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body p-3">
+            <div className="row align-center p-3">
+              <div className="col-12">
+                We are supporting to import user list from csv files. U can use
+                our csv template to adjust your user list, and then start
+                uploading your adjusted csv file to the platform.
+                <br />
+                <button
+                  type="button"
+                  className="btn btn-sm btn-primary width-40 mt-2"
+                >
+                  Download CSV Template
+                </button>
+                <br />
+                <br />
+                Please select your adjusted CSV file in here:
+                <br />
+                <label
+                  htmlFor="file"
+                  className="btn btn-sm btn-primary width-40 mt-2"
+                >
+                  Browse File
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  name="files"
+                  className="display-none"
+                />
+              </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div className="row mb-5">
+              <div className="col-6">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-danger width-90 float-right"
+                  data-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div className="col-6">
+                <button
+                  type="button"
+                  data-dismiss="modal"
+                  data-toggle="modal"
+                  data-target="#importCSVWarning"
+                  className="btn width-90 btn-sm btn-primary"
+                >
+                  Import
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      className="modal fade"
+      id="importCSVWarning"
+      tabIndex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog text-dark" role="document">
+        <div className="modal-content">
+          <div className="modal-header text-center">
+            <h5 className="modal-title width-100">Warning!</h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body p-3">
+            <div className="row align-center p-3">
+              <div className="col-12 text-center">
+                <p>
+                  <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
+                </p>
+                <p>Are you sure want to import This User List : </p>
+              </div>
+            </div>
+            <br />
+
+            <div className="row mb-5">
+              <div className="col-6">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-danger width-90 float-right"
+                  data-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div className="col-6">
+                <button
+                  type="button"
+                  data-dismiss="modal"
+                  data-toggle="modal"
+                  data-target="#importCSVSuccess"
+                  className="btn width-90 btn-sm btn-primary"
+                >
+                  Ok
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      className="modal fade"
+      id="importCSVSuccess"
+      tabIndex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog text-dark" role="document">
+        <div className="modal-content">
+          <div className="modal-header text-center">
+            <h5 className="modal-title width-100">Success!</h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body p-3">
+            <div className="row align-center p-3">
+              <div className="col-12 text-center">
+                <p>
+                  <i className="fa fa-check-circle text-success icon-width-50"></i>
+                </p>
+                <p>Successfully Import this User list</p>
+              </div>
+            </div>
+            <br />
+
+            <div className="row mb-5">
+              <div className="col-12 text-center">
+                <button
+                  type="button"
+                  data-dismiss="modal"
+                  className="btn width-30 btn-sm btn-primary"
+                >
+                  Ok
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      className="modal fade"
       id="changeEmail"
       tabIndex="-1"
       role="dialog"
@@ -488,6 +677,65 @@ const ModalUserManagement = () => (
 
     <div
       className="modal fade"
+      id="blockUser"
+      tabIndex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog text-dark" role="document">
+        <div className="modal-content">
+          <div className="modal-header text-center">
+            <h5 className="modal-title width-100">Warning!</h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body p-3">
+            <div className="row align-center p-3">
+              <div className="col-12 text-center">
+                <p>
+                  <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
+                </p>
+                <p>Are you sure want to Block User ? </p>
+              </div>
+            </div>
+            <br />
+
+            <div className="row mb-5">
+              <div className="col-6">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-danger width-90 float-right"
+                  data-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div className="col-6">
+                <button
+                  type="button"
+                  data-dismiss="modal"
+                  data-toggle="modal"
+                  data-target="#blockSuccess"
+                  className="btn width-90 btn-sm btn-primary"
+                >
+                  Ok
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      className="modal fade"
       id="blockSuccess"
       tabIndex="-1"
       role="dialog"
@@ -513,9 +761,8 @@ const ModalUserManagement = () => (
                 <p>
                   <i className="fa fa-check-circle text-success icon-width-50"></i>
                 </p>
-                <p>Success Block User</p>
-                <p>Makaryo Sregep</p>
-                <p>#251</p>
+                <p>Successfully Block User</p>
+                <p>An email has been send to notify the user</p>
               </div>
             </div>
             <br />
