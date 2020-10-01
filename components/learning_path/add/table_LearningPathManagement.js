@@ -38,7 +38,7 @@ function TableLearningPathManagement() {
             opacity = 1 - now;
             current_fs.css({
               transform: "scale(" + scale + ")",
-              position: "absolute"
+              position: "inherit"
             });
             next_fs.css({
               left: left,
@@ -105,10 +105,16 @@ function TableLearningPathManagement() {
       );
     });
 
+    let i = 1;
     $("#addMilestone").click(function() {
       $("#milestone").append(
-        "<tr>" +
-          "<td width='20%'>Milestone Name</td>" +
+        "<tr id='milestone-" +
+          i +
+          "'>" +
+          "<td width='2%' rowspan='2'>" +
+          i +
+          "</td>" +
+          "<td width='20%' class='border-bottom-0'>Milestone Name</td>" +
           "<td>" +
           "<input type='text' class='form-control' />" +
           "</td>" +
@@ -120,6 +126,7 @@ function TableLearningPathManagement() {
           "</td>" +
           "</tr>"
       );
+      i++;
     });
   });
   return (
@@ -242,13 +249,14 @@ function TableLearningPathManagement() {
                             </button>
                           </div>
                         </div>
-                        <hr />
+                        <br />
                         <button
                           type="button"
-                          className="next mt-2 width-50 action-button"
+                          className="next mt-2 mb-2 width-50 action-button"
                         >
                           Continue
                         </button>
+                        <br />
                       </fieldset>
                       <fieldset>
                         <h3>Verify Your Identity</h3>
