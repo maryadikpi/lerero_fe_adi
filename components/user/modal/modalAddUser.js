@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as Yup from 'yup';
 import {Form, Field, Formik, ErrorMessage} from 'formik'
+import {Spinner, Toast} from "react-bootstrap"
+
+import {kpiFetch} from 'kpi_helper'
+import {CREATE_NEW_USER} from 'config/const_api_url'
 
 export default function modalAddUser(props) {
-    const modalId = "blockUserModal_"+props.id
-    const dataTarget = "#blockUserModal_"+props.id
+    const modalId = "addUserModal_"+props.id
+    const dataTarget = "#addUserModal_"+props.id
+
+    const [isSubmit, setSubmit] = useState(false)
+    const [showSpinner, setSpinner] = useState(false)
+    const [showToast, setToast] = useState(false)
+    const [errorMsg, setErrorMsg] = useState('')
 
     const errorStyle = (touch, err) => {
       if (touch && err) return {
@@ -18,21 +27,40 @@ export default function modalAddUser(props) {
     }
 
     const initialValues = {
-        firstName: '',
-        lastName: '',
-        userName: '',
+        first_name: '',
+        last_name: '',
+        username: '',
         email: '',
-        role: 1
+        roles: 1
     }
 
     const validationSchema = Yup
     .object()
     .shape({
-        firstName: Yup.string().required().min(2).max(100),
-        lastName: Yup.string().required().min(2).max(100),
-        userName: Yup.string().required().min(2).max(100),
+        first_name: Yup.string().required().min(2).max(100),
+        last_name: Yup.string().required().min(2).max(100),
+        username: Yup.string().required().min(2).max(100),
         email: Yup.string().required().email().min(6).max(100),
     })
+
+    const handleSubmit = async (values, {resetForm}) => {
+      setSubmit(true)
+      setSpinner(true)
+      const json = await kpiFetch('POST', CREATE_NEW_USER, values)
+      if (json.status) {
+        setSpinner(false)
+        setSubmit(false)
+        $('#addUserModal').modal('hide')
+        $('#addSuccess').modal('show')
+        resetForm({values: ''})
+      } else {
+        setToast(true);
+        setSpinner(false)
+        setSubmit(false)
+        setErrorMsg(json.message)
+      }
+      
+    }
 
     return (
       <>
@@ -46,10 +74,20 @@ export default function modalAddUser(props) {
         >
         <Formik 
           validationSchema={validationSchema}
-          initialValues={initialValues} >
+          initialValues={initialValues}
+          onSubmit = {handleSubmit}
+          >
             {({values, errors, touched}) => (
                 <Form autoComplete="off">
                     <div className="modal-dialog text-dark" role="document">
+                      { showSpinner ?
+                        <Spinner 
+                          animation="border" 
+                          variant="primary" 
+                          style={{position:'absolute', top: '50%', left: '45%', zIndex:'9999'}}
+                        />
+                        : ''
+                      }
                         <div className="modal-content">
                             <div className="modal-header text-center">
                                 <h5 className="modal-title width-100">Create User</h5>
@@ -65,54 +103,54 @@ export default function modalAddUser(props) {
                             <div className="modal-body p-3">
                               <div className="row align-center p-3">
                                 <div className="col-12">
-                                    <label htmlFor="firstName" className="container-fluid  p-2">
+                                    <label htmlFor="first_name" className="container-fluid  p-2">
                                       First Name
                                     </label>
                                     <Field
-                                    name="firstName"
+                                    name="first_name"
                                     type="text"
                                     className="form-control border-top-0 border-right-0 border-left-0"
                                     placeholder="Type user's first name"
-                                    style={errorStyle(touched.firstName, errors.firstName)}
+                                    style={errorStyle(touched.first_name, errors.first_name)}
                                     />
-                                    <span style={textRed(touched.firstName, errors.firstName)}>
-                                      <ErrorMessage name='firstName' />
+                                    <span style={textRed(touched.first_name, errors.first_name)}>
+                                      <ErrorMessage name='first_name' />
                                     </span>
                                 </div>
                               </div>
 
                               <div className="row align-center p-3">
                                 <div className="col-12">
-                                    <label htmlFor="lastName" className="container-fluid  p-2">
+                                    <label htmlFor="last_name" className="container-fluid  p-2">
                                       Last Name
                                     </label>
                                     <Field
-                                    name="lastName"
+                                    name="last_name"
                                     type="text"
                                     className="form-control border-top-0 border-right-0 border-left-0"
                                     placeholder="Type user's last name"
-                                    style={errorStyle(touched.lastName, errors.lastName)}
+                                    style={errorStyle(touched.last_name, errors.last_name)}
                                     />
-                                    <span style={textRed(touched.lastName, errors.lastName)}>
-                                      <ErrorMessage name='lastName' />
+                                    <span style={textRed(touched.last_name, errors.last_name)}>
+                                      <ErrorMessage name='last_name' />
                                     </span>
                                 </div>
                               </div>
 
                               <div className="row align-center p-3">
                                 <div className="col-12">
-                                    <label htmlFor="userName" className="container-fluid  p-2">
+                                    <label htmlFor="username" className="container-fluid  p-2">
                                       User Name
                                     </label>
                                     <Field
-                                    name="userName"
+                                    name="username"
                                     type="text"
                                     className="form-control border-top-0 border-right-0 border-left-0"
                                     placeholder="Type user's username"
-                                    style={errorStyle(touched.userName, errors.userName)}
+                                    style={errorStyle(touched.username, errors.username)}
                                     />
-                                    <span style={textRed(touched.userName, errors.userName)}>
-                                      <ErrorMessage name='userName' />
+                                    <span style={textRed(touched.username, errors.username)}>
+                                      <ErrorMessage name='username' />
                                     </span>
                                 </div>
                               </div>
@@ -137,19 +175,19 @@ export default function modalAddUser(props) {
 
                               <div className="row align-center p-3">
                                 <div className="col-4">
-                                    <label htmlFor="role" className="container-fluid  p-2">
+                                    <label htmlFor="roles" className="container-fluid  p-2">
                                       User Role
                                     </label>
                                 </div>
                                 <div className="col-8">
-                                    <Field name="role" as='select' className="form-control">
+                                    <Field name="roles" as='select' className="form-control">
                                         <option disabled>
                                             Choose Role User
                                         </option>
                                         <option value="1">Standard User</option>
                                         <option value="2">Client Admin</option>
                                     </Field>
-                                    <ErrorMessage name='role' />
+                                    <ErrorMessage name='roles' />
                                 </div>
                               </div>
                             <br />
@@ -160,6 +198,7 @@ export default function modalAddUser(props) {
                                   type="button"
                                   className="btn btn-sm btn-danger width-90 float-right"
                                   data-dismiss="modal"
+                                  disabled={isSubmit}
                                   >
                                   Cancel
                                   </button>
@@ -167,10 +206,8 @@ export default function modalAddUser(props) {
                               <div className="col-6">
                                   <button
                                   type="submit"
-                                  //data-dismiss="modal"
-                                  //data-toggle="modal"
-                                  //data-target="#addSuccess"
                                   className="btn width-90 btn-sm btn-primary"
+                                  disabled={isSubmit}
                                   >
                                   Create User
                                   </button>
@@ -184,8 +221,7 @@ export default function modalAddUser(props) {
         </Formik>
         </div>
 
-
-    <div
+        <div
       className="modal fade"
       id="addSuccess"
       tabIndex="-1"
@@ -235,6 +271,24 @@ export default function modalAddUser(props) {
         </div>
       </div>
     </div>
-   </>
+        
+        <Toast 
+            style={{
+                position: 'absolute',
+                top: 17,
+                right: 17,
+                zIndex: 9999
+            }}
+            onClose={() => setToast(false)}
+            show={showToast}
+            delay={3000}
+            autohide
+            >
+              <Toast.Header>
+                <strong className="mr-auto" style={{color: 'red'}}>Create User Error</strong>
+              </Toast.Header>
+              <Toast.Body> <span style={{color: 'black'}}>{errorMsg}</span></Toast.Body>
+          </Toast>
+      </>
 )
 }
