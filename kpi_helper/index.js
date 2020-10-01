@@ -74,7 +74,7 @@ export default kpiHelper;
 *
 * putAuthToken means to put Authorization token in fetch header
 */
-export async function kpiFetch(fetchType, const_api_url, objData, putAuthToken = true) {
+export async function kpiFetch(fetchType, const_api_url, objData = {}, putAuthToken = true) {
     let header = {
         'Content-Type': 'application/json'
     };
@@ -87,12 +87,22 @@ export async function kpiFetch(fetchType, const_api_url, objData, putAuthToken =
             };
         }
     }
-    const resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
-    {
-      method: fetchType,
-      headers: header,
-      body: JSON.stringify(objData)
-    });
+    let resp = []
+    if (fetchType.toUpperCase() === 'GET') {
+      resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
+        {
+          method: fetchType,
+          headers: header
+        });
+    } else {
+      resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
+        {
+          method: fetchType,
+          headers: header,
+          body: JSON.stringify(objData)
+        });
+    }
+    
     
     return await resp.json()
 }

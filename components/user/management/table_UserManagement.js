@@ -1,58 +1,33 @@
 import Link from "next/link";
+import {useState, useEffect} from 'react'
+
 import UserRow from './row_UserManagement'
 import ModalAdduser from '../modal/modalAddUser'
 
+import {kpiFetch} from 'kpi_helper'
+import {GET_ALL_USERS} from 'config/const_api_url'
 
- var userData = [
-  {
-    id: 1,
-    name: 'test1',
-    username: 'test1',
-    usergroup: 'group1',
-    role: 'role1',
-    status: 'active'
-  },
-  {
-    id: 2,
-    name: 'test2',
-    username: 'test2',
-    usergroup: 'group2',
-    role: 'role2',
-    status: 'active'
-  },
-  {
-    id: 3,
-    name: 'test3',
-    username: 'test3',
-    usergroup: 'group3',
-    role: 'role3',
-    status: 'active'
-  },
-  {
-    id: 4,
-    name: 'test4',
-    username: 'test4',
-    usergroup: 'group4',
-    role: 'role4',
-    status: 'active'
-  },
-  {
-    id: 5,
-    name: 'test5',
-    username: 'test5',
-    usergroup: 'group5',
-    role: 'role5',
-    status: 'active'
+function TabelUserManagement(props){
+  // useEffect here is a temporary solution
+  // because CPanel still can't use SSR
+  // initial data id: null, avatar: null, first_name: '', last_name: '', username: '', role: '', status: 0
+  const [userData, setUserData] = useState([])
+
+  async function initialFetch() {
+    const json =  await kpiFetch('Get', GET_ALL_USERS)
+      if (json.status) {
+        setUserData(json.data.data)
+      }
   }
-]
 
-/**
- * userData will be fected using getStaticProps later
- */
-// const userData = [];
-const userRow = userData.map((dData) => <UserRow data={dData}/>)
-const TabelUserManagement = () => (
-  <>
+  useEffect(
+     () => {
+      initialFetch()
+    }, []
+  )
+  const userRow = userData.map((dData) => <UserRow data={dData}/>)
+  return (
+    <>
     <div className="row mb-10">
       <div className="col-12">
         <div className="card text-dark card-primary card-outline">
@@ -93,306 +68,7 @@ const TabelUserManagement = () => (
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src={
-                        process.env.NEXT_PUBLIC_IMG_PATH +
-                        "/dist/img/default-150x150.png"
-                      }
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#blockUser"
-                        className="btn btn-success width-110px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteUser"
-                        className="btn btn-danger width-110px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#changeEmail"
-                        className="btn btn-primary width-110px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <select
-                        type="button"
-                        className="btn btn-warning width-110px btn-sm m-1"
-                      >
-                        <option selected="" disabled="" className="white">
-                          Change Role
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Standard User
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Client Admin
-                        </option>
-                      </select>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src={
-                        process.env.NEXT_PUBLIC_IMG_PATH +
-                        "/dist/img/default-150x150.png"
-                      }
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#blockUser"
-                        className="btn btn-success width-110px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteUser"
-                        className="btn btn-danger width-110px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#changeEmail"
-                        className="btn btn-primary width-110px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <select
-                        type="button"
-                        className="btn btn-warning width-110px btn-sm m-1"
-                      >
-                        <option selected="" disabled="" className="white">
-                          Change Role
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Standard User
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Client Admin
-                        </option>
-                      </select>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src={
-                        process.env.NEXT_PUBLIC_IMG_PATH +
-                        "/dist/img/default-150x150.png"
-                      }
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#blockUser"
-                        className="btn btn-success width-110px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteUser"
-                        className="btn btn-danger width-110px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#changeEmail"
-                        className="btn btn-primary width-110px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <select
-                        type="button"
-                        className="btn btn-warning width-110px btn-sm m-1"
-                      >
-                        <option selected="" disabled="" className="white">
-                          Change Role
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Standard User
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Client Admin
-                        </option>
-                      </select>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src={
-                        process.env.NEXT_PUBLIC_IMG_PATH +
-                        "/dist/img/default-150x150.png"
-                      }
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#blockUser"
-                        className="btn btn-success width-110px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteUser"
-                        className="btn btn-danger width-110px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#changeEmail"
-                        className="btn btn-primary width-110px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <select
-                        type="button"
-                        className="btn btn-warning width-110px btn-sm m-1"
-                      >
-                        <option selected="" disabled="" className="white">
-                          Change Role
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Standard User
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Client Admin
-                        </option>
-                      </select>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src={
-                        process.env.NEXT_PUBLIC_IMG_PATH +
-                        "/dist/img/default-150x150.png"
-                      }
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#blockUser"
-                        className="btn btn-success width-110px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteUser"
-                        className="btn btn-danger width-110px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#changeEmail"
-                        className="btn btn-primary width-110px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <select
-                        type="button"
-                        className="btn btn-warning width-110px btn-sm m-1"
-                      >
-                        <option selected="" disabled="" className="white">
-                          Change Role
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Standard User
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Client Admin
-                        </option>
-                      </select>
-                    </center>
-                  </td>
-                </tr>
+                {userRow}
               </tbody>
             </table>
           </div>
@@ -401,6 +77,18 @@ const TabelUserManagement = () => (
     </div>
     <ModalAdduser />
   </>
-);
+  )
+};
+
+// We will gonna use this function when SSR is on in CPANEL
+
+// TabelUserManagement.getInitialProps = async (ctx) => {
+//   ///const json = await kpiFetch('Get', GET_ALL_USERS)
+//   const userData = {
+//     hello: 'test'
+//   }
+//   return {props: {userData}}
+// }
+
 
 export default TabelUserManagement;
