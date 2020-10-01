@@ -1,5 +1,6 @@
 import Link from "next/link";
 import UserRow from './row_UserManagement'
+import ModalAdduser from '../modal/modalAddUser'
 
 
  var userData = [
@@ -71,7 +72,7 @@ const TabelUserManagement = () => (
                 type="button"
                 className="btn btn-primary btn-sm m-2"
                 data-toggle="modal"
-                data-target="#addGroup"
+                data-target="#addUserModal"
               >
                 <i className="fas fa-user"></i> Add User
               </button>
@@ -398,6 +399,7 @@ const TabelUserManagement = () => (
         </div>
       </div>
     </div>
+    <ModalAdduser />
   </>
 );
 
