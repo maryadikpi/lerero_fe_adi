@@ -34,15 +34,15 @@ export default function rowUserManagement (props) {
                 type="button"
                 className="btn btn-warning width-110px btn-sm m-1"
                 >
-                <option selected="" disabled="" className="white">
-                    Change Role
-                </option>
-                <option data-toggle="modal" data-target="#changeRole">
-                    Standard User
-                </option>
-                <option data-toggle="modal" data-target="#changeRole">
-                    Client Admin
-                </option>
+                    <option selected="" disabled="" className="white">
+                        Change Role
+                    </option>
+                    <option data-toggle="modal" data-target="#changeRole">
+                        Standard User
+                    </option>
+                    <option data-toggle="modal" data-target="#changeRole">
+                        Client Admin
+                    </option>
                 </select>
             </center>
             </td>
