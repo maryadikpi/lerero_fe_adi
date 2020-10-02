@@ -1,5 +1,1 @@
 
-module.exports = {
-  basePath: '',
-  distDir: '',
-}
