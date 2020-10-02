@@ -6,22 +6,24 @@ import { USER_LOGIN } from "config/const_url";
 function Sidebar() {
   const router = useRouter();
 
-  const handleLogout = (e) => {
-    e.preventDefault()
-    // Do logout process here with backend   
-    
+  const handleLogout = e => {
+    e.preventDefault();
+    // Do logout process here with backend
+
     // Redirect to login page
-    if(kpiHelper.unsetLogin()) {
-      router.push({pathname: USER_LOGIN})
+    if (kpiHelper.unsetLogin()) {
+      router.push({ pathname: USER_LOGIN });
     }
-  }
+  };
 
   return (
     <aside className="main-sidebar sidebar-dark-danger margin-top--60">
       <Link as="/admin/dashboard" href="/admin/dashboard">
         <a className="brand-link">
           <img
-            src={process.env.NEXT_PUBLIC_IMG_PATH+"/dist/img/AdminLTELogo.png"}
+            src={
+              process.env.NEXT_PUBLIC_IMG_PATH + "/dist/img/AdminLTELogo.png"
+            }
             alt="AdminLTE Logo"
             className="brand-image img-circle elevation-1"
           />
@@ -30,22 +32,24 @@ function Sidebar() {
       </Link>
 
       <div className="sidebar">
-          <div className="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div className="image">
-              <img
-                src={process.env.NEXT_PUBLIC_IMG_PATH+"/dist/img/user2-160x160.jpg"}
-                className="img-circle elevation-1"
-                alt="User Image"
-              />
+        <div className="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div className="image">
+            <img
+              src={
+                process.env.NEXT_PUBLIC_IMG_PATH + "/dist/img/user2-160x160.jpg"
+              }
+              className="img-circle elevation-1"
+              alt="User Image"
+            />
           </div>
           <div className="info">
             <Link as="/admin/auth/profile" href="/admin/auth/profile">
               <a className="d-block">Alexander Pierce</a>
             </Link>
           </div>
-      </div>
+        </div>
 
-      <nav className="mt-2">
+        <nav className="mt-2">
           <ul
             className="nav nav-pills nav-sidebar flex-column"
             data-widget="treeview"
@@ -61,7 +65,10 @@ function Sidebar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link as="/admin/dashboard" href="/admin/dashboard">
+              <Link
+                as="/admin/learning_path/management"
+                href="/admin/learning_path/management"
+              >
                 <a className="nav-link">
                   <i className="nav-icon fa fa-road"></i>
                   <p>Learning Path</p>
@@ -69,7 +76,7 @@ function Sidebar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link as="/admin/dashboard" href="/admin/dashboard">
+              <Link as="/admin/task/management" href="/admin/task/management">
                 <a className="nav-link">
                   <i className="nav-icon fa fa-tasks"></i>
                   <p>Tasks</p>
@@ -77,7 +84,7 @@ function Sidebar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link as="/admin/dashboard" href="/admin/dashboard">
+              <Link as="/admin/quiz/management" href="/admin/quiz/management">
                 <a className="nav-link">
                   <i className="nav-icon fa fa-tachometer-alt"></i>
                   <p>Quiz</p>
@@ -110,7 +117,11 @@ function Sidebar() {
             </li>
             <li className="nav-item">
               <div>
-                <a onClick={handleLogout} className="nav-link cursor-pointer" role="button">
+                <a
+                  onClick={handleLogout}
+                  className="nav-link cursor-pointer"
+                  role="button"
+                >
                   <i className="nav-icon fa fa-sign-out-alt"></i>
                   <p>Logout</p>
                 </a>

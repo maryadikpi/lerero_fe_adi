@@ -1,8 +1,8 @@
-const ModalUserManagement = () => (
+const ModalQuizManagement = () => (
   <>
     <div
       className="modal fade"
-      id="changeEmail"
+      id="addGroup"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -11,7 +11,7 @@ const ModalUserManagement = () => (
       <div className="modal-dialog text-dark" role="document">
         <div className="modal-content">
           <div className="modal-header text-center">
-            <h5 className="modal-title width-100">Create User</h5>
+            <h5 className="modal-title width-100">Create User Group</h5>
             <button
               type="button"
               className="close"
@@ -22,43 +22,19 @@ const ModalUserManagement = () => (
             </button>
           </div>
           <div className="modal-body p-3">
-            <div className="row align-center p-2">
+            <div className="row align-center p-3">
               <div className="col-12">
-                <label htmlFor="firstName" className="container-fluid  p-2">
-                  Full Name
-                </label>
-                <p className="p-2">Makaryo Sregep</p>
-              </div>
-            </div>
-            <div className="row align-center p-2">
-              <div className="col-12">
-                <label htmlFor="firstName" className="container-fluid  p-2">
-                  Username
-                </label>
-                <p className="p-2">makaryo132</p>
-              </div>
-            </div>
-            <div className="row align-center p-2">
-              <div className="col-12">
-                <label htmlFor="firstName" className="container-fluid  p-2">
-                  Email
+                <label htmlFor="groupName" className="container-fluid  p-2">
+                  User Group's Name
                 </label>
                 <input
-                  id="userName"
+                  id="groupName"
                   type="text"
                   className="form-control border-top-0 border-right-0 border-left-0"
-                  placeholder="Type user's username"
+                  placeholder="Type user's group name"
                 />
               </div>
             </div>
-            <div className="row align-center p-2">
-              <div className="col-4">
-                <label htmlFor="firstName" className="container-fluid  p-2">
-                  User Role
-                </label>
-              </div>
-              <div className="col-8">Standart User</div>
-            </div>
             <br />
 
             <div className="row mb-5">
@@ -74,12 +50,9 @@ const ModalUserManagement = () => (
               <div className="col-6">
                 <button
                   type="button"
-                  data-dismiss="modal"
-                  data-toggle="modal"
-                  data-target="#changeEmailWarning"
                   className="btn width-90 btn-sm btn-primary"
                 >
-                  Change Email
+                  Create User Group
                 </button>
               </div>
             </div>
@@ -90,7 +63,7 @@ const ModalUserManagement = () => (
 
     <div
       className="modal fade"
-      id="changeEmailWarning"
+      id="deactiveQuiz"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -115,10 +88,7 @@ const ModalUserManagement = () => (
                 <p>
                   <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
                 </p>
-                <p>Are you sure want to Change Email for User : </p>
-                <p>Makaryo Sregep</p>
-                <p>into role : </p>
-                <p>makaryo321@gmail.com</p>
+                <p>Are you sure want to Deactive this Quiz : </p>
               </div>
             </div>
             <br />
@@ -138,7 +108,7 @@ const ModalUserManagement = () => (
                   type="button"
                   data-dismiss="modal"
                   data-toggle="modal"
-                  data-target="#changeEmailSuccess"
+                  data-target="#deactiveQuizSuccess"
                   className="btn width-90 btn-sm btn-primary"
                 >
                   Ok
@@ -152,59 +122,7 @@ const ModalUserManagement = () => (
 
     <div
       className="modal fade"
-      id="changeEmailSuccess"
-      tabIndex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog text-dark" role="document">
-        <div className="modal-content">
-          <div className="modal-header text-center">
-            <h5 className="modal-title width-100">Success!</h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div className="modal-body p-3">
-            <div className="row align-center p-3">
-              <div className="col-12 text-center">
-                <p>
-                  <i className="fa fa-check-circle text-success icon-width-50"></i>
-                </p>
-                <p>Email change Successfuly for user</p>
-                <p>Makaryo Sregep</p>
-                <p>#251</p>
-                <p>into email : </p>
-                <p>makaryo321@gmail.com</p>
-              </div>
-            </div>
-            <br />
-
-            <div className="row mb-5">
-              <div className="col-12 text-center">
-                <button
-                  type="button"
-                  data-dismiss="modal"
-                  className="btn width-30 btn-sm btn-primary"
-                >
-                  Ok
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      className="modal fade"
-      id="changeRole"
+      id="deactiveQuizSuccess"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -227,12 +145,58 @@ const ModalUserManagement = () => (
             <div className="row align-center p-3">
               <div className="col-12 text-center">
                 <p>
-                  <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
+                  <i className="fa fa-check-circle text-success icon-width-50"></i>
                 </p>
-                <p>Are you sure want to Change Role for User : </p>
-                <p>Makaryo Sregep</p>
-                <p>into role : </p>
-                <p>Client Admin</p>
+                <p>Successfully deactivate this Quiz</p>
+              </div>
+            </div>
+            <br />
+
+            <div className="row mb-5">
+              <div className="col-12 text-center">
+                <button
+                  type="button"
+                  data-dismiss="modal"
+                  className="btn width-30 btn-sm btn-primary"
+                >
+                  Ok
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      className="modal fade"
+      id="deleteQuiz"
+      tabIndex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog text-dark" role="document">
+        <div className="modal-content">
+          <div className="modal-header text-center">
+            <h5 className="modal-title width-100">Warning!</h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body p-3">
+            <div className="row align-center p-3">
+              <div className="col-12 text-center">
+                <p>
+                  <i className="fa fa-exclamation-triangle text-danger icon-width-50"></i>
+                </p>
+                <p>Are you sure want to Delete this Quiz ? </p>
+                <p>Please note that this process cannot be reversed </p>
               </div>
             </div>
             <br />
@@ -252,7 +216,7 @@ const ModalUserManagement = () => (
                   type="button"
                   data-dismiss="modal"
                   data-toggle="modal"
-                  data-target="#changeSuccess"
+                  data-target="#deleteQuizSuccess"
                   className="btn width-90 btn-sm btn-primary"
                 >
                   Ok
@@ -266,7 +230,7 @@ const ModalUserManagement = () => (
 
     <div
       className="modal fade"
-      id="changeSuccess"
+      id="deleteQuizSuccess"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -275,7 +239,7 @@ const ModalUserManagement = () => (
       <div className="modal-dialog text-dark" role="document">
         <div className="modal-content">
           <div className="modal-header text-center">
-            <h5 className="modal-title width-100">Success!</h5>
+            <h5 className="modal-title width-100">Success</h5>
             <button
               type="button"
               className="close"
@@ -291,115 +255,7 @@ const ModalUserManagement = () => (
                 <p>
                   <i className="fa fa-check-circle text-success icon-width-50"></i>
                 </p>
-                <p>Success Change Role for User</p>
-                <p>Makaryo Sregep</p>
-                <p>#251</p>
-                <p>Into Role</p>
-                <p>Client Admin</p>
-              </div>
-            </div>
-            <br />
-
-            <div className="row mb-5">
-              <div className="col-12 text-center">
-                <button
-                  type="button"
-                  data-dismiss="modal"
-                  className="btn width-30 btn-sm btn-primary"
-                >
-                  Ok
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      className="modal fade"
-      id="blockSuccess"
-      tabIndex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog text-dark" role="document">
-        <div className="modal-content">
-          <div className="modal-header text-center">
-            <h5 className="modal-title width-100">Success!</h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div className="modal-body p-3">
-            <div className="row align-center p-3">
-              <div className="col-12 text-center">
-                <p>
-                  <i className="fa fa-check-circle text-success icon-width-50"></i>
-                </p>
-                <p>Success Block User</p>
-                <p>Makaryo Sregep</p>
-                <p>#251</p>
-              </div>
-            </div>
-            <br />
-
-            <div className="row mb-5">
-              <div className="col-12 text-center">
-                <button
-                  type="button"
-                  data-dismiss="modal"
-                  className="btn width-30 btn-sm btn-primary"
-                >
-                  Ok
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      className="modal fade"
-      id="deleteSuccess"
-      tabIndex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog text-dark" role="document">
-        <div className="modal-content">
-          <div className="modal-header text-center">
-            <h5 className="modal-title width-100">Success!</h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div className="modal-body p-3">
-            <div className="row align-center p-3">
-              <div className="col-12 text-center">
-                <p>
-                  <i className="fa fa-check-circle text-success icon-width-50"></i>
-                </p>
-                <p>Success Delete User</p>
-                <p>Makaryo Sregep</p>
-                <p>#251</p>
-                <p>
-                  Email has been sent to notify user that the account has been
-                  deleted
-                </p>
+                <p>Success Delete This Quiz</p>
               </div>
             </div>
             <br />
@@ -422,4 +278,4 @@ const ModalUserManagement = () => (
   </>
 );
 
-export default ModalUserManagement;
+export default ModalQuizManagement;
