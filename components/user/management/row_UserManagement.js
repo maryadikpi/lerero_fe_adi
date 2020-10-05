@@ -1,10 +1,18 @@
 import {useState, useEffect} from 'react'
 import BlockUserButton from '../modal/modalBlockUser'
-import DeleteUserButton from '../modal/modalDeleteUser'
 export default function rowUserManagement (props) {
     const data = props.data
 
     const [status, setStatus] = useState(data.status)
+    
+    function handleDelete() {
+        console.log('handle delete here')
+        props.setDeleteData({id: data.id, username: data.username})
+    }
+
+    useEffect(() => {
+        $('#deleteUserModal_'+data.id).modal('show')
+    })
 
     return (
         <tr>
@@ -31,8 +39,15 @@ export default function rowUserManagement (props) {
                     setStatus={setStatus} 
                     status={status}
                 />
-                <DeleteUserButton id={data.id} username={data.username} />
-                
+
+                <button
+                    type="button"
+                    onClick={handleDelete}
+                    className="btn btn-danger width-110px btn-sm m-1"
+                    >
+                    Delete
+                </button>
+
                 <button
                 type="button"
                 data-toggle="modal"
@@ -41,6 +56,7 @@ export default function rowUserManagement (props) {
                 >
                 Change Email
                 </button>
+
                 <select
                 type="button"
                 className="btn btn-warning width-110px btn-sm m-1"
