@@ -74,25 +74,35 @@ export default kpiHelper;
 *
 * putAuthToken means to put Authorization token in fetch header
 */
-export async function kpiFetch(fetchType, const_api_url, objData, putAuthToken = true) {
+export async function kpiFetch(fetchType, const_api_url, objData = {}, putAuthToken = true) {
     let header = {
         'Content-Type': 'application/json'
     };
     if (putAuthToken) {
         let kpi = store.get('kpi');
-        if (kpi.loginInfo.accessToken) {
+        if (kpi && kpi.loginInfo.accessToken) {
             header = {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer '+ kpi.loginInfo.accessToken
             };
         }
     }
-    const resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
-    {
-      method: fetchType,
-      headers: header,
-      body: JSON.stringify(objData)
-    });
+    let resp = []
+    if (fetchType.toUpperCase() === 'GET' || fetchType.toUpperCase() === 'DELETE') {
+      resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
+        {
+          method: fetchType,
+          headers: header
+        });
+    } else {
+      resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
+        {
+          method: fetchType,
+          headers: header,
+          body: JSON.stringify(objData)
+        });
+    }
+    
     
     return await resp.json()
 }
