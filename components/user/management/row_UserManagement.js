@@ -6,7 +6,6 @@ export default function rowUserManagement (props) {
     const [status, setStatus] = useState(data.status)
     
     function handleDelete() {
-        console.log('handle delete here')
         props.setDeleteData({id: data.id, username: data.username})
     }
 

@@ -88,7 +88,7 @@ export async function kpiFetch(fetchType, const_api_url, objData = {}, putAuthTo
         }
     }
     let resp = []
-    if (fetchType.toUpperCase() === 'GET') {
+    if (fetchType.toUpperCase() === 'GET' || fetchType.toUpperCase() === 'DELETE') {
       resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
         {
           method: fetchType,
