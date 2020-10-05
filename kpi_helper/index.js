@@ -80,7 +80,7 @@ export async function kpiFetch(fetchType, const_api_url, objData = {}, putAuthTo
     };
     if (putAuthToken) {
         let kpi = store.get('kpi');
-        if (kpi.loginInfo.accessToken) {
+        if (kpi && kpi.loginInfo.accessToken) {
             header = {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer '+ kpi.loginInfo.accessToken

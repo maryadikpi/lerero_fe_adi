@@ -4,28 +4,17 @@ import {useState, useEffect} from 'react'
 import UserRow from './row_UserManagement'
 import ModalAdduser from '../modal/modalAddUser'
 
-import {kpiFetch} from 'kpi_helper'
-import {GET_ALL_USERS} from 'config/const_api_url'
-
 function TabelUserManagement(props){
-  // useEffect here is a temporary solution
-  // because CPanel still can't use SSR
-  // initial data id: null, avatar: null, first_name: '', last_name: '', username: '', role: '', status: 0
-  const [userData, setUserData] = useState([])
-
-  async function initialFetch() {
-    const json =  await kpiFetch('Get', GET_ALL_USERS)
-      if (json.status) {
-        setUserData(json.data.data)
+  var userRow = []
+  if (props.userList.data) {
+    userRow = props.userList.data.data.map(
+      (dData, index) => {
+        return <UserRow key={index} data={dData}/>
       }
+    )
   }
+  
 
-  useEffect(
-     () => {
-      initialFetch()
-    }, []
-  )
-  const userRow = userData.map((dData) => <UserRow data={dData}/>)
   return (
     <>
     <div className="row mb-10">
@@ -68,7 +57,7 @@ function TabelUserManagement(props){
                 </tr>
               </thead>
               <tbody>
-                {userRow}
+                { userRow }
               </tbody>
             </table>
           </div>
@@ -79,16 +68,4 @@ function TabelUserManagement(props){
   </>
   )
 };
-
-// We will gonna use this function when SSR is on in CPANEL
-
-// TabelUserManagement.getInitialProps = async (ctx) => {
-//   ///const json = await kpiFetch('Get', GET_ALL_USERS)
-//   const userData = {
-//     hello: 'test'
-//   }
-//   return {props: {userData}}
-// }
-
-
 export default TabelUserManagement;
