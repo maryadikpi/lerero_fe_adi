@@ -1,36 +1,21 @@
 export default function modalDeleteUser(props) {
-    const dataTarget = "#blockUserModal_"+props.id
-    const modalId = "blockUserModal_"+props.id    
+    const dataTarget = "#deleteUserModal_"+props.id
+    const modalId = "deleteUserModal_"+props.id
     return (
     <>
-    <button
-        type="button"
-        data-toggle="modal"
-        data-target={dataTarget}
-        className="btn btn-danger width-110px btn-sm m-1"
-        >
-        Delete
-        </button>
-        <div
-      className="modal fade"
-      id={modalId}
-      tabIndex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div className="modal fade" id={modalId}  tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
       <div className="modal-dialog text-dark" role="document">
         <div className="modal-content">
           <div className="modal-header text-center">
             <h5 className="modal-title width-100">Warning!</h5>
-            <button
+            {/* <button
               type="button"
               className="close"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> */}
           </div>
           <div className="modal-body p-3">
             <div className="row align-center p-3">
@@ -39,8 +24,8 @@ export default function modalDeleteUser(props) {
                   <i className="fa fa-exclamation-triangle text-danger icon-width-50"></i>
                 </p>
                 <p>Are you sure want to Delete User : </p>
-                <p>Makaryo Sregep</p>
-                <p>#251</p>
+                <p>{props.username}</p>
+                <p>#{props.id}</p>
                 <p>This action once performed can't be reversed</p>
               </div>
             </div>

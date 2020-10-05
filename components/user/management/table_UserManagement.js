@@ -3,13 +3,16 @@ import {useState, useEffect} from 'react'
 
 import UserRow from './row_UserManagement'
 import ModalAdduser from '../modal/modalAddUser'
+import DeleteUserButton from '../modal/modalDeleteUser'
 
 function TabelUserManagement(props){
+  const [deleteData, setDeleteData] = useState({})
+
   var userRow = []
   if (props.userList.data) {
     userRow = props.userList.data.data.map(
       (dData, index) => {
-        return <UserRow key={index} data={dData}/>
+        return <UserRow key={index} data={dData} setDeleteData={setDeleteData}/>
       }
     )
   }
@@ -65,6 +68,12 @@ function TabelUserManagement(props){
       </div>
     </div>
     <ModalAdduser />
+    <DeleteUserButton 
+      id={deleteData.id} 
+      username={deleteData.username}
+      userList={props.userList}
+      setUserList={props.setUserList}
+    />
   </>
   )
 };
