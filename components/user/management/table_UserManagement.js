@@ -3,29 +3,21 @@ import {useState, useEffect} from 'react'
 
 import UserRow from './row_UserManagement'
 import ModalAdduser from '../modal/modalAddUser'
-
-import {kpiFetch} from 'kpi_helper'
-import {GET_ALL_USERS} from 'config/const_api_url'
+import DeleteUserButton from '../modal/modalDeleteUser'
 
 function TabelUserManagement(props){
-  // useEffect here is a temporary solution
-  // because CPanel still can't use SSR
-  // initial data id: null, avatar: null, first_name: '', last_name: '', username: '', role: '', status: 0
-  const [userData, setUserData] = useState([])
+  const [deleteData, setDeleteData] = useState({})
 
-  async function initialFetch() {
-    const json =  await kpiFetch('Get', GET_ALL_USERS)
-      if (json.status) {
-        setUserData(json.data.data)
+  var userRow = []
+  if (props.userList.data) {
+    userRow = props.userList.data.data.map(
+      (dData, index) => {
+        return <UserRow key={index} data={dData} setDeleteData={setDeleteData}/>
       }
+    )
   }
+  
 
-  useEffect(
-     () => {
-      initialFetch()
-    }, []
-  )
-  const userRow = userData.map((dData) => <UserRow data={dData}/>)
   return (
     <>
     <div className="row mb-10">
@@ -68,7 +60,7 @@ function TabelUserManagement(props){
                 </tr>
               </thead>
               <tbody>
-                {userRow}
+                { userRow }
               </tbody>
             </table>
           </div>
@@ -76,19 +68,13 @@ function TabelUserManagement(props){
       </div>
     </div>
     <ModalAdduser />
+    <DeleteUserButton 
+      id={deleteData.id} 
+      username={deleteData.username}
+      userList={props.userList}
+      setUserList={props.setUserList}
+    />
   </>
   )
 };
-
-// We will gonna use this function when SSR is on in CPANEL
-
-// TabelUserManagement.getInitialProps = async (ctx) => {
-//   ///const json = await kpiFetch('Get', GET_ALL_USERS)
-//   const userData = {
-//     hello: 'test'
-//   }
-//   return {props: {userData}}
-// }
-
-
 export default TabelUserManagement;

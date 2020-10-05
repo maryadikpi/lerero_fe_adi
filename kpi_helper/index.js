@@ -80,7 +80,7 @@ export async function kpiFetch(fetchType, const_api_url, objData = {}, putAuthTo
     };
     if (putAuthToken) {
         let kpi = store.get('kpi');
-        if (kpi.loginInfo.accessToken) {
+        if (kpi && kpi.loginInfo.accessToken) {
             header = {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer '+ kpi.loginInfo.accessToken
@@ -88,7 +88,7 @@ export async function kpiFetch(fetchType, const_api_url, objData = {}, putAuthTo
         }
     }
     let resp = []
-    if (fetchType.toUpperCase() === 'GET') {
+    if (fetchType.toUpperCase() === 'GET' || fetchType.toUpperCase() === 'DELETE') {
       resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
         {
           method: fetchType,

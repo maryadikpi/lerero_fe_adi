@@ -1,3 +1,6 @@
+import {useState, useEffect} from 'react'
+import {Spinner} from "react-bootstrap"
+
 import Header from "components/admin/header";
 import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
@@ -5,7 +8,41 @@ import Sidebar from "components/admin/sidebar";
 import TableUserManagement from "components/user/management/table_UserManagement";
 import ModalUserManagement from "components/user/management/modal_UserManagement";
 
-const UserManagement = () => (
+
+import {kpiFetch} from 'kpi_helper'
+import {GET_ALL_USERS, GET_ALL_ROLES} from 'config/const_api_url'
+
+
+function UserManagement(props) {
+  const [userList, setUserList] = useState([])
+  const [roleList, setRoleList] = useState([])
+  const [showSpinner, setSpinner] = useState(false)
+  const [spinnerProps, setSpinnerProps] = useState({position:'absolute', top: '50%', left: '45%', zIndex:'9999'})
+
+  async function initialFetch() {
+    const userList = await kpiFetch('GET', GET_ALL_USERS)
+    if (userList.status) {
+      setUserList(userList)
+    }
+
+    const roleList = await kpiFetch('GET', GET_ALL_ROLES)
+    if (roleList.status) {
+      setRoleList(roleList)
+    }
+  }
+  
+  useEffect(
+    () => {
+      if (!props.userList.status) {
+        initialFetch()
+      } else {
+        setUserList(props.userList)
+        setRoleList(props.roleList)
+      }
+    }, []
+  )
+  
+  return (
   <>
     <Header />
     <Navbar />
@@ -33,14 +70,36 @@ const UserManagement = () => (
 
           <div className="content">
             <div className="container-fluid">
-              <TableUserManagement />
+              <TableUserManagement 
+                userList={userList} 
+                roleList={roleList} 
+                setUserList={setUserList}
+              />
               <ModalUserManagement />
             </div>
           </div>
         </div>
       </div>
+      { showSpinner ?
+        <Spinner 
+          animation="border" 
+          variant="primary" 
+          style={spinnerProps}
+        />
+        : ''
+      }
     </section>
   </>
-);
+  )
+};
+
+// We will gonna use this function when SSR is on in CPANEL
+
+UserManagement.getInitialProps = async (ctx) => {
+  const userList = await kpiFetch('GET', GET_ALL_USERS)
+  const roleList = await kpiFetch('GET', GET_ALL_ROLES)
+  return {userList, roleList}
+}
+
 
 export default UserManagement;
