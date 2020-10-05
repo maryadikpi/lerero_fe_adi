@@ -120,3 +120,15 @@ tr.hide-table-padding td {
 .modal-width-800 {
   max-width: 800px;
 }
+
+.display-none {
+  display:none;
+}
+
+.float-right {
+  float:right;
+}
+
+.float-left {
+  float:left;
+}
