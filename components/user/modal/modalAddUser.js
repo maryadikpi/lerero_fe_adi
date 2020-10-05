@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import {Form, Field, Formik, ErrorMessage} from 'formik'
 import {Spinner, Toast} from "react-bootstrap"
 
-import {kpiFetch} from 'kpi_helper'
+import kpiHelper, {kpiFetch} from 'kpi_helper'
 import {CREATE_NEW_USER} from 'config/const_api_url'
 
 export default function modalAddUser(props) {
@@ -31,7 +31,8 @@ export default function modalAddUser(props) {
         last_name: '',
         username: '',
         email: '',
-        roles: 1
+        roles: 1,
+        company_id: kpiHelper.getGlobalStore().loginInfo? kpiHelper.getGlobalStore().loginInfo.user.company_id : 0
     }
 
     const validationSchema = Yup
@@ -46,6 +47,9 @@ export default function modalAddUser(props) {
     const handleSubmit = async (values, {resetForm}) => {
       setSubmit(true)
       setSpinner(true)
+      console.log(kpiHelper.getGlobalStore().loginInfo.user.company_id)
+      console.log('value sebleum dkirim : '+kpiHelper.getGlobalStore().loginInfo.user.company_id)
+      console.log(values)
       const json = await kpiFetch('POST', CREATE_NEW_USER, values)
       if (json.status) {
         setSpinner(false)
