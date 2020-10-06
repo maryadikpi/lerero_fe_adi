@@ -6,8 +6,6 @@ import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
 
 import TableUserManagement from "components/user/management/table_UserManagement";
-import ModalUserManagement from "components/user/management/modal_UserManagement";
-
 
 import {kpiFetch} from 'kpi_helper'
 import {GET_ALL_USERS, GET_ALL_ROLES} from 'config/const_api_url'
@@ -75,7 +73,6 @@ function UserManagement(props) {
                 roleList={roleList} 
                 setUserList={setUserList}
               />
-              <ModalUserManagement />
             </div>
           </div>
         </div>
