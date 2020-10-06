@@ -54,14 +54,15 @@ export default function modalDeleteUser(props) {
         <div className="modal-content">
           <div className="modal-header text-center">
             <h5 className="modal-title width-100">Warning!</h5>
-            {/* <button
+            <button
               type="button"
               className="close"
               data-dismiss="modal"
               aria-label="Close"
+              disabled={isSubmit}
             >
               <span aria-hidden="true">&times;</span>
-            </button> */}
+            </button>
           </div>
           <div className="modal-body p-3">
             <div className="row align-center p-3">

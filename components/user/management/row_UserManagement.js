@@ -38,6 +38,23 @@ export default function rowUserManagement (props) {
         })
     }
 
+    function displayStatusText(status) {
+        let resp = ''
+        switch (status) {
+            case 0: 
+                resp = 'Inactive'
+            break
+            case 1:
+                resp = 'Active'
+            break
+            case 2: 
+                resp = 'Blocked'
+            break
+            default: resp = ''
+        }
+        return resp
+    }
+
     useEffect(() => {
         switch(actionType) {
             case 'delete_user': 
@@ -71,7 +88,7 @@ export default function rowUserManagement (props) {
             <td>{data.username}</td>
             <td>{data.usergroup}</td>
             <td>{data.role}</td>
-            <td>{status}</td>
+            <td>{displayStatusText(status)}</td>
             <td>
             <center>
                 <BlockUserButton 

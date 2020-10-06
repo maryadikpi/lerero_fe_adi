@@ -55,7 +55,7 @@ function Login() {
 
   return (
   <>
-    <Header />    
+    <Header />
     <div className="hold-transition login-page">
       <div className="login-box">
         <Row className="justify-content-center pb-4">
