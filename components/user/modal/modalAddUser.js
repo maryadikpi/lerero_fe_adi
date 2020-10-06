@@ -39,7 +39,7 @@ export default function modalAddUser(props) {
         username: '',
         email: '',
         roles: 1,
-        company_id: kpiHelper.getGlobalStore().loginInfo? kpiHelper.getGlobalStore().loginInfo.user.company_id : 0
+        company_id: kpiHelper.getGlobalStore().loginInfo? kpiHelper.getGlobalStore().loginInfo.user.company_id : ''
     }
 
     const validationSchema = Yup
@@ -54,6 +54,7 @@ export default function modalAddUser(props) {
     const handleSubmit = async (values, {resetForm}) => {
       setSubmit(true)
       setSpinner(true)
+
       const json = await kpiFetch('POST', CREATE_NEW_USER, values)
       if (json.status) {
         console.log(json)
@@ -62,6 +63,25 @@ export default function modalAddUser(props) {
         $('#addUserModal').modal('hide')
         $('#addSuccess').modal('show')
         resetForm({values: ''})
+
+        // Update userList
+        let arr = [
+          ...props.userList.data.data,
+          {
+            id: json.data.id,
+            avatar: json.data.avatar,
+            first_name: json.data.first_name,
+            last_name: json.data.last_name,
+            username: json.data.username,
+            role: json.data.role,
+            status: json.data.status
+          }
+        ]
+        props.setUserList({
+          data: {
+            data: arr
+          }
+        })
       } else {
         setToast(true);
         setSpinner(false)

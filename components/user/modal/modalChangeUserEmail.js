@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import {Spinner} from "react-bootstrap"
+import {useForm} from "react-hook-form"
 
 import {kpiFetch} from 'kpi_helper'
 import {BLOCK_USER} from 'config/const_api_url'
@@ -8,6 +9,12 @@ export default function modalChangeUserEmail(props) {
     const dataTarget = "#changeEmailUserModal_"+props.userData.user.id
     const modalId = "changeEmailUserModal_"+props.userData.user.id
 
+    const [isSubmit, setSubmit] = useState(false)
+    const { register, handleSubmit, errors } = useForm();
+
+    async function handleChangeEmail(formData) {
+        console.log(formData)
+    }
 
     return (
         <>
@@ -18,6 +25,7 @@ export default function modalChangeUserEmail(props) {
             role="dialog"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
+            data-backdrop="static"
         >
             <div className="modal-dialog text-dark" role="document">
                 <div className="modal-content">
@@ -28,6 +36,7 @@ export default function modalChangeUserEmail(props) {
                         className="close"
                         data-dismiss="modal"
                         aria-label="Close"
+                        disabled={isSubmit}
                     >
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -55,10 +64,12 @@ export default function modalChangeUserEmail(props) {
                             Email
                             </label>
                             <input
-                            id="userName"
-                            type="text"
-                            className="form-control border-top-0 border-right-0 border-left-0"
-                            placeholder="Type user's username"
+                                id="email"
+                                name="email"
+                                type="text"
+                                className="form-control border-top-0 border-right-0 border-left-0"
+                                placeholder="Type user's email"
+                                ref={register({required: true})}
                             />
                         </div>
                     </div>
@@ -84,11 +95,12 @@ export default function modalChangeUserEmail(props) {
                         </div>
                         <div className="col-6">
                             <button
-                            type="button"
-                            data-dismiss="modal"
-                            data-toggle="modal"
-                            data-target="#changeEmailWarning"
-                            className="btn width-90 btn-sm btn-primary"
+                                type="button"
+                                data-dismiss="modal"
+                                data-toggle="modal"
+                                data-target="#changeEmailWarning"
+                                className="btn width-90 btn-sm btn-primary"
+                                onClick={handleSubmit(handleChangeEmail)}
                             >
                             Change Email
                             </button>

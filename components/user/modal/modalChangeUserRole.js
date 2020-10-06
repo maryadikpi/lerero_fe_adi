@@ -7,6 +7,8 @@ import {BLOCK_USER} from 'config/const_api_url'
 export default function modalChangeUserRole(props) {
     const dataTarget = "#changeRoleUserModal_"+props.userData.user.id
     const modalId = "changeRoleUserModal_"+props.userData.user.id
+    
+    const [isSubmit, setSubmit] = useState(false)
     return(
         <>
             <div
@@ -26,6 +28,7 @@ export default function modalChangeUserRole(props) {
                             className="close"
                             data-dismiss="modal"
                             aria-label="Close"
+                            disabled={isSubmit}
                             >
                             <span aria-hidden="true">&times;</span>
                             </button>
