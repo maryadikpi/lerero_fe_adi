@@ -33,15 +33,16 @@ export default function rowUserManagement (props) {
 
     useEffect(() => {
         switch(actionType) {
-            case 'delete_user': {
+            case 'delete_user': 
                 $('#deleteUserModal_'+data.id).modal('show') 
                 break
-            }
-            case 'change_role': {
+            
+            case 'change_role': 
                 $('#changeRoleUserModal_'+data.id).modal('show') 
                 break
-            }
+            default: break
         }
+        setActionType('')
     })
 
     return (
