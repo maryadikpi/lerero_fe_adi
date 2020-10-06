@@ -5,6 +5,7 @@ import UserRow from './row_UserManagement'
 import ModalAdduser from '../modal/modalAddUser'
 import DeleteUserButton from '../modal/modalDeleteUser'
 import ChangeUserRole from '../modal/modalChangeUserRole'
+import ChangeUserEmail from '../modal/modalChangeUserEmail'
 
 function TabelUserManagement(props){
   const [deleteData, setDeleteData] = useState({})
@@ -95,6 +96,9 @@ function TabelUserManagement(props){
       setUserList={props.setUserList}
     />
     <ChangeUserRole
+      userData={userRoleData}
+    />
+    <ChangeUserEmail
       userData={userRoleData}
     />
   </>

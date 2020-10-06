@@ -5,7 +5,6 @@ import {kpiFetch} from 'kpi_helper'
 import {BLOCK_USER} from 'config/const_api_url'
 
 export default function modalChangeUserRole(props) {
-    console.log(props)
     const dataTarget = "#changeRoleUserModal_"+props.userData.user.id
     const modalId = "changeRoleUserModal_"+props.userData.user.id
     return(
@@ -100,10 +99,10 @@ export default function modalChangeUserRole(props) {
                                 <i className="fa fa-check-circle text-success icon-width-50"></i>
                             </p>
                             <p>Success Change Role for User</p>
-                            <p>Makaryo Sregep</p>
-                            <p>#251</p>
+                            <p>{props.userData.user.first_name} {props.userData.user.last_name}</p>
+                            <p>#{props.userData.user.id}</p>
                             <p>Into Role</p>
-                            <p>Client Admin</p>
+                            <p>{props.userData.newRoleText}</p>
                         </div>
                         </div>
                         <br />
