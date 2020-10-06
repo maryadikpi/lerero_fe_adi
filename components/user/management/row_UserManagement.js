@@ -2,8 +2,14 @@ import {useState, useEffect} from 'react'
 import BlockUserButton from '../modal/modalBlockUser'
 export default function rowUserManagement (props) {
     const data = props.data
-
+    
     const [status, setStatus] = useState(data.status)
+    var roleList = []
+    if (props.roleList.data) {
+        roleList = props.roleList.data.map((item, i) => {
+                            return <option key={i} value={item.id}>{item.display_name}</option>
+                        })
+    }
     
     function handleDelete() {
         props.setDeleteData({id: data.id, username: data.username})
@@ -25,7 +31,7 @@ export default function rowUserManagement (props) {
             }
                 
             </td>
-            <td>{data.name}</td>
+            <td>{data.first_name} {data.last_name}</td>
             <td>{data.username}</td>
             <td>{data.usergroup}</td>
             <td>{data.role}</td>
@@ -57,18 +63,10 @@ export default function rowUserManagement (props) {
                 </button>
 
                 <select
-                type="button"
-                className="btn btn-warning width-110px btn-sm m-1"
+                    type="button"
+                    className="btn btn-warning width-110px btn-sm m-1"
                 >
-                    <option selected="" disabled="" className="white">
-                        Change Role
-                    </option>
-                    <option data-toggle="modal" data-target="#changeRole">
-                        Standard User
-                    </option>
-                    <option data-toggle="modal" data-target="#changeRole">
-                        Client Admin
-                    </option>
+                    {roleList}
                 </select>
             </center>
             </td>

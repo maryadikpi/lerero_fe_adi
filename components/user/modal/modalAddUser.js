@@ -15,6 +15,13 @@ export default function modalAddUser(props) {
     const [showToast, setToast] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
 
+    var roleList = []
+    if (props.roleList.data) {
+        roleList = props.roleList.data.map((item, i) => {
+                            return <option key={i} value={item.id}>{item.display_name}</option>
+                        })
+    }
+
     const errorStyle = (touch, err) => {
       if (touch && err) return {
         color: 'red',
@@ -47,11 +54,9 @@ export default function modalAddUser(props) {
     const handleSubmit = async (values, {resetForm}) => {
       setSubmit(true)
       setSpinner(true)
-      console.log(kpiHelper.getGlobalStore().loginInfo.user.company_id)
-      console.log('value sebleum dkirim : '+kpiHelper.getGlobalStore().loginInfo.user.company_id)
-      console.log(values)
       const json = await kpiFetch('POST', CREATE_NEW_USER, values)
       if (json.status) {
+        console.log(json)
         setSpinner(false)
         setSubmit(false)
         $('#addUserModal').modal('hide')
@@ -185,11 +190,7 @@ export default function modalAddUser(props) {
                                 </div>
                                 <div className="col-8">
                                     <Field name="roles" as='select' className="form-control">
-                                        <option disabled>
-                                            Choose Role User
-                                        </option>
-                                        <option value="1">Standard User</option>
-                                        <option value="2">Client Admin</option>
+                                        {roleList}
                                     </Field>
                                     <ErrorMessage name='roles' />
                                 </div>
@@ -225,14 +226,14 @@ export default function modalAddUser(props) {
         </Formik>
         </div>
 
-        <div
+      <div
       className="modal fade"
       id="addSuccess"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
-    >
+      >
       <div className="modal-dialog text-dark" role="document">
         <div className="modal-content">
           <div className="modal-header text-center">
