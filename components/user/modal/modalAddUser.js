@@ -17,7 +17,7 @@ export default function modalAddUser(props) {
 
     var roleList = []
     if (props.roleList.data) {
-        roleList = props.roleList.data.map((item, i) => {
+        roleList = props.roleList.data.data.map((item, i) => {
                             return <option key={i} value={item.id}>{item.display_name}</option>
                         })
     }
