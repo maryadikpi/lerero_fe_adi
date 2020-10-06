@@ -38,7 +38,7 @@ function TableLearningPathManagement() {
             opacity = 1 - now;
             current_fs.css({
               transform: "scale(" + scale + ")",
-              position: "absolute"
+              position: "inherit"
             });
             next_fs.css({
               left: left,
@@ -105,21 +105,30 @@ function TableLearningPathManagement() {
       );
     });
 
+    let i = 1;
     $("#addMilestone").click(function() {
-      $("#milestone").append(
-        "<tr>" +
-          "<td width='20%'>Milestone Name</td>" +
+      $("#milestone").html(
+        "<tr id='milestone" +
+          "'>" +
+          "<td width='20%' class='border-bottom-0'  style='vertical-align: top;'>Milestone Name</td>" +
           "<td>" +
           "<input type='text' class='form-control' />" +
           "</td>" +
           "</tr>" +
           "<tr>" +
-          "<td>Milestone Description</td>" +
+          "<td  style='vertical-align: top;'>Milestone Description</td>" +
           "<td>" +
           "<textarea type='text' class='form-control'></textarea>" +
           "</td>" +
+          "</tr>" +
+          "<tr>" +
+          "<td colspan='3'>" +
+          "<button type='button' class='btn btn-sm btn-primary width-10 m-2 float-right' id='addMilestone'>Ok</button>" +
+          "<button type='button' class='btn btn-sm btn-danger width-10 m-2 float-right' id='removeAddMilestone'>Cancel</button>" +
+          "</td>" +
           "</tr>"
       );
+      i++;
     });
   });
   return (
@@ -207,14 +216,10 @@ function TableLearningPathManagement() {
                             <p htmlFor="leraningPathname" className="">
                               <b> Milestone :</b>
                             </p>
-                            <table
-                              id="milestone"
-                              class="table border-0"
-                              width="100%"
-                            ></table>
+                            <table id="milestone" width="100%"></table>
                             <button
                               type="button"
-                              className="btn btn-sm text-left btn-success width-50 mb-5"
+                              className="btn btn-sm text-left btn-success width-20 mb-5 mt-5"
                               id="addMilestone"
                             >
                               + Add Milestone
@@ -242,13 +247,14 @@ function TableLearningPathManagement() {
                             </button>
                           </div>
                         </div>
-                        <hr />
+                        <br />
                         <button
                           type="button"
-                          className="next mt-2 width-50 action-button"
+                          className="next mt-2 mb-2 width-50 action-button"
                         >
                           Continue
                         </button>
+                        <br />
                       </fieldset>
                       <fieldset>
                         <h3>Verify Your Identity</h3>
