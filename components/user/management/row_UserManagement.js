@@ -31,15 +31,25 @@ export default function rowUserManagement (props) {
         
     }
 
+    function handleEmail() {
+        setActionType('change_email')
+        props.setUserRoleData({
+            user: data
+        })
+    }
+
     useEffect(() => {
         switch(actionType) {
             case 'delete_user': 
                 $('#deleteUserModal_'+data.id).modal('show') 
-                break
+            break
             
             case 'change_role': 
                 $('#changeRoleUserModal_'+data.id).modal('show') 
-                break
+            break
+            case 'change_email':
+                $('#changeEmailUserModal_'+data.id).modal('show') 
+            break
             default: break
         }
         setActionType('')
@@ -81,8 +91,7 @@ export default function rowUserManagement (props) {
 
                 <button
                     type="button"
-                    data-toggle="modal"
-                    data-target="#changeEmail"
+                    onClick={handleEmail}
                     className="btn btn-primary width-110px btn-sm m-1"
                 >
                     Change Email
