@@ -2,7 +2,9 @@ import store from "store";
 class kpiHelper {
     static globalStore = {
         loginInfo: {
-            user: '',
+            user: {
+              company_id: 0
+            },
             password: '',
             accessToken: '',
             refreshToken:''
@@ -37,6 +39,7 @@ class kpiHelper {
         this.globalStore.isAuth = true;
         this.globalStore.loginInfo.accessToken = data.access_token;
         this.globalStore.loginInfo.refreshToken = data.refresh_token;
+        this.globalStore.loginInfo.user = data.user;
         store.set('kpi', this.globalStore);
     }
 

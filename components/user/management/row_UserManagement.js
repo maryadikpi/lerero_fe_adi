@@ -2,15 +2,46 @@ import {useState, useEffect} from 'react'
 import BlockUserButton from '../modal/modalBlockUser'
 export default function rowUserManagement (props) {
     const data = props.data
-
+    
+    const [actionType, setActionType] = useState('nothing')
     const [status, setStatus] = useState(data.status)
+    const [newRole, setNewRole] = useState()
+
+    var roleList = []
+    if (props.roleList.data) {
+        roleList = props.roleList.data.map((item, i) => {
+                    return <option key={i} value={item.id}>{item.display_name}</option>
+                })
+    }
     
     function handleDelete() {
+        setActionType('delete_user')
         props.setDeleteData({id: data.id, username: data.username})
     }
 
+    function handleSelectRole(event) {
+        setActionType('change_role')
+        let index = event.nativeEvent.target.selectedIndex;
+        setNewRole(event.target.value)
+        props.setUserRoleData({
+            user: data,
+            newRoleId: event.target.value,
+            newRoleText: event.nativeEvent.target[index].text
+        })
+        
+    }
+
     useEffect(() => {
-        $('#deleteUserModal_'+data.id).modal('show')
+        switch(actionType) {
+            case 'delete_user': {
+                $('#deleteUserModal_'+data.id).modal('show') 
+                break
+            }
+            case 'change_role': {
+                $('#changeRoleUserModal_'+data.id).modal('show') 
+                break
+            }
+        }
     })
 
     return (
@@ -25,7 +56,7 @@ export default function rowUserManagement (props) {
             }
                 
             </td>
-            <td>{data.name}</td>
+            <td>{data.first_name} {data.last_name}</td>
             <td>{data.username}</td>
             <td>{data.usergroup}</td>
             <td>{data.role}</td>
@@ -48,27 +79,21 @@ export default function rowUserManagement (props) {
                 </button>
 
                 <button
-                type="button"
-                data-toggle="modal"
-                data-target="#changeEmail"
-                className="btn btn-primary width-110px btn-sm m-1"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#changeEmail"
+                    className="btn btn-primary width-110px btn-sm m-1"
                 >
-                Change Email
+                    Change Email
                 </button>
 
                 <select
-                type="button"
-                className="btn btn-warning width-110px btn-sm m-1"
+                    type="button"
+                    className="btn btn-warning width-110px btn-sm m-1"
+                    onChange={handleSelectRole}
+                    // value={role}
                 >
-                    <option selected="" disabled="" className="white">
-                        Change Role
-                    </option>
-                    <option data-toggle="modal" data-target="#changeRole">
-                        Standard User
-                    </option>
-                    <option data-toggle="modal" data-target="#changeRole">
-                        Client Admin
-                    </option>
+                    {roleList}
                 </select>
             </center>
             </td>

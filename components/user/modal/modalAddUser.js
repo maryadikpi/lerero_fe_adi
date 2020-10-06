@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import {Form, Field, Formik, ErrorMessage} from 'formik'
 import {Spinner, Toast} from "react-bootstrap"
 
-import {kpiFetch} from 'kpi_helper'
+import kpiHelper, {kpiFetch} from 'kpi_helper'
 import {CREATE_NEW_USER} from 'config/const_api_url'
 
 export default function modalAddUser(props) {
@@ -14,6 +14,13 @@ export default function modalAddUser(props) {
     const [showSpinner, setSpinner] = useState(false)
     const [showToast, setToast] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
+
+    var roleList = []
+    if (props.roleList.data) {
+        roleList = props.roleList.data.map((item, i) => {
+                            return <option key={i} value={item.id}>{item.display_name}</option>
+                        })
+    }
 
     const errorStyle = (touch, err) => {
       if (touch && err) return {
@@ -31,7 +38,8 @@ export default function modalAddUser(props) {
         last_name: '',
         username: '',
         email: '',
-        roles: 1
+        roles: 1,
+        company_id: kpiHelper.getGlobalStore().loginInfo? kpiHelper.getGlobalStore().loginInfo.user.company_id : 0
     }
 
     const validationSchema = Yup
@@ -48,6 +56,7 @@ export default function modalAddUser(props) {
       setSpinner(true)
       const json = await kpiFetch('POST', CREATE_NEW_USER, values)
       if (json.status) {
+        console.log(json)
         setSpinner(false)
         setSubmit(false)
         $('#addUserModal').modal('hide')
@@ -181,11 +190,7 @@ export default function modalAddUser(props) {
                                 </div>
                                 <div className="col-8">
                                     <Field name="roles" as='select' className="form-control">
-                                        <option disabled>
-                                            Choose Role User
-                                        </option>
-                                        <option value="1">Standard User</option>
-                                        <option value="2">Client Admin</option>
+                                        {roleList}
                                     </Field>
                                     <ErrorMessage name='roles' />
                                 </div>
@@ -221,14 +226,14 @@ export default function modalAddUser(props) {
         </Formik>
         </div>
 
-        <div
+      <div
       className="modal fade"
       id="addSuccess"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
-    >
+      >
       <div className="modal-dialog text-dark" role="document">
         <div className="modal-content">
           <div className="modal-header text-center">
