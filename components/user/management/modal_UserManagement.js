@@ -11,7 +11,7 @@ const ModalUserManagement = () => (
       <div className="modal-dialog text-dark" role="document">
         <div className="modal-content">
           <div className="modal-header text-center">
-            <h5 className="modal-title width-100">Create User</h5>
+            <h5 className="modal-title width-100">Change Email</h5>
             <button
               type="button"
               className="close"
