@@ -19,7 +19,7 @@ export default function modalBlockUser(props) {
     const resp = await kpiFetch('PUT', BLOCK_USER+props.id, {status: props.status == 1 ? 2 : 1})
     
     if (resp.status) {
-      if (props.status) {
+      if (props.status === 1) {
         setMessage('Success Block User')
         props.setStatus(2)
       } else {
