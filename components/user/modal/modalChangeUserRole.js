@@ -1,14 +1,47 @@
 import {useState, useEffect} from 'react'
-import {Spinner} from "react-bootstrap"
+import {Spinner, Toast} from "react-bootstrap"
 
 import {kpiFetch} from 'kpi_helper'
-import {BLOCK_USER} from 'config/const_api_url'
+import {CHANGE_USER_ROLE} from 'config/const_api_url'
 
 export default function modalChangeUserRole(props) {
     const dataTarget = "#changeRoleUserModal_"+props.userData.user.id
     const modalId = "changeRoleUserModal_"+props.userData.user.id
     
     const [isSubmit, setSubmit] = useState(false)
+    const [showSpinner, setSpinner] = useState(false)
+    const [showToast, setToast] = useState(false)
+    const [errorMsg, setErrorMsg] = useState('')
+
+    const handleChangeUserRole = async () => {
+        setSubmit(true)
+        setSpinner(true)
+
+        // Update userList
+        let temp = props.userList.data.data.map((item) => {
+            return item.id === props.userData.user.id ? {...item, role_id: props.userData.newRoleId, role: props.userData.newRoleText } : item
+        })
+
+        const resp = await kpiFetch('PUT', CHANGE_USER_ROLE+props.userData.user.id, {roles: props.userData.newRoleId})
+
+        if (resp.status) {
+            setSubmit(false)
+            setSpinner(false)
+            props.setUserList({
+                data: {
+                    data: temp
+                }
+            })
+            $(dataTarget).modal('hide')
+            $('#changeSuccess').modal('show')
+        } else {
+            setSubmit(false)
+            setSpinner(false)
+            setToast(true)
+            setErrorMsg(resp.message)
+        }
+    }
+
     return(
         <>
             <div
@@ -18,6 +51,7 @@ export default function modalChangeUserRole(props) {
                 role="dialog"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
+                data-backdrop="static"
             >
                 <div className="modal-dialog text-dark" role="document">
                     <div className="modal-content">
@@ -45,7 +79,15 @@ export default function modalChangeUserRole(props) {
                                     <p>{props.userData.newRoleText}</p>
                                 </div>
                             </div>
-                            <br />
+                            
+                            { showSpinner ?
+                                <Spinner 
+                                animation="border" 
+                                variant="primary" 
+                                style={{position:'absolute', top: '50%', left: '45%', zIndex:'9999'}}
+                                />
+                                : ''
+                            }
 
                             <div className="row mb-5">
                                 <div className="col-6">
@@ -53,19 +95,22 @@ export default function modalChangeUserRole(props) {
                                     type="button"
                                     className="btn btn-sm btn-danger width-90 float-right"
                                     data-dismiss="modal"
+                                    disabled={isSubmit}
                                     >
                                     Cancel
                                     </button>
                                 </div>
                                 <div className="col-6">
                                     <button
-                                    type="button"
-                                    data-dismiss="modal"
-                                    data-toggle="modal"
-                                    data-target="#changeSuccess"
-                                    className="btn width-90 btn-sm btn-primary"
+                                        type="button"
+                                        // data-dismiss="modal"
+                                        // data-toggle="modal"
+                                        // data-target="#changeSuccess"
+                                        onClick={handleChangeUserRole}
+                                        className="btn width-90 btn-sm btn-primary"
+                                        disabled={isSubmit}
                                     >
-                                    Ok
+                                        Ok
                                     </button>
                                 </div>
                             </div>
@@ -125,6 +170,24 @@ export default function modalChangeUserRole(props) {
                     </div>
                 </div>
             </div>
+
+            <Toast 
+                style={{
+                    position: 'absolute',
+                    top: 17,
+                    right: 17,
+                    zIndex: 9999
+                }}
+                onClose={() => setToast(false)}
+                show={showToast}
+                delay={3000}
+                autohide
+                >
+                <Toast.Header>
+                    <strong className="mr-auto" style={{color: 'red'}}>Create User Error</strong>
+                </Toast.Header>
+                <Toast.Body> <span style={{color: 'black'}}>{errorMsg}</span></Toast.Body>
+          </Toast>
         </>
     )
 }

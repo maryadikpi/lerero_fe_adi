@@ -118,7 +118,7 @@ export default function rowUserManagement (props) {
                     type="button"
                     className="btn btn-warning width-110px btn-sm m-1"
                     onChange={handleSelectRole}
-                    // value={role}
+                    value={data.role_id}
                 >
                     {roleList}
                 </select>
