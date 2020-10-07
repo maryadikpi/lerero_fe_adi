@@ -246,12 +246,12 @@ export default function modalAddUser(props) {
         </div>
 
       <div
-      className="modal fade"
-      id="addSuccess"
-      tabIndex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
+        className="modal fade"
+        id="addSuccess"
+        tabIndex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
       >
       <div className="modal-dialog text-dark" role="document">
         <div className="modal-content">

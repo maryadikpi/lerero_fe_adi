@@ -97,6 +97,8 @@ function TabelUserManagement(props){
     />
     <ChangeUserRole
       userData={userRoleData}
+      userList={props.userList}
+      setUserList={props.setUserList}
     />
     <ChangeUserEmail
       userData={userRoleData}
