@@ -10,3 +10,5 @@ export const BLOCK_USER = 'api/users/status/' //ex. api/users/status/24? (need t
 export const DELETE_USER_SOFT = 'api/users/' // api/users/25
 export const CHANGE_USER_EMAIL = 'api/users/email/' // api/users/email/6
 export const CHANGE_USER_ROLE = 'api/users/role/' // api/users/role/6
+export const CHECK_ACTIVATION_TOKEN = 'api/auth/activation/' //api/auth/activation/tokenhere
+export const ACTIVATE_USER = 'api/auth/activation/user'
