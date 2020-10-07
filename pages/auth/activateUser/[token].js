@@ -1,23 +1,41 @@
-import Header from "components/admin/header";
+import { useRouter } from 'next/router'
 import Link from "next/link";
 
-const ForgetPassword = () => (
-  <>
+import Header from "components/admin/header";
+import {kpiFetch} from 'kpi_helper'
+import {CHECK_ACTIVATION_TOKEN, ACTIVATE_USER} from 'config/const_api_url'
+
+
+function activateUser(props) {
+  var msg, email = ''
+  var style = {}
+  if (props.data.status) {
+    msg = "Enter your new password for account"
+    email = props.data.data.email
+    style = {
+      color: 'black'
+    }
+  } else {
+    msg = props.data.message
+    style = {color: 'red'}
+  }
+  return (
+    <>
     <Header />
     <span className="hold-transition login-page">
       <div className="login-box">
         <div className="card">
           <div className="card-body login-card-body">
             <div className="login-logo">
-              <a href="../../index2.html">
+              <a>
                 <b>Lerero</b> Learning
               </a>
             </div>
-            <p className="login-box-msg">
-              Enter your new password for account <br /> user@gmail.com
+            <p className="login-box-msg" style={style}>
+              {msg}<br /> {email}
             </p>
-
-            <form action="recover-password.html" method="post">
+            { props.data.status &&
+              <form action="recover-password.html" method="post">
               <div className="input-group mb-3">
                 <input
                   type="password"
@@ -57,11 +75,18 @@ const ForgetPassword = () => (
                 </div>
               </div>
             </form>
+            }
           </div>
         </div>
       </div>
     </span>
   </>
-);
+  )
+}
 
-export default ForgetPassword;
+activateUser.getInitialProps = async (ctx) => {
+    const data = await kpiFetch('GET', CHECK_ACTIVATION_TOKEN+ctx.query.token)
+  return {data}
+}
+
+export default activateUser;
