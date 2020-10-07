@@ -57,7 +57,6 @@ export default function modalAddUser(props) {
 
       const json = await kpiFetch('POST', CREATE_NEW_USER, values)
       if (json.status) {
-        console.log(json)
         setSpinner(false)
         setSubmit(false)
         $('#addUserModal').modal('hide')
