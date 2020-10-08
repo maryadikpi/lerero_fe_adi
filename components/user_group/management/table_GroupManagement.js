@@ -1,9 +1,42 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Popover, OverlayTrigger, Button, Modal } from "react-bootstrap";
 
+var icon = ["fa-book", "fa-users"];
+
+function capitalizeFirstLetter(string) {
+  string = string.toLowerCase();
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const popover = (
+  <Popover id="popover-basic">
+    <Popover.Title as="h3">Select Icon</Popover.Title>
+    <Popover.Content>
+      <i className="fas fa-book m-2" onClick={() => selectIcon("book")}></i>
+      <i className="fas fa-home m-2" onClick={() => selectIcon("home")}></i>
+      <i className="fas fa-users m-2" onClick={() => selectIcon("users")}></i>
+      <i className="fas fa-wrench m-2" onClick={() => selectIcon("wrench")}></i>
+      <i
+        className="fas fa-dollar-sign m-2"
+        onClick={() => selectIcon("dollar-sign")}
+      ></i>
+    </Popover.Content>
+  </Popover>
+);
+
+function selectIcon(id) {
+  $("#icon").html(
+    '<i class="fa fa-' +
+      id +
+      '"></i> <font className="ml-2">' +
+      capitalizeFirstLetter(id) +
+      "</font>"
+  );
+}
 function TabelDetailGroup() {
   const [addGroup, addGroupShow] = useState(true);
+
   return (
     <>
       <div className="row mb-10">
@@ -166,7 +199,7 @@ function TabelDetailGroup() {
       </div>
 
       <Modal
-        size="lg"
+        size="md"
         show={addGroup}
         onHide={() => addGroupShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
@@ -177,10 +210,10 @@ function TabelDetailGroup() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="modal-body p-3">
-            <div className="row align-center p-3">
+          <div className="modal-body">
+            <div className="row align-center">
               <div className="col-12">
-                <label htmlFor="groupName" className="container-fluid  p-2">
+                <label htmlFor="groupName" className="container-fluid">
                   User Group's Name
                 </label>
                 <input
@@ -189,11 +222,26 @@ function TabelDetailGroup() {
                   className="form-control border-top-0 border-right-0 border-left-0"
                   placeholder="Type user's group name"
                 />
+                <label htmlFor="groupIcon" className="container-fluid mt-5">
+                  Select Icon
+                </label>
+                <OverlayTrigger
+                  trigger="click"
+                  placement="right"
+                  overlay={popover}
+                >
+                  <Button variant="light" className="ml-2">
+                    <div id="icon">
+                      <i className="fas fa-book"></i>
+                      <font className="ml-2">Book</font>
+                    </div>
+                  </Button>
+                </OverlayTrigger>
               </div>
             </div>
             <br />
 
-            <div className="row mb-5">
+            <div className="row mb-5 mt-4">
               <div className="col-6">
                 <button
                   type="button"
