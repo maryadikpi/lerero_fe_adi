@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import * as Yup from 'yup';
+import React, {useState} from 'react'
+import * as Yup from 'yup'
 import {Form, Field, Formik, ErrorMessage} from 'formik'
 import {Spinner, Toast} from "react-bootstrap"
 
@@ -135,11 +135,11 @@ export default function modalAddUser(props) {
                                       First Name
                                     </label>
                                     <Field
-                                    name="first_name"
-                                    type="text"
-                                    className="form-control border-top-0 border-right-0 border-left-0"
-                                    placeholder="Type user's first name"
-                                    style={errorStyle(touched.first_name, errors.first_name)}
+                                      name="first_name"
+                                      type="text"
+                                      className="form-control border-top-0 border-right-0 border-left-0"
+                                      placeholder="Type user's first name"
+                                      style={errorStyle(touched.first_name, errors.first_name)}
                                     />
                                     <span style={textRed(touched.first_name, errors.first_name)}>
                                       <ErrorMessage name='first_name' />
