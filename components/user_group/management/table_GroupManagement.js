@@ -34,9 +34,9 @@ function selectIcon(id) {
       "</font>"
   );
 }
-function TabelDetailGroup() {
-  const [addGroup, addGroupShow] = useState(true);
 
+function TabelDetailGroup() {
+  const [addGroup, addGroupShow] = useState(false);
   return (
     <>
       <div className="row mb-10">
