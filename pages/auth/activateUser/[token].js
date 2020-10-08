@@ -8,6 +8,7 @@ import {useState, useEffect} from 'react'
 import Header from "components/admin/header"
 import {kpiFetch} from 'kpi_helper'
 import {CHECK_ACTIVATION_TOKEN, ACTIVATE_USER} from 'config/const_api_url'
+import {USER_LOGIN} from "config/const_url"
 
 
 function activateUser(props) {
@@ -37,7 +38,7 @@ function activateUser(props) {
 
   const initialValues = {
     email: email,
-    token: props.data.data.token,
+    token: props.data.data?.token,
     password: '',
     password_confirmation: '',
   }
@@ -56,30 +57,39 @@ function activateUser(props) {
   const [modalHeading, setModalHeading] = useState('Success')
   const [modalContent, setModalContent] = useState('')
   const [modalTimer, setModalTimer] = useState(5)
+  const router = useRouter()
 
   const handleSubmit = async (values, {resetForm}) => {
-    console.log('handle submit')
-    console.log(values)
     setSubmit(true)
     setSpinner(true)
-    setTimeout(() => {
+    const resp = await kpiFetch('POST', ACTIVATE_USER, values)
+    if (resp.status) {
       setSubmit(false)
       setSpinner(false)
       setModalShow(true)
       setModalContent('Your account has been activated. You will be redirected to login page in :')
       const interval = setInterval(() => {
-        if (modalTimer === 0) {
-          clearInterval(interval)
-        } else {
           setModalTimer(
             (modalTimer) => {
-              console.log('timer inside arror '+modalTimer)
+              if (modalTimer === 1) {
+                clearInterval(interval)
+              }
               return modalTimer - 1
             }
           )
-        }
-      }, 1000);
-    }, 2000)
+        }, 1000
+      )
+      setTimeout(() => {
+        router.push(USER_LOGIN)
+      }, 5000)
+    } else {
+      setModalHeading('Error')
+      setSubmit(false)
+      setSpinner(false)
+      setModalShow(true)
+      setModalContent(resp.message)
+    }
+
   }
 
   return (
@@ -178,7 +188,7 @@ function activateUser(props) {
     <Modal
       show={modalShow}
       onHide={() => setModalShow(false)}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
       backdrop="static"
@@ -190,7 +200,7 @@ function activateUser(props) {
       </Modal.Header>
       <Modal.Body>
         <p>{modalContent}</p>
-        <h2>{modalTimer}</h2>
+        {modalHeading === 'Success' && (<h2 style={{textAlign: 'center'}}>{modalTimer}</h2>)}
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={() => setModalShow(false)}>Close</Button>
