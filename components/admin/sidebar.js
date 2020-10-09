@@ -116,6 +116,17 @@ function Sidebar() {
               </Link>
             </li>
             <li className="nav-item">
+              <Link
+                as="/admin/question/management"
+                href="/admin/question/management"
+              >
+                <a className="nav-link">
+                  <i className="nav-icon fa fa-tachometer-alt"></i>
+                  <p>Question</p>
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item">
               <div>
                 <a
                   onClick={handleLogout}
