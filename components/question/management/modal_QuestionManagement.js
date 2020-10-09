@@ -1,4 +1,4 @@
-const ModalQuizManagement = () => (
+const ModalQuestionManagement = () => (
   <>
     <div
       className="modal fade"
@@ -63,7 +63,7 @@ const ModalQuizManagement = () => (
 
     <div
       className="modal fade"
-      id="deactiveQuiz"
+      id="deactiveQuestion"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -88,7 +88,7 @@ const ModalQuizManagement = () => (
                 <p>
                   <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
                 </p>
-                <p>Are you sure want to Deactive this Quiz : </p>
+                <p>Are you sure want to Deactive this Question : </p>
               </div>
             </div>
             <br />
@@ -108,7 +108,7 @@ const ModalQuizManagement = () => (
                   type="button"
                   data-dismiss="modal"
                   data-toggle="modal"
-                  data-target="#deactiveQuizSuccess"
+                  data-target="#deactiveQuestionSuccess"
                   className="btn width-90 btn-sm btn-primary"
                 >
                   Ok
@@ -122,7 +122,7 @@ const ModalQuizManagement = () => (
 
     <div
       className="modal fade"
-      id="deactiveQuizSuccess"
+      id="deactiveQuestionSuccess"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -147,7 +147,7 @@ const ModalQuizManagement = () => (
                 <p>
                   <i className="fa fa-check-circle text-success icon-width-50"></i>
                 </p>
-                <p>Successfully deactivate this Quiz</p>
+                <p>Successfully deactivate this Question</p>
               </div>
             </div>
             <br />
@@ -170,7 +170,7 @@ const ModalQuizManagement = () => (
 
     <div
       className="modal fade"
-      id="deleteQuiz"
+      id="deleteQuestion"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -195,7 +195,7 @@ const ModalQuizManagement = () => (
                 <p>
                   <i className="fa fa-exclamation-triangle text-danger icon-width-50"></i>
                 </p>
-                <p>Are you sure want to Delete this Quiz ? </p>
+                <p>Are you sure want to Delete this Question ? </p>
                 <p>Please note that this process cannot be reversed </p>
               </div>
             </div>
@@ -216,7 +216,7 @@ const ModalQuizManagement = () => (
                   type="button"
                   data-dismiss="modal"
                   data-toggle="modal"
-                  data-target="#deleteQuizSuccess"
+                  data-target="#deleteQuestionSuccess"
                   className="btn width-90 btn-sm btn-primary"
                 >
                   Ok
@@ -230,7 +230,7 @@ const ModalQuizManagement = () => (
 
     <div
       className="modal fade"
-      id="deleteQuizSuccess"
+      id="deleteQuestionSuccess"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -255,7 +255,7 @@ const ModalQuizManagement = () => (
                 <p>
                   <i className="fa fa-check-circle text-success icon-width-50"></i>
                 </p>
-                <p>Success Delete This Quiz</p>
+                <p>Success Delete This Question</p>
               </div>
             </div>
             <br />
@@ -278,4 +278,4 @@ const ModalQuizManagement = () => (
   </>
 );
 
-export default ModalQuizManagement;
+export default ModalQuestionManagement;

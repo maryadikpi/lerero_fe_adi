@@ -1,11 +1,11 @@
 import Link from "next/link";
-const TableQuizManagement = () => (
+const TableQuestionManagement = () => (
   <>
     <div className="row mb-10">
       <div className="col-12">
         <div className="card text-dark card-primary card-outline">
           <div className="card-header border-0">
-            <h3 className="card-title">List of Quiz</h3>
+            <h3 className="card-title">List of Question</h3>
             <div className="card-tools">
               <button
                 type="button"
@@ -13,7 +13,7 @@ const TableQuizManagement = () => (
                 data-toggle="modal"
                 data-target="#addGroup"
               >
-                <i className="fas fa-shield-alt"></i> Add New Quiz
+                <i className="fas fa-shield-alt"></i> Add New Question
               </button>
             </div>
           </div>
@@ -22,7 +22,7 @@ const TableQuizManagement = () => (
               <thead>
                 <tr>
                   <th width="2%">Id</th>
-                  <th>Quiz Name</th>
+                  <th>Question Name</th>
                   <th>Points</th>
                   <th>Learning Path</th>
                   <th>Milestone</th>
@@ -35,7 +35,7 @@ const TableQuizManagement = () => (
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>Quiz 1</td>
+                  <td>Question 1</td>
                   <td>10</td>
                   <td>101 Introduction</td>
                   <td>Milestone 1</td>
@@ -47,7 +47,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#duplicateQuiz"
+                        data-target="#duplicateQuestion"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
                         Duplicate
@@ -55,7 +55,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#editQuiz"
+                        data-target="#editQuestion"
                         className="btn btn-primary width-80px btn-sm m-1"
                       >
                         Edit
@@ -63,7 +63,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deactiveQuiz"
+                        data-target="#deactiveQuestion"
                         className="btn btn-warning width-100px btn-sm m-1"
                       >
                         Deactivate
@@ -71,7 +71,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deleteQuiz"
+                        data-target="#deleteQuestion"
                         className="btn btn-danger width-80px btn-sm m-1"
                       >
                         Delete
@@ -81,7 +81,7 @@ const TableQuizManagement = () => (
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>Quiz 1</td>
+                  <td>Question 1</td>
                   <td>10</td>
                   <td>101 Introduction</td>
                   <td>Milestone 1</td>
@@ -93,7 +93,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#duplicateQuiz"
+                        data-target="#duplicateQuestion"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
                         Duplicate
@@ -101,7 +101,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#editQuiz"
+                        data-target="#editQuestion"
                         className="btn btn-primary width-80px btn-sm m-1"
                       >
                         Edit
@@ -109,7 +109,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deactiveQuiz"
+                        data-target="#deactiveQuestion"
                         className="btn btn-warning width-100px btn-sm m-1"
                       >
                         Deactivate
@@ -117,7 +117,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deleteQuiz"
+                        data-target="#deleteQuestion"
                         className="btn btn-danger width-80px btn-sm m-1"
                       >
                         Delete
@@ -127,7 +127,7 @@ const TableQuizManagement = () => (
                 </tr>
                 <tr>
                   <td>3</td>
-                  <td>Quiz 1</td>
+                  <td>Question 1</td>
                   <td>10</td>
                   <td>101 Introduction</td>
                   <td>Milestone 1</td>
@@ -139,7 +139,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#duplicateQuiz"
+                        data-target="#duplicateQuestion"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
                         Duplicate
@@ -147,7 +147,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#editQuiz"
+                        data-target="#editQuestion"
                         className="btn btn-primary width-80px btn-sm m-1"
                       >
                         Edit
@@ -155,7 +155,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deactiveQuiz"
+                        data-target="#deactiveQuestion"
                         className="btn btn-warning width-100px btn-sm m-1"
                       >
                         Deactivate
@@ -163,7 +163,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deleteQuiz"
+                        data-target="#deleteQuestion"
                         className="btn btn-danger width-80px btn-sm m-1"
                       >
                         Delete
@@ -173,7 +173,7 @@ const TableQuizManagement = () => (
                 </tr>
                 <tr>
                   <td>4</td>
-                  <td>Quiz 1</td>
+                  <td>Question 1</td>
                   <td>10</td>
                   <td>101 Introduction</td>
                   <td>Milestone 1</td>
@@ -185,7 +185,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#duplicateQuiz"
+                        data-target="#duplicateQuestion"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
                         Duplicate
@@ -193,7 +193,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#editQuiz"
+                        data-target="#editQuestion"
                         className="btn btn-primary width-80px btn-sm m-1"
                       >
                         Edit
@@ -201,7 +201,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deactiveQuiz"
+                        data-target="#deactiveQuestion"
                         className="btn btn-warning width-100px btn-sm m-1"
                       >
                         Deactivate
@@ -209,7 +209,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deleteQuiz"
+                        data-target="#deleteQuestion"
                         className="btn btn-danger width-80px btn-sm m-1"
                       >
                         Delete
@@ -219,7 +219,7 @@ const TableQuizManagement = () => (
                 </tr>
                 <tr>
                   <td>5</td>
-                  <td>Quiz 1</td>
+                  <td>Question 1</td>
                   <td>10</td>
                   <td>101 Introduction</td>
                   <td>Milestone 1</td>
@@ -231,7 +231,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#duplicateQuiz"
+                        data-target="#duplicateQuestion"
                         className="btn btn-success width-80px btn-sm m-1"
                       >
                         Duplicate
@@ -239,7 +239,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#editQuiz"
+                        data-target="#editQuestion"
                         className="btn btn-primary width-80px btn-sm m-1"
                       >
                         Edit
@@ -247,7 +247,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deactiveQuiz"
+                        data-target="#deactiveQuestion"
                         className="btn btn-warning width-100px btn-sm m-1"
                       >
                         Deactivate
@@ -255,7 +255,7 @@ const TableQuizManagement = () => (
                       <button
                         type="button"
                         data-toggle="modal"
-                        data-target="#deleteQuiz"
+                        data-target="#deleteQuestion"
                         className="btn btn-danger width-80px btn-sm m-1"
                       >
                         Delete
@@ -272,4 +272,4 @@ const TableQuizManagement = () => (
   </>
 );
 
-export default TableQuizManagement;
+export default TableQuestionManagement;
