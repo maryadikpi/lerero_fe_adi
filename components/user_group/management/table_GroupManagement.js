@@ -37,6 +37,13 @@ function selectIcon(id) {
 
 function TabelDetailGroup() {
   const [addGroup, addGroupShow] = useState(false);
+  const closeAddGroup = () => addGroupShow(false);
+  const openAddGroup = () => addGroupShow(true);
+
+  const [addUser, addUserGroup] = useState(false);
+  const closeAddUserGroup = () => addUserGroup(false);
+  const openAdduserGroup = () => addUserGroup(true);
+
   return (
     <>
       <div className="row mb-10">
@@ -46,7 +53,7 @@ function TabelDetailGroup() {
               <h3 className="card-title">Latest User Activity</h3>
               <div className="card-tools">
                 <Button
-                  onClick={() => addGroupShow(true)}
+                  onClick={openAddGroup}
                   className="btn btn-primary btn-sm"
                 >
                   <i className="fas fa-users"></i> Add Group
@@ -71,11 +78,9 @@ function TabelDetailGroup() {
                     <td>
                       <i className="fa fa-shield-alt"></i>
                     </td>
-                    <Link href="/admin/user_group/detail">
-                      <td>
-                        <a>Sales</a>
-                      </td>
-                    </Link>
+                    <td onClick={openAdduserGroup}>
+                      <a>Sales</a>
+                    </td>
                     <td>12</td>
                     <td>
                       <span className="right badge badge-success">Active</span>
@@ -87,7 +92,7 @@ function TabelDetailGroup() {
                         data-target="#actionBtn"
                         className="btn btn-danger width-80px btn-sm"
                       >
-                        Deactive
+                        Deactivate
                       </button>
                     </td>
                   </tr>
@@ -96,11 +101,9 @@ function TabelDetailGroup() {
                     <td>
                       <i className="fa fa-home"></i>
                     </td>
-                    <Link href="/admin/user_group/detail">
-                      <td>
-                        <a>Finance</a>
-                      </td>
-                    </Link>
+                    <td onClick={openAdduserGroup}>
+                      <a>Finance</a>
+                    </td>
                     <td>15</td>
                     <td>
                       <span className="right badge badge-success">Active</span>
@@ -112,7 +115,7 @@ function TabelDetailGroup() {
                         data-target="#actionBtn"
                         className="btn btn-danger width-80px btn-sm"
                       >
-                        Deactive
+                        Deactivate
                       </button>
                     </td>
                   </tr>
@@ -121,11 +124,9 @@ function TabelDetailGroup() {
                     <td>
                       <i className="fa fa-briefcase"></i>
                     </td>
-                    <Link href="/admin/user_group/detail">
-                      <td>
-                        <a>Warehouse</a>
-                      </td>
-                    </Link>
+                    <td onClick={openAdduserGroup}>
+                      <a>Warehouse</a>
+                    </td>
                     <td>20</td>
                     <td>
                       <span className="right badge badge-success">Active</span>
@@ -137,7 +138,7 @@ function TabelDetailGroup() {
                         data-target="#actionBtn"
                         className="btn btn-danger width-80px btn-sm"
                       >
-                        Deactive
+                        Deactivate
                       </button>
                     </td>
                   </tr>
@@ -146,11 +147,9 @@ function TabelDetailGroup() {
                     <td>
                       <i className="fa fa-dollar-sign"></i>
                     </td>
-                    <Link href="/admin/user_group/detail">
-                      <td>
-                        <a>Engineer</a>
-                      </td>
-                    </Link>
+                    <td onClick={openAdduserGroup}>
+                      <a>Engineer</a>
+                    </td>
                     <td>26</td>
                     <td>
                       <span className="right badge badge-danger">Inactive</span>
@@ -171,11 +170,9 @@ function TabelDetailGroup() {
                     <td>
                       <i className="fa fa-wrench"></i>
                     </td>
-                    <Link href="/admin/user_group/detail">
-                      <td>
-                        <a>Executive</a>
-                      </td>
-                    </Link>
+                    <td onClick={openAdduserGroup}>
+                      <a>Executive</a>
+                    </td>
                     <td>12</td>
                     <td>
                       <span className="right badge badge-danger">Inactive</span>
@@ -201,7 +198,7 @@ function TabelDetailGroup() {
       <Modal
         size="md"
         show={addGroup}
-        onHide={() => addGroupShow(false)}
+        onHide={closeAddGroup}
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Header closeButton>
@@ -264,6 +261,152 @@ function TabelDetailGroup() {
         </Modal.Body>
       </Modal>
 
+      <Modal size="lg" show={addUser} onHide={closeAddUserGroup}>
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-lg">
+            Create User Group
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="modal-body p-0">
+            <div className="row align-center">
+              <div className="col-12">
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text bg-white border-0">
+                      <i className="fas fa-search"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    className="form-control border-left-0 border-0"
+                    placeholder="Search Name"
+                  />
+                </div>
+              </div>
+              <div className="col-12">
+                <table className="table table-striped table-valign-middle">
+                  <thead>
+                    <tr>
+                      <th width="10%">Add?</th>
+                      <th width="5%">Id</th>
+                      <th width="10%">Avatar</th>
+                      <th>Name</th>
+                      <th>Username</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input type="checkbox" className="mr-2" /> Yes
+                      </td>
+                      <td>1</td>
+                      <td>
+                        <img
+                          src="../../dist/img/default-150x150.png"
+                          alt="Product 1"
+                          className="img-circle img-size-32 mr-2"
+                        />
+                      </td>
+                      <td>Makaryo Sregep</td>
+                      <td>makaryo123</td>
+                      <td>Active</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input type="checkbox" className="mr-2" /> Yes
+                      </td>
+                      <td>2</td>
+                      <td>
+                        <img
+                          src="../../dist/img/default-150x150.png"
+                          alt="Product 1"
+                          className="img-circle img-size-32 mr-2"
+                        />
+                      </td>
+                      <td>Makaryo Sregep</td>
+                      <td>makaryo123</td>
+                      <td>Active</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input type="checkbox" className="mr-2" /> Yes
+                      </td>
+                      <td>3</td>
+                      <td>
+                        <img
+                          src="../../dist/img/default-150x150.png"
+                          alt="Product 1"
+                          className="img-circle img-size-32 mr-2"
+                        />
+                      </td>
+                      <td>Makaryo Sregep</td>
+                      <td>makaryo123</td>
+                      <td>Active</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input type="checkbox" className="mr-2" /> Yes
+                      </td>
+                      <td>4</td>
+                      <td>
+                        <img
+                          src="../../dist/img/default-150x150.png"
+                          alt="Product 1"
+                          className="img-circle img-size-32 mr-2"
+                        />
+                      </td>
+                      <td>Makaryo Sregep</td>
+                      <td>makaryo123</td>
+                      <td>Active</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input type="checkbox" className="mr-2" /> Yes
+                      </td>
+                      <td>5</td>
+                      <td>
+                        <img
+                          src="../../dist/img/default-150x150.png"
+                          alt="Product 1"
+                          className="img-circle img-size-32 mr-2"
+                        />
+                      </td>
+                      <td>Makaryo Sregep</td>
+                      <td>makaryo123</td>
+                      <td>Active</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <br />
+
+            <div className="row mb-5">
+              <div className="col-6">
+                <Button
+                  onClick={closeAddUserGroup}
+                  className="btn btn-sm btn-danger width-90 float-right"
+                >
+                  Cancel
+                </Button>
+              </div>
+              <div className="col-6">
+                <Button
+                  onClick={closeAddUserGroup}
+                  className="btn width-90 btn-sm btn-primary"
+                  data-target="#confimSave"
+                  data-toggle="modal"
+                >
+                  Ok
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+
       <div
         className="modal fade"
         id="actionBtn"
@@ -291,7 +434,7 @@ function TabelDetailGroup() {
                   <p>
                     <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
                   </p>
-                  <p>Are you sure want to Deactive User Group : </p>
+                  <p>Are you sure want to Deactivate User Group : </p>
                   <p>Sales</p>
                   <p>#1</p>
                 </div>
@@ -352,7 +495,7 @@ function TabelDetailGroup() {
                   <p>
                     <i className="fa fa-check-circle text-success icon-width-50"></i>
                   </p>
-                  <p>Success Deative User Group</p>
+                  <p>Success Deactivate User Group</p>
                   <p>Sales</p>
                   <p>#1</p>
                 </div>
