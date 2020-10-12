@@ -1,4 +1,4 @@
-
+import {useState, useEffect} from 'react'
 export default function rowUserGroup (props) {
     console.log('props user group')
     console.log(props)
@@ -73,8 +73,28 @@ export default function rowUserGroup (props) {
     }
 
     function handleActivate() {
-
+        setActionType('deactive_group')
+        props.setGroupData({
+            group: {
+                id: data.id,
+                name: data.name,
+                action: displayActionText(data.status),
+                status: data.status
+            }
+        })
+        
     }
+
+    const [actionType, setActionType] = useState('nothing')
+    useEffect(() => {
+        switch(actionType) {
+            case 'deactive_group': 
+                $('#deactiveUserGroup').modal('show') 
+            break
+            default: break
+        }
+        setActionType('')
+    })
 
     return (
         <tr>
@@ -88,7 +108,7 @@ export default function rowUserGroup (props) {
             }
                 
             </td>
-            <td>{data.name} {data.last_name}</td>
+            <td>{data.name}</td>
             <td>{data.total_user}</td>
             <td><span className={classStatus(data.status)}>{displayStatusText(data.status)}</span></td>
             <td>

@@ -16,3 +16,4 @@ export const ACTIVATE_USER = 'api/auth/activation/user'
 // USER GROUP
 export const GET_ALL_USER_GROUP = 'api/user-groups?' // GET
 export const CREATE_USER_GROUP = 'api/user-groups?'  // POST
+export const CHANGE_GROUP_STATUS = 'api/user-groups/status/' // PUT -> api/user-groups/status/12?
