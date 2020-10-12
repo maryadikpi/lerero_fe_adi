@@ -9,6 +9,14 @@ const TableQuestionManagement = () => (
             <div className="card-tools">
               <button
                 type="button"
+                className="btn btn-primary btn-sm mr-2"
+                data-toggle="modal"
+                data-target="#importCsv"
+              >
+                <i className="fas fa-shield-alt"></i> Import CSV
+              </button>
+              <button
+                type="button"
                 className="btn btn-primary btn-sm"
                 data-toggle="modal"
                 data-target="#addGroup"
