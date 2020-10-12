@@ -28,8 +28,8 @@ export default function modalAddUserGroup(props) {
       const validationSchema = Yup
       .object()
       .shape({
-          name: Yup.string().required().min(2).max(100),
-          picture: Yup.string().required().min(2).max(100)
+          name: Yup.string().required().min(2).max(70).label('Group name'),
+          picture: Yup.string().required().min(2).max(191).label('Group picture')
       })
 
       const [isSubmit, setSubmit] = useState(false)
@@ -58,9 +58,6 @@ export default function modalAddUserGroup(props) {
                   status: resp.data.status
                 }
             ]
-
-            console.log('isi arra')
-            console.log(arr)
 
             props.setGroupList({
             data: {

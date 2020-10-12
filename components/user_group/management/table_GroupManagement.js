@@ -43,6 +43,9 @@ function selectIcon(id) {
 export default function TabelDetailGroup(props) {  
   var groupRow = []
 
+
+
+
   if (props.groupList.data) {
     groupRow = props.groupList.data?.data.map(
       (item, index) => {
@@ -50,6 +53,7 @@ export default function TabelDetailGroup(props) {
                   key={index} 
                   data={item}  
                   setGroupList={props.setGroupList}
+                  setGroupData={props.setGroupData}
                 />
       }
     )
@@ -85,56 +89,6 @@ export default function TabelDetailGroup(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      <i className="fa fa-shield-alt"></i>
-                    </td>
-                    <Link href="/admin/user_group/detail">
-                      <td>
-                        <a>Sales</a>
-                      </td>
-                    </Link>
-                    <td>12</td>
-                    <td>
-                      <span className="right badge badge-success">Active</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-danger width-80px btn-sm"
-                      >
-                        Deactive
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>
-                      <i className="fa fa-wrench"></i>
-                    </td>
-                    <Link href="/admin/user_group/detail">
-                      <td>
-                        <a>Executive</a>
-                      </td>
-                    </Link>
-                    <td>12</td>
-                    <td>
-                      <span className="right badge badge-danger">Inactive</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-80px btn-sm"
-                      >
-                        Publish
-                      </button>
-                    </td>
-                  </tr>
                   {groupRow}
                 </tbody>
               </table>

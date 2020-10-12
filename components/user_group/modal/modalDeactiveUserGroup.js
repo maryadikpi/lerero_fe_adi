@@ -1,23 +1,57 @@
 import React, {useState} from 'react'
 import * as Yup from 'yup'
-import {Form, Field, Formik, ErrorMessage} from 'formik'
 import {Spinner, Toast} from "react-bootstrap"
 
 import kpiHelper, {kpiFetch} from 'kpi_helper'
-import {CREATE_NEW_USER} from 'config/const_api_url'
+import {CHANGE_GROUP_STATUS} from 'config/const_api_url'
 
 export default function modalDeactiveUserGroup(props) {
     
+    const [errorMsg, setErrorMsg] = useState('')
+    const [showSpinner, setSpinner] = useState(false)
+    const [isSubmit, setSubmit] = useState(false)
+    const [showToast, setToast] = useState(false)
+
+    const handleDeactive = async () => {
+        setSubmit(true)
+        setSpinner(true)
+
+        // Update groupList
+        let newStatus = props.groupData.group.status == 1 ? 0 : 1
+        let temp = props.groupList.data.data.map((item) => {
+            return item.id === props.groupData.group.id ? {...item, status: newStatus} : item
+        })
+
+        const resp = await kpiFetch('PUT', CHANGE_GROUP_STATUS+props.groupData.group.id, {status:newStatus })
+        if (resp.status) {
+            setSubmit(false)
+            setSpinner(false)
+            props.setGroupList({
+                data: {
+                    data: temp
+                }
+            })
+            $('#deactiveUserGroup').modal('hide')
+            $('#actionMessage').modal('show')
+        } else {
+            setSubmit(false)
+            setSpinner(false)
+            setToast(true)
+            setErrorMsg(resp.message)
+        }
+        
+    }
 
     return (
         <>
             <div
                 className="modal fade"
-                id="actionBtn"
+                id="deactiveUserGroup"
                 tabIndex="-1"
                 role="dialog"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
+                data-backdrop="static"
             >
                 <div className="modal-dialog text-dark" role="document">
                     <div className="modal-content">
@@ -28,6 +62,7 @@ export default function modalDeactiveUserGroup(props) {
                                 className="close"
                                 data-dismiss="modal"
                                 aria-label="Close"
+                                disabled={isSubmit}
                             >
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -38,12 +73,19 @@ export default function modalDeactiveUserGroup(props) {
                                     <p>
                                     <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
                                     </p>
-                                    <p>Are you sure want to Deactive User Group : </p>
-                                    <p>Sales</p>
-                                    <p>#1</p>
+                                    <p>Are you sure want to {props.groupData.group.action} User Group : </p>
+                                    <p>{props.groupData.group.name}</p>
+                                    <p>#{props.groupData.group.id}</p>
+                                    { showSpinner ?
+                                        <Spinner 
+                                            animation="border" 
+                                            variant="primary"
+                                            className="mb-4"
+                                        />
+                                        : ''
+                                    }
                                 </div>
                             </div>
-                            <br />
 
                             <div className="row mb-5">
                                 <div className="col-6">
@@ -51,6 +93,7 @@ export default function modalDeactiveUserGroup(props) {
                                         type="button"
                                         className="btn btn-sm btn-danger width-90 float-right"
                                         data-dismiss="modal"
+                                        disabled={isSubmit}
                                     >
                                         Cancel
                                     </button>
@@ -58,10 +101,9 @@ export default function modalDeactiveUserGroup(props) {
                                 <div className="col-6">
                                     <button
                                         type="button"
-                                        data-dismiss="modal"
-                                        data-toggle="modal"
-                                        data-target="#actionMessage"
+                                        onClick={handleDeactive}
                                         className="btn width-90 btn-sm btn-primary"
+                                        disabled={isSubmit}
                                     >
                                     Ok
                                     </button>
@@ -99,9 +141,9 @@ export default function modalDeactiveUserGroup(props) {
                                     <p>
                                     <i className="fa fa-check-circle text-success icon-width-50"></i>
                                     </p>
-                                    <p>Success Deative User Group</p>
-                                    <p>Sales</p>
-                                    <p>#1</p>
+                                    <p>Success {props.groupData.group.action} User Group</p>
+                                    <p>{props.groupData.group.name}</p>
+                                    <p>#{props.groupData.group.id}</p>
                                 </div>
                             </div>
                             <br />
@@ -121,6 +163,24 @@ export default function modalDeactiveUserGroup(props) {
                     </div>
                 </div>
             </div>
+
+            <Toast 
+                style={{
+                    position: 'absolute',
+                    top: 17,
+                    right: 17,
+                    zIndex: 9999
+                }}
+                onClose={() => setToast(false)}
+                show={showToast}
+                delay={3000}
+                autohide
+                >
+                <Toast.Header>
+                    <strong className="mr-auto" style={{color: 'red'}}>Create Group Error</strong>
+                </Toast.Header>
+                <Toast.Body> <span style={{color: 'black'}}>{errorMsg}</span></Toast.Body>
+          </Toast>
         </>
     )
 }
