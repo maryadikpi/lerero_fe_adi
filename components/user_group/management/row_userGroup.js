@@ -1,7 +1,5 @@
 import {useState, useEffect} from 'react'
 export default function rowUserGroup (props) {
-    console.log('props user group')
-    console.log(props)
     const data = props.data
     
     function displayStatusText(status) {
@@ -100,15 +98,14 @@ export default function rowUserGroup (props) {
         <tr>
             <td>{data.id}</td>
             <td>
-            {data.picture? (<img
-                    src="/dist/img/default-150x150.png"
-                    alt="Avatar"
-                    className="img-circle img-size-32 mr-2"
-                />) : 'Empty'
-            }
-                
+                {data.picture? (<img
+                        src="/dist/img/default-150x150.png"
+                        alt="Avatar"
+                        className="img-circle img-size-32 mr-2"
+                    />) : 'Empty'
+                }
             </td>
-            <td>{data.name}</td>
+            <td onClick={() => {props.setShow(true)}}>{data.name}</td>
             <td>{data.total_user}</td>
             <td><span className={classStatus(data.status)}>{displayStatusText(data.status)}</span></td>
             <td>
