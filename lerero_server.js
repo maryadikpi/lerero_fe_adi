@@ -23,5 +23,6 @@ app.prepare().then(() => {
     // }
 
     handle(req, res, parsedUrl)
-  }).listen({port: 8080, host:'188.40.93.203', exclusive: true})
+  //}).listen({port: 8080, host:'188.40.93.203', exclusive: true})
+}).listen({port: 8080, exclusive: true})
 })
