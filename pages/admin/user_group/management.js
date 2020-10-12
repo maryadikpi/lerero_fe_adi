@@ -5,12 +5,23 @@ import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
 
 import TableGroupManagement from "components/user_group/management/table_GroupManagement";
+import DeactiveUserGroup from "components/user_group/modal/modalDeactiveUserGroup"
 import {kpiFetch} from 'kpi_helper'
 import {GET_ALL_USER_GROUP, GET_ALL_ROLES} from 'config/const_api_url'
 
 
 function UserGroupManagement(props) { 
   const [groupList, setGroupList] = useState([])
+
+  const [groupData, setGroupData] = useState({
+    group: {
+      id: '',
+      name: '',
+      icon: ''
+    },
+    newRoleId: '',
+    newRoleText: ''
+  })
 
   async function initialFetch() {
     const groupList = await kpiFetch('GET', GET_ALL_USER_GROUP)
@@ -59,12 +70,18 @@ return (
               <TableGroupManagement 
                 groupList={groupList}
                 setGroupList={setGroupList}
+                setGroupData={setGroupData}
               />
             </div>
           </div>
         </div>
       </div>
     </section>
+    <DeactiveUserGroup 
+      groupList={groupList}
+      setGroupList={setGroupList}
+      groupData={groupData}
+    />
   </>
 )
 }
