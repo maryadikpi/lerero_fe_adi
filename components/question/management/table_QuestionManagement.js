@@ -22,12 +22,9 @@ const TableQuestionManagement = () => (
               <thead>
                 <tr>
                   <th width="2%">Id</th>
-                  <th>Question Name</th>
-                  <th>Points</th>
-                  <th>Learning Path</th>
-                  <th>Milestone</th>
-                  <th>Created On</th>
-                  <th>Created By</th>
+                  <th>Question Titale</th>
+                  <th>Category</th>
+                  <th>Question Type</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -36,12 +33,9 @@ const TableQuestionManagement = () => (
                 <tr>
                   <td>1</td>
                   <td>Question 1</td>
-                  <td>10</td>
-                  <td>101 Introduction</td>
-                  <td>Milestone 1</td>
-                  <td>23/11/20</td>
-                  <td>Thomas Wayne</td>
-                  <td>Published</td>
+                  <td>Category 1</td>
+                  <td>Single Choice</td>
+                  <td>Active</td>
                   <td>
                     <center>
                       <button
@@ -81,13 +75,10 @@ const TableQuestionManagement = () => (
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>Question 1</td>
-                  <td>10</td>
-                  <td>101 Introduction</td>
-                  <td>Milestone 1</td>
-                  <td>23/11/20</td>
-                  <td>Thomas Wayne</td>
-                  <td>Published</td>
+                  <td>Question 2</td>
+                  <td>Category 1</td>
+                  <td>Single Choice</td>
+                  <td>Active</td>
                   <td>
                     <center>
                       <button
@@ -127,13 +118,10 @@ const TableQuestionManagement = () => (
                 </tr>
                 <tr>
                   <td>3</td>
-                  <td>Question 1</td>
-                  <td>10</td>
-                  <td>101 Introduction</td>
-                  <td>Milestone 1</td>
-                  <td>23/11/20</td>
-                  <td>Thomas Wayne</td>
-                  <td>Published</td>
+                  <td>Question 3</td>
+                  <td>Category 1</td>
+                  <td>Single Choice</td>
+                  <td>Active</td>
                   <td>
                     <center>
                       <button
@@ -173,13 +161,10 @@ const TableQuestionManagement = () => (
                 </tr>
                 <tr>
                   <td>4</td>
-                  <td>Question 1</td>
-                  <td>10</td>
-                  <td>101 Introduction</td>
-                  <td>Milestone 1</td>
-                  <td>23/11/20</td>
-                  <td>Thomas Wayne</td>
-                  <td>Published</td>
+                  <td>Question 4</td>
+                  <td>Category 1</td>
+                  <td>Single Choice</td>
+                  <td>Active</td>
                   <td>
                     <center>
                       <button
@@ -219,13 +204,10 @@ const TableQuestionManagement = () => (
                 </tr>
                 <tr>
                   <td>5</td>
-                  <td>Question 1</td>
-                  <td>10</td>
-                  <td>101 Introduction</td>
-                  <td>Milestone 1</td>
-                  <td>23/11/20</td>
-                  <td>Thomas Wayne</td>
-                  <td>Published</td>
+                  <td>Question 5</td>
+                  <td>Category 1</td>
+                  <td>Single Choice</td>
+                  <td>Active</td>
                   <td>
                     <center>
                       <button
