@@ -1,6 +1,11 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Popover, OverlayTrigger, Button, Modal } from "react-bootstrap";
+
+import {kpiFetch} from 'kpi_helper'
+import {GET_ALL_USER_GROUP, GET_ALL_ROLES} from 'config/const_api_url'
+import AddUserGroup from '../modal/modalAddUserGroup'
+import RowUserGroup from './row_userGroup'
 
 var icon = ["fa-book", "fa-users"];
 
@@ -35,8 +40,21 @@ function selectIcon(id) {
   );
 }
 
-function TabelDetailGroup() {
-  const [addGroup, addGroupShow] = useState(false);
+export default function TabelDetailGroup(props) {  
+  var groupRow = []
+
+  if (props.groupList.data) {
+    groupRow = props.groupList.data?.data.map(
+      (item, index) => {
+        return <RowUserGroup 
+                  key={index} 
+                  data={item}  
+                  setGroupList={props.setGroupList}
+                />
+      }
+    )
+  }
+
   return (
     <>
       <div className="row mb-10">
@@ -46,7 +64,8 @@ function TabelDetailGroup() {
               <h3 className="card-title">Latest User Activity</h3>
               <div className="card-tools">
                 <Button
-                  onClick={() => addGroupShow(true)}
+                  data-toggle="modal"
+                  data-target="#addUserGroup"
                   className="btn btn-primary btn-sm"
                 >
                   <i className="fas fa-users"></i> Add Group
@@ -92,81 +111,6 @@ function TabelDetailGroup() {
                     </td>
                   </tr>
                   <tr>
-                    <td>2</td>
-                    <td>
-                      <i className="fa fa-home"></i>
-                    </td>
-                    <Link href="/admin/user_group/detail">
-                      <td>
-                        <a>Finance</a>
-                      </td>
-                    </Link>
-                    <td>15</td>
-                    <td>
-                      <span className="right badge badge-success">Active</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-danger width-80px btn-sm"
-                      >
-                        Deactive
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>
-                      <i className="fa fa-briefcase"></i>
-                    </td>
-                    <Link href="/admin/user_group/detail">
-                      <td>
-                        <a>Warehouse</a>
-                      </td>
-                    </Link>
-                    <td>20</td>
-                    <td>
-                      <span className="right badge badge-success">Active</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-danger width-80px btn-sm"
-                      >
-                        Deactive
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>
-                      <i className="fa fa-dollar-sign"></i>
-                    </td>
-                    <Link href="/admin/user_group/detail">
-                      <td>
-                        <a>Engineer</a>
-                      </td>
-                    </Link>
-                    <td>26</td>
-                    <td>
-                      <span className="right badge badge-danger">Inactive</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-80px btn-sm"
-                      >
-                        Publish
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
                     <td>5</td>
                     <td>
                       <i className="fa fa-wrench"></i>
@@ -191,13 +135,19 @@ function TabelDetailGroup() {
                       </button>
                     </td>
                   </tr>
+                  {groupRow}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+      <AddUserGroup 
+        groupList={props.groupList}
+        setGroupList={props.setGroupList}
+      />
   </>
-);
+)
+}
 
-export default TabelDetailGroup;
+

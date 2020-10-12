@@ -93,12 +93,12 @@ export default function modalAddUser(props) {
     return (
       <>
         <div
-        className="modal fade"
-        id="addUserModal"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
+          className="modal fade"
+          id="addUserModal"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
         >
         <Formik 
           validationSchema={validationSchema}
@@ -120,12 +120,12 @@ export default function modalAddUser(props) {
                             <div className="modal-header text-center">
                                 <h5 className="modal-title width-100">Create User</h5>
                                 <button
-                                type="button"
-                                className="close"
-                                data-dismiss="modal"
-                                aria-label="Close"
+                                  type="button"
+                                  className="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close"
                                 >
-                                <span aria-hidden="true">&times;</span>
+                                  <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div className="modal-body p-3">
@@ -153,11 +153,11 @@ export default function modalAddUser(props) {
                                       Last Name
                                     </label>
                                     <Field
-                                    name="last_name"
-                                    type="text"
-                                    className="form-control border-top-0 border-right-0 border-left-0"
-                                    placeholder="Type user's last name"
-                                    style={errorStyle(touched.last_name, errors.last_name)}
+                                      name="last_name"
+                                      type="text"
+                                      className="form-control border-top-0 border-right-0 border-left-0"
+                                      placeholder="Type user's last name"
+                                      style={errorStyle(touched.last_name, errors.last_name)}
                                     />
                                     <span style={textRed(touched.last_name, errors.last_name)}>
                                       <ErrorMessage name='last_name' />
@@ -171,11 +171,11 @@ export default function modalAddUser(props) {
                                       User Name
                                     </label>
                                     <Field
-                                    name="username"
-                                    type="text"
-                                    className="form-control border-top-0 border-right-0 border-left-0"
-                                    placeholder="Type user's username"
-                                    style={errorStyle(touched.username, errors.username)}
+                                      name="username"
+                                      type="text"
+                                      className="form-control border-top-0 border-right-0 border-left-0"
+                                      placeholder="Type user's username"
+                                      style={errorStyle(touched.username, errors.username)}
                                     />
                                     <span style={textRed(touched.username, errors.username)}>
                                       <ErrorMessage name='username' />
@@ -189,11 +189,11 @@ export default function modalAddUser(props) {
                                       Email
                                     </label>
                                     <Field
-                                    name="email"
-                                    type="text"
-                                    className="form-control border-top-0 border-right-0 border-left-0"
-                                    placeholder="Type user's email"
-                                    style={errorStyle(touched.email, errors.email)}
+                                      name="email"
+                                      type="text"
+                                      className="form-control border-top-0 border-right-0 border-left-0"
+                                      placeholder="Type user's email"
+                                      style={errorStyle(touched.email, errors.email)}
                                     />
                                     <span style={textRed(touched.email, errors.email)}>
                                       <ErrorMessage name='email' />
@@ -219,21 +219,21 @@ export default function modalAddUser(props) {
                             <div className="row mb-5">
                               <div className="col-6">
                                   <button
-                                  type="button"
-                                  className="btn btn-sm btn-danger width-90 float-right"
-                                  data-dismiss="modal"
-                                  disabled={isSubmit}
+                                    type="button"
+                                    className="btn btn-sm btn-danger width-90 float-right"
+                                    data-dismiss="modal"
+                                    disabled={isSubmit}
                                   >
-                                  Cancel
+                                    Cancel
                                   </button>
                               </div>
                               <div className="col-6">
                                   <button
-                                  type="submit"
-                                  className="btn width-90 btn-sm btn-primary"
-                                  disabled={isSubmit}
+                                    type="submit"
+                                    className="btn width-90 btn-sm btn-primary"
+                                    disabled={isSubmit}
                                   >
-                                  Create User
+                                    Create User
                                   </button>
                               </div>
                             </div>
