@@ -91,7 +91,6 @@ function UserManagement(props) {
 };
 
 // We will gonna use this function when SSR is on in CPANEL
-
 UserManagement.getInitialProps = async (ctx) => {
   const userList = await kpiFetch('GET', GET_ALL_USERS)
   const roleList = await kpiFetch('GET', GET_ALL_ROLES)
