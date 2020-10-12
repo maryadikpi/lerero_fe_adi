@@ -43,9 +43,6 @@ function selectIcon(id) {
 export default function TabelDetailGroup(props) {  
   var groupRow = []
 
-
-
-
   if (props.groupList.data) {
     groupRow = props.groupList.data?.data.map(
       (item, index) => {
@@ -54,16 +51,11 @@ export default function TabelDetailGroup(props) {
                   data={item}  
                   setGroupList={props.setGroupList}
                   setGroupData={props.setGroupData}
+                  setShow={props.setShow}
                 />
       }
     )
   }
-
-  const closeAddGroup = () => addGroupShow(false);
-  const openAddGroup = () => addGroupShow(true);
-
-  const [addUser, addUserGroup] = useState(false);
-
 
   return (
     <>

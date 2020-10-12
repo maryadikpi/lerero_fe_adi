@@ -6,13 +6,14 @@ import Sidebar from "components/admin/sidebar";
 
 import TableGroupManagement from "components/user_group/management/table_GroupManagement";
 import DeactiveUserGroup from "components/user_group/modal/modalDeactiveUserGroup"
+import AddUserToGroup from "components/user_group/modal/modalAddUserToGroup"
 import {kpiFetch} from 'kpi_helper'
 import {GET_ALL_USER_GROUP, GET_ALL_ROLES} from 'config/const_api_url'
 
 
 function UserGroupManagement(props) { 
   const [groupList, setGroupList] = useState([])
-
+  const [showAddUserToGroup, setAddUserToGroup] = useState(false);
   const [groupData, setGroupData] = useState({
     group: {
       id: '',
@@ -71,6 +72,8 @@ return (
                 groupList={groupList}
                 setGroupList={setGroupList}
                 setGroupData={setGroupData}
+                show={showAddUserToGroup}
+                setShow={setAddUserToGroup}
               />
             </div>
           </div>
@@ -81,6 +84,11 @@ return (
       groupList={groupList}
       setGroupList={setGroupList}
       groupData={groupData}
+    />
+    <AddUserToGroup
+      groupData={groupData}
+      show={showAddUserToGroup}
+      setShow={setAddUserToGroup}
     />
   </>
 )

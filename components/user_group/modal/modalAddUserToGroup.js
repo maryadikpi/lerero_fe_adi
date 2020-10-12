@@ -1,12 +1,17 @@
+import React, { useState, useEffect } from "react";
+import { Button, Modal } from "react-bootstrap";
 export default function addUserToGroup(props) {
-    const closeAddUserGroup = () => addUserGroup(false);
-    const openAdduserGroup = () => addUserGroup(true);
+    function confirmAddUser() {
+        props.setShow(false)
+        $('#confimSave').modal('show')
+    }
+
     return (
         <>
-            <Modal size="lg" show={addUser} onHide={closeAddUserGroup}>
+            <Modal size="lg" show={props.show} onHide={() => props.setShow(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                    Create User Group
+                        Add User To Group
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -128,7 +133,7 @@ export default function addUserToGroup(props) {
                     <div className="row mb-5">
                         <div className="col-6">
                         <Button
-                            onClick={closeAddUserGroup}
+                            onClick={() => props.setShow(false)}
                             className="btn btn-sm btn-danger width-90 float-right"
                         >
                             Cancel
@@ -136,18 +141,127 @@ export default function addUserToGroup(props) {
                         </div>
                         <div className="col-6">
                         <Button
-                            onClick={closeAddUserGroup}
+                            onClick={confirmAddUser}
                             className="btn width-90 btn-sm btn-primary"
-                            data-target="#confimSave"
-                            data-toggle="modal"
                         >
-                            Ok
+                            Okie
                         </Button>
                         </div>
                     </div>
                     </div>
                 </Modal.Body>
             </Modal>
+
+            <div
+                className="modal fade"
+                id="confimSave"
+                tabIndex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div className="modal-dialog text-dark" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header text-center">
+                            <h5 className="modal-title width-100">Warning!</h5>
+                            <button
+                                type="button"
+                                className="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body p-3">
+                            <div className="row align-center p-3">
+                                <div className="col-12 text-center">
+                                    <p>
+                                        <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
+                                    </p>
+                                    <p>Are you sure want to Add: </p>
+                                    <p>3 Users</p>
+                                    <p>To New Group?</p>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div className="row mb-5">
+                                <div className="col-6">
+                                    <button
+                                        type="button"
+                                        className="btn btn-sm btn-danger width-90 float-right"
+                                        data-dismiss="modal"
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                                <div className="col-6">
+                                    <button
+                                        type="button"
+                                        data-dismiss="modal"
+                                        data-toggle="modal"
+                                        data-target="#confirmSuccess"
+                                        className="btn width-90 btn-sm btn-primary"
+                                    >
+                                        Ok
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                className="modal fade"
+                id="confirmSuccess"
+                tabIndex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div className="modal-dialog text-dark" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header text-center">
+                            <h5 className="modal-title width-100">Success!</h5>
+                            <button
+                                type="button"
+                                className="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body p-3">
+                            <div className="row align-center p-3">
+                                <div className="col-12 text-center">
+                                    <p>
+                                        <i className="fa fa-check-circle text-success icon-width-50"></i>
+                                    </p>
+                                    <p>Success Add</p>
+                                    <p>3 Users</p>
+                                    <p>To New Group</p>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div className="row mb-5">
+                                <div className="col-12 text-center">
+                                    <button
+                                        type="button"
+                                        data-dismiss="modal"
+                                        className="btn width-30 btn-sm btn-primary"
+                                    >
+                                        Ok
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
