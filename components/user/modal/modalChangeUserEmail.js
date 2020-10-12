@@ -34,7 +34,7 @@ export default function modalChangeUserEmail(props) {
     const validationSchema = Yup
     .object()
     .shape({
-        email: Yup.string().required().email().min(6).max(100),
+        email: Yup.string().required().email().min(6).max(191).label('Email'),
     })
 
     const handleChangeEmail = (values, {resetForm}) => {

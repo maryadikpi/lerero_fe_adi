@@ -45,10 +45,10 @@ export default function modalAddUser(props) {
     const validationSchema = Yup
     .object()
     .shape({
-        first_name: Yup.string().required().min(2).max(100),
-        last_name: Yup.string().required().min(2).max(100),
-        username: Yup.string().required().min(2).max(100),
-        email: Yup.string().required().email().min(6).max(100),
+        first_name: Yup.string().required().min(2).max(45).label('First name'),
+        last_name: Yup.string().required().min(2).max(45).label('Last name'),
+        username: Yup.string().required().min(2).max(45).label('Username'),
+        email: Yup.string().required().email().min(6).max(191).label('Email'),
     })
 
     const handleSubmit = async (values, {resetForm}) => {
