@@ -1,10 +1,34 @@
+import React, { useState, useEffect } from "react";
+
 import Header from "components/admin/header";
 import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
 
 import TableGroupManagement from "components/user_group/management/table_GroupManagement";
+import {kpiFetch} from 'kpi_helper'
+import {GET_ALL_USER_GROUP, GET_ALL_ROLES} from 'config/const_api_url'
 
-const UserGroupManagement = () => (
+
+function UserGroupManagement(props) { 
+  const [groupList, setGroupList] = useState([])
+
+  async function initialFetch() {
+    const groupList = await kpiFetch('GET', GET_ALL_USER_GROUP)
+    if (groupList.status) {
+      setGroupList(groupList)
+    }
+  }
+
+  useEffect(
+    () => {
+      if (!props.groupList?.status) {
+        initialFetch()
+      } else {
+        setGroupList(props.groupList)
+      }
+    }, []
+  )
+return (
   <>
     <Header />
     <Navbar />
@@ -20,10 +44,10 @@ const UserGroupManagement = () => (
                 </div>
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
-                    <li className="breadcrumb-item">
-                      <a href="#">User Group</a>
-                    </li>
-                    <li className="breadcrumb-item active">Management</li>
+                      <li className="breadcrumb-item">
+                        <a href="#">User Group</a>
+                      </li>
+                      <li className="breadcrumb-item active">Management</li>
                   </ol>
                 </div>
               </div>
@@ -32,13 +56,23 @@ const UserGroupManagement = () => (
 
           <div className="content">
             <div className="container-fluid">
-              <TableGroupManagement />
+              <TableGroupManagement 
+                groupList={groupList}
+                setGroupList={setGroupList}
+              />
             </div>
           </div>
         </div>
       </div>
     </section>
   </>
-);
+)
+}
+
+UserGroupManagement.getInitialProps = async (ctx) => {
+  const groupList = await kpiFetch('GET', GET_ALL_USER_GROUP)
+  return {groupList}
+}
+
 
 export default UserGroupManagement;

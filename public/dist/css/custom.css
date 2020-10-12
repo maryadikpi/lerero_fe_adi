@@ -67,3 +67,68 @@
 .left-10 {
   left: 12%;
 }
+
+.none {
+  display: none;
+}
+
+tr.hide-table-padding td {
+  padding: 0;
+}
+
+.expand-button {
+	position: relative;
+}
+
+.accordion-toggle .expand-button:after
+{
+  position: absolute;
+  left:.75rem;
+  top: 50%;
+  transform: translate(0, -50%);
+  content: '-';
+}
+.accordion-toggle.collapsed .expand-button:after
+{
+  content: '+';
+}
+
+.font-size-11 {
+  font-size:11px;
+}
+
+.font-size-12 {
+  font-size:12px;
+}
+
+
+.font-size-13 {
+  font-size:13px;
+}
+
+
+.font-size-14 {
+  font-size:14px;
+}
+
+
+.font-size-15 {
+  font-size:15px;
+}
+
+
+.modal-width-800 {
+  max-width: 800px;
+}
+
+.display-none {
+  display:none;
+}
+
+.float-right {
+  float:right;
+}
+
+.float-left {
+  float:left;
+}

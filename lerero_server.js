@@ -23,8 +23,6 @@ app.prepare().then(() => {
     // }
 
     handle(req, res, parsedUrl)
-  }).listen(8080, (err) => {
-    if (err) throw err
-    console.log('> Ready on http://localhost:8080')
-  })
+  //}).listen({port: 8080, host:'188.40.93.203', exclusive: true})
+}).listen({port: 8080, exclusive: true})
 })

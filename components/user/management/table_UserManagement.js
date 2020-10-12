@@ -1,6 +1,42 @@
 import Link from "next/link";
-const TabelUserManagement = () => (
-  <>
+import {useState, useEffect} from 'react'
+
+import UserRow from './row_UserManagement'
+import ModalAdduser from '../modal/modalAddUser'
+import DeleteUserButton from '../modal/modalDeleteUser'
+import ChangeUserRole from '../modal/modalChangeUserRole'
+import ChangeUserEmail from '../modal/modalChangeUserEmail'
+
+function TabelUserManagement(props){
+  const [deleteData, setDeleteData] = useState({})
+  const [userRoleData, setUserRoleData] = useState({
+    user: {
+      id: '',
+      first_name: '',
+      last_name: ''
+    },
+    newRoleId: '',
+    newRoleText: ''
+  })
+
+  var userRow = []
+  if (props.userList.data) {
+    userRow = props.userList.data.data.map(
+      (dData, index) => {
+        return <UserRow 
+                  key={index} 
+                  data={dData} 
+                  setDeleteData={setDeleteData} 
+                  roleList={props.roleList} 
+                  setUserRoleData={setUserRoleData}
+                />
+      }
+    )
+  }
+  
+
+  return (
+    <>
     <div className="row mb-10">
       <div className="col-12">
         <div className="card text-dark card-primary card-outline">
@@ -11,7 +47,7 @@ const TabelUserManagement = () => (
                 type="button"
                 className="btn btn-primary btn-sm m-2"
                 data-toggle="modal"
-                data-target="#addGroup"
+                data-target="#importCSV"
               >
                 <i className="fas fa-file-alt"></i> Import CSV
               </button>
@@ -20,7 +56,7 @@ const TabelUserManagement = () => (
                 type="button"
                 className="btn btn-primary btn-sm m-2"
                 data-toggle="modal"
-                data-target="#addGroup"
+                data-target="#addUserModal"
               >
                 <i className="fas fa-user"></i> Add User
               </button>
@@ -41,298 +77,33 @@ const TabelUserManagement = () => (
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src="/public/dist/img/default-150x150.png"
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#blockUser"
-                        className="btn btn-success width-110px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteUser"
-                        className="btn btn-danger width-110px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#changeEmail"
-                        className="btn btn-primary width-110px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <select
-                        type="button"
-                        className="btn btn-warning width-110px btn-sm m-1"
-                      >
-                        <option selected="" disabled="" className="white">
-                          Change Role
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Standard User
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Client Admin
-                        </option>
-                      </select>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src="/public/dist/img/default-150x150.png"
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#blockUser"
-                        className="btn btn-success width-110px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteUser"
-                        className="btn btn-danger width-110px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#changeEmail"
-                        className="btn btn-primary width-110px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <select
-                        type="button"
-                        className="btn btn-warning width-110px btn-sm m-1"
-                      >
-                        <option selected="" disabled="" className="white">
-                          Change Role
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Standard User
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Client Admin
-                        </option>
-                      </select>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src="/public/dist/img/default-150x150.png"
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#blockUser"
-                        className="btn btn-success width-110px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteUser"
-                        className="btn btn-danger width-110px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#changeEmail"
-                        className="btn btn-primary width-110px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <select
-                        type="button"
-                        className="btn btn-warning width-110px btn-sm m-1"
-                      >
-                        <option selected="" disabled="" className="white">
-                          Change Role
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Standard User
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Client Admin
-                        </option>
-                      </select>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src="/public/dist/img/default-150x150.png"
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#blockUser"
-                        className="btn btn-success width-110px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteUser"
-                        className="btn btn-danger width-110px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#changeEmail"
-                        className="btn btn-primary width-110px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <select
-                        type="button"
-                        className="btn btn-warning width-110px btn-sm m-1"
-                      >
-                        <option selected="" disabled="" className="white">
-                          Change Role
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Standard User
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Client Admin
-                        </option>
-                      </select>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>251</td>
-                  <td>
-                    <img
-                      src="/public/dist/img/default-150x150.png"
-                      alt="Product 1"
-                      className="img-circle img-size-32 mr-2"
-                    />
-                  </td>
-                  <td>Makaryo Sregep</td>
-                  <td>makaryo132</td>
-                  <td>Sales</td>
-                  <td>Role</td>
-                  <td>Active</td>
-                  <td>
-                    <center>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#blockUser"
-                        className="btn btn-success width-110px btn-sm m-1"
-                      >
-                        Block
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#deleteUser"
-                        className="btn btn-danger width-110px btn-sm m-1"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#changeEmail"
-                        className="btn btn-primary width-110px btn-sm m-1"
-                      >
-                        Change Email
-                      </button>
-                      <select
-                        type="button"
-                        className="btn btn-warning width-110px btn-sm m-1"
-                      >
-                        <option selected="" disabled="" className="white">
-                          Change Role
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Standard User
-                        </option>
-                        <option data-toggle="modal" data-target="#changeRole">
-                          Client Admin
-                        </option>
-                      </select>
-                    </center>
-                  </td>
-                </tr>
+                { userRow }
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
+    <ModalAdduser 
+      userList={props.userList}
+      setUserList={props.setUserList}
+      roleList={props.roleList}
+    />
+    <DeleteUserButton 
+      id={deleteData.id} 
+      username={deleteData.username}
+      userList={props.userList}
+      setUserList={props.setUserList}
+    />
+    <ChangeUserRole
+      userData={userRoleData}
+      userList={props.userList}
+      setUserList={props.setUserList}
+    />
+    <ChangeUserEmail
+      userData={userRoleData}
+    />
   </>
-);
-
+  )
+};
 export default TabelUserManagement;

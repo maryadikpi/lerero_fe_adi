@@ -29,21 +29,21 @@ function Login() {
 
   // Test adding new var to kpiStore
   // @adi will delete this later
-  kpiHelper.addNewStore({
-    login:{
-      name: 'Caitlyn',
-      status: 'logged-in',
-      data: {
-        hobby: 'hrt',
-        level: 37,
-        gameData: {
-          wings: true,
-          wood: 456,
-          stone: 890
-        }
-      }
-    }
-  });
+  // kpiHelper.addNewStore({
+  //   login:{
+  //     name: 'Caitlyn',
+  //     status: 'logged-in',
+  //     data: {
+  //       hobby: 'hrt',
+  //       level: 37,
+  //       gameData: {
+  //         wings: true,
+  //         wood: 456,
+  //         stone: 890
+  //       }
+  //     }
+  //   }
+  // });
 
 
   const handleLogin = (formData) => {

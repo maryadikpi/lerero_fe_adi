@@ -1,18 +1,21 @@
 import { useRouter } from 'next/router'
 import Link from "next/link"
 import {useForm} from "react-hook-form"
-import {Alert, Toast} from "react-bootstrap"
+import {useState} from "react"
+import {Alert, Toast, Spinner, Row} from "react-bootstrap"
 
 //import 'styles/login.css'
 import Header from "components/admin/header"
-import kpiHelper from "kpi_helper"
+import kpiHelper, {kpiFetch} from "kpi_helper"
+import {LOGIN} from 'config/const_api_url'
 import {ADMIN_DAHSBOARD, FORGET_PASSWORD} from "config/const_url"
 
 
 
 function Login() {
   const router = useRouter()
-  var showToast = false;
+  const [loading, setLoading] = useState(false)
+  const [toast, setToast] = useState(false)
 
   // useForm()
   // 1. register -> register input
@@ -26,45 +29,28 @@ function Login() {
     width: '70%'
   }
 
-
-  // Test adding new var to kpiStore
-  // @adi will delete this later
-  kpiHelper.addNewStore({
-    login:{
-      name: 'Caitlyn',
-      status: 'logged-in',
-      data: {
-        hobby: 'hrt',
-        level: 37,
-        gameData: {
-          wings: true,
-          wood: 456,
-          stone: 890
-        }
-      }
-    }
-  });
-
-
-  const handleLogin = (formData) => {
-    //e.preventDefault()
-
-    // Do login process here with backend
-
-    // alert(JSON.stringify(formData))
-
-    if(formData.username === 'kpiadmin' && formData.password === 'kpiadmin123') {
-      // Change authStatus
-      kpiHelper.setLogin()
-  
+  /**
+   * Fired when login button is clicked
+   * @param {} formData 
+   */
+  async function handleLogin (formData) {
+    setLoading(true);
+    const data = {
+      email: formData.username,
+      password: formData.password
+    };
+    const json = await kpiFetch('POST', LOGIN, data, false);
+    if (json.status) {
+      // Change authStatus & put token to store
+      // Everything will be handled by kpiHelper.setLogin
+      kpiHelper.setLogin(json.data)
+      setLoading(!loading);
       // Redirect to dashboard
       router.push({pathname: ADMIN_DAHSBOARD})
     } else {
-      alert('wrong username or password');
-      showToast = true;
-      console.log(showToast)
+      setToast(true);
+      setLoading(false);
     }
-
   }
 
   return (
@@ -72,15 +58,18 @@ function Login() {
     <Header />
     <div className="hold-transition login-page">
       <div className="login-box">
+        <Row className="justify-content-center pb-4">
+          {loading ? (<Spinner animation="border" variant="primary"/>) : ''}
+        </Row>
         <div className="card border-none">
           <div className="card-body login-card-body">
             <div className="login-logo">
-              <a href="../../index2.html">
+              <a href="#">
                 <b>Lerero</b> Learning
               </a>
             </div>
             <p className="login-box-msg">Login Application</p>
-            <form action="../../index3.html" method="post">
+            <form>
               <div className="input-group mb-3">
                 <input
                   ref={register({required: true})}
@@ -143,14 +132,21 @@ function Login() {
           </div>
         </div>
       </div>
-      
-      <Toast onClose={() => {showToast = false}} show={showToast} delay={2000} autohide>
+      <Toast 
+        style={{
+            position: 'absolute',
+            top: 17,
+            right: 17,
+        }}
+        onClose={() => setToast(false)}
+        show={toast}
+        delay={3000}
+        autohide>
           <Toast.Header>
-            <strong className="mr-auto">Error</strong>
-            {/* <small>11 mins ago</small> */}
+            <strong className="mr-auto" style={{color: 'red'}}>Login Error</strong>
           </Toast.Header>
-          <Toast.Body>Wrong username or password</Toast.Body>
-        </Toast>
+          <Toast.Body>Invalid username or password</Toast.Body>
+      </Toast>
     </div>
   </>
   )
