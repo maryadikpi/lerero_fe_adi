@@ -1,6 +1,11 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Popover, OverlayTrigger, Button, Modal } from "react-bootstrap";
+
+import {kpiFetch} from 'kpi_helper'
+import {GET_ALL_USER_GROUP, GET_ALL_ROLES} from 'config/const_api_url'
+import AddUserGroup from '../modal/modalAddUserGroup'
+import RowUserGroup from './row_userGroup'
 
 var icon = ["fa-book", "fa-users"];
 
@@ -35,8 +40,25 @@ function selectIcon(id) {
   );
 }
 
-function TabelDetailGroup() {
-  const [addGroup, addGroupShow] = useState(false);
+export default function TabelDetailGroup(props) {  
+  var groupRow = []
+
+
+
+
+  if (props.groupList.data) {
+    groupRow = props.groupList.data?.data.map(
+      (item, index) => {
+        return <RowUserGroup 
+                  key={index} 
+                  data={item}  
+                  setGroupList={props.setGroupList}
+                  setGroupData={props.setGroupData}
+                />
+      }
+    )
+  }
+
   const closeAddGroup = () => addGroupShow(false);
   const openAddGroup = () => addGroupShow(true);
 
@@ -53,7 +75,8 @@ function TabelDetailGroup() {
               <h3 className="card-title">Latest User Activity</h3>
               <div className="card-tools">
                 <Button
-                  onClick={openAddGroup}
+                  data-toggle="modal"
+                  data-target="#addUserGroup"
                   className="btn btn-primary btn-sm"
                 >
                   <i className="fas fa-users"></i> Add Group
@@ -73,193 +96,22 @@ function TabelDetailGroup() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      <i className="fa fa-shield-alt"></i>
-                    </td>
-                    <td onClick={openAdduserGroup}>
-                      <a>Sales</a>
-                    </td>
-                    <td>12</td>
-                    <td>
-                      <span className="right badge badge-success">Active</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-danger width-80px btn-sm"
-                      >
-                        Deactivate
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>
-                      <i className="fa fa-home"></i>
-                    </td>
-                    <td onClick={openAdduserGroup}>
-                      <a>Finance</a>
-                    </td>
-                    <td>15</td>
-                    <td>
-                      <span className="right badge badge-success">Active</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-danger width-80px btn-sm"
-                      >
-                        Deactivate
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>
-                      <i className="fa fa-briefcase"></i>
-                    </td>
-                    <td onClick={openAdduserGroup}>
-                      <a>Warehouse</a>
-                    </td>
-                    <td>20</td>
-                    <td>
-                      <span className="right badge badge-success">Active</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-danger width-80px btn-sm"
-                      >
-                        Deactivate
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>
-                      <i className="fa fa-dollar-sign"></i>
-                    </td>
-                    <td onClick={openAdduserGroup}>
-                      <a>Engineer</a>
-                    </td>
-                    <td>26</td>
-                    <td>
-                      <span className="right badge badge-danger">Inactive</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-80px btn-sm"
-                      >
-                        Publish
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>
-                      <i className="fa fa-wrench"></i>
-                    </td>
-                    <td onClick={openAdduserGroup}>
-                      <a>Executive</a>
-                    </td>
-                    <td>12</td>
-                    <td>
-                      <span className="right badge badge-danger">Inactive</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#actionBtn"
-                        className="btn btn-success width-80px btn-sm"
-                      >
-                        Publish
-                      </button>
-                    </td>
-                  </tr>
+                  {groupRow}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+      <AddUserGroup 
+        groupList={props.groupList}
+        setGroupList={props.setGroupList}
+      />
+  </>
+)
+}
 
-      <Modal
-        size="md"
-        show={addGroup}
-        onHide={closeAddGroup}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            Create User Group
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="modal-body">
-            <div className="row align-center">
-              <div className="col-12">
-                <label htmlFor="groupName" className="container-fluid">
-                  User Group's Name
-                </label>
-                <input
-                  id="groupName"
-                  type="text"
-                  className="form-control border-top-0 border-right-0 border-left-0"
-                  placeholder="Type user's group name"
-                />
-                <label htmlFor="groupIcon" className="container-fluid mt-5">
-                  Select Icon
-                </label>
-                <OverlayTrigger
-                  trigger="click"
-                  placement="right"
-                  overlay={popover}
-                >
-                  <Button variant="light" className="ml-2">
-                    <div id="icon">
-                      <i className="fas fa-book"></i>
-                      <font className="ml-2">Book</font>
-                    </div>
-                  </Button>
-                </OverlayTrigger>
-              </div>
-            </div>
-            <br />
 
-            <div className="row mb-5 mt-4">
-              <div className="col-6">
-                <button
-                  type="button"
-                  className="btn btn-sm btn-danger width-90 float-right"
-                  data-dismiss="modal"
-                >
-                  Cancel
-                </button>
-              </div>
-              <div className="col-6">
-                <button
-                  type="button"
-                  className="btn width-90 btn-sm btn-primary"
-                >
-                  Create User Group
-                </button>
-              </div>
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
 
       <Modal size="lg" show={addUser} onHide={closeAddUserGroup}>
         <Modal.Header closeButton>
@@ -406,119 +258,3 @@ function TabelDetailGroup() {
           </div>
         </Modal.Body>
       </Modal>
-
-      <div
-        className="modal fade"
-        id="actionBtn"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog text-dark" role="document">
-          <div className="modal-content">
-            <div className="modal-header text-center">
-              <h5 className="modal-title width-100">Warning!</h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body p-3">
-              <div className="row align-center p-3">
-                <div className="col-12 text-center">
-                  <p>
-                    <i className="fa fa-exclamation-triangle text-warning icon-width-50"></i>
-                  </p>
-                  <p>Are you sure want to Deactivate User Group : </p>
-                  <p>Sales</p>
-                  <p>#1</p>
-                </div>
-              </div>
-              <br />
-
-              <div className="row mb-5">
-                <div className="col-6">
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-danger width-90 float-right"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                </div>
-                <div className="col-6">
-                  <button
-                    type="button"
-                    data-dismiss="modal"
-                    data-toggle="modal"
-                    data-target="#actionMessage"
-                    className="btn width-90 btn-sm btn-primary"
-                  >
-                    Ok
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="modal fade"
-        id="actionMessage"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog text-dark" role="document">
-          <div className="modal-content">
-            <div className="modal-header text-center">
-              <h5 className="modal-title width-100">Warning!</h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body p-3">
-              <div className="row align-center p-3">
-                <div className="col-12 text-center">
-                  <p>
-                    <i className="fa fa-check-circle text-success icon-width-50"></i>
-                  </p>
-                  <p>Success Deactivate User Group</p>
-                  <p>Sales</p>
-                  <p>#1</p>
-                </div>
-              </div>
-              <br />
-
-              <div className="row mb-5">
-                <div className="col-12 text-center">
-                  <button
-                    type="button"
-                    data-dismiss="modal"
-                    className="btn width-30 btn-sm btn-primary"
-                  >
-                    Ok
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-export default TabelDetailGroup;

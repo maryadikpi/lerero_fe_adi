@@ -16,20 +16,17 @@ export default function modalBlockUser(props) {
   async function blockUser() {
     setSpinner(true)
     setSubmit(true)
-    const resp = await kpiFetch('PUT', BLOCK_USER+props.id, {status: props.status? 0 : 1})
-    console.log('resp block')
-    console.log(resp)
+    const resp = await kpiFetch('PUT', BLOCK_USER+props.id, {status: props.status == 1 ? 2 : 1})
     
     if (resp.status) {
-      if (props.status) {
+      if (props.status === 1) {
         setMessage('Success Block User')
-        props.setStatus(0)
+        props.setStatus(2)
       } else {
         setMessage('Success Unblock User')
         props.setStatus(1)
       }
     } else {
-      console.log('STATUS FALSE')
       if (props.status) {
         setMessage('Failed Block User')
       } else {
@@ -48,8 +45,9 @@ export default function modalBlockUser(props) {
         data-toggle="modal"
         data-target={dataTarget}
         className="btn btn-success width-110px btn-sm m-1"
+        disabled={props.status == 0}
         >
-        {props.status? 'Block': 'Unblock'}
+        {props.status == 2 ? 'Unblock': 'Block'}
         </button>
     <div
       className="modal fade"
@@ -64,14 +62,15 @@ export default function modalBlockUser(props) {
         <div className="modal-content">
           <div className="modal-header text-center">
             <h5 className="modal-title width-100">Warning!</h5>
-            {/* <button
+            <button
               type="button"
               className="close"
               data-dismiss="modal"
               aria-label="Close"
+              disabled={isSubmit}
             >
               <span aria-hidden="true">&times;</span>
-            </button> */}
+            </button>
           </div>
           <div className="modal-body p-3">
             <div className="row align-center p-3">

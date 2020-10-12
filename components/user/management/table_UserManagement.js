@@ -4,15 +4,32 @@ import {useState, useEffect} from 'react'
 import UserRow from './row_UserManagement'
 import ModalAdduser from '../modal/modalAddUser'
 import DeleteUserButton from '../modal/modalDeleteUser'
+import ChangeUserRole from '../modal/modalChangeUserRole'
+import ChangeUserEmail from '../modal/modalChangeUserEmail'
 
 function TabelUserManagement(props){
   const [deleteData, setDeleteData] = useState({})
+  const [userRoleData, setUserRoleData] = useState({
+    user: {
+      id: '',
+      first_name: '',
+      last_name: ''
+    },
+    newRoleId: '',
+    newRoleText: ''
+  })
 
   var userRow = []
   if (props.userList.data) {
     userRow = props.userList.data.data.map(
       (dData, index) => {
-        return <UserRow key={index} data={dData} setDeleteData={setDeleteData}/>
+        return <UserRow 
+                  key={index} 
+                  data={dData} 
+                  setDeleteData={setDeleteData} 
+                  roleList={props.roleList} 
+                  setUserRoleData={setUserRoleData}
+                />
       }
     )
   }
@@ -67,12 +84,24 @@ function TabelUserManagement(props){
         </div>
       </div>
     </div>
-    <ModalAdduser />
+    <ModalAdduser 
+      userList={props.userList}
+      setUserList={props.setUserList}
+      roleList={props.roleList}
+    />
     <DeleteUserButton 
       id={deleteData.id} 
       username={deleteData.username}
       userList={props.userList}
       setUserList={props.setUserList}
+    />
+    <ChangeUserRole
+      userData={userRoleData}
+      userList={props.userList}
+      setUserList={props.setUserList}
+    />
+    <ChangeUserEmail
+      userData={userRoleData}
     />
   </>
   )
