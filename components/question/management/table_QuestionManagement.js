@@ -15,14 +15,11 @@ const TableQuestionManagement = () => (
               >
                 <i className="fas fa-shield-alt"></i> Import CSV
               </button>
-              <button
-                type="button"
-                className="btn btn-primary btn-sm"
-                data-toggle="modal"
-                data-target="#addGroup"
-              >
-                <i className="fas fa-shield-alt"></i> Add New Question
-              </button>
+              <Link as="/admin/question/add" href="/admin/question/add">
+                <button type="button" className="btn btn-primary btn-sm">
+                  <i className="fas fa-shield-alt"></i> Add New Question
+                </button>
+              </Link>
             </div>
           </div>
           <div className="card-body table-responsive p-0">
