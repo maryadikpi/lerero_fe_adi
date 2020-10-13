@@ -82,7 +82,7 @@ export default function modalAddUser(props) {
           }
         })
       } else {
-        setToast(true);
+        setToast(true)
         setSpinner(false)
         setSubmit(false)
         setErrorMsg(json.message)

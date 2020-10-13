@@ -109,3 +109,27 @@ export async function kpiFetch(fetchType, const_api_url, objData = {}, putAuthTo
     
     return await resp.json()
 }
+
+
+export async function kpiFetchFile(fetchType, const_api_url, objData = {}, putAuthToken = true) {
+  let header = {
+      //"Content-Disposition": form-data; name="file"; filename="sample-import-user.csv"
+      'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+  };
+  if (putAuthToken) {
+      let kpi = store.get('kpi');
+      if (kpi && kpi.loginInfo.accessToken) {
+          header = {
+              //'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
+              'Authorization': 'Bearer '+ kpi.loginInfo.accessToken
+          };
+      }
+  }
+  let resp = await fetch(process.env.NEXT_PUBLIC_API_URL+const_api_url,
+    {
+      method: fetchType,
+      headers: header,
+      body: objData
+    });
+  return await resp.json()
+}
