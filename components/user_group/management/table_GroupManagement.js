@@ -46,9 +46,9 @@ export default function TabelDetailGroup(props) {
   if (props.groupList.data) {
     groupRow = props.groupList.data?.data.map(
       (item, index) => {
-        return <RowUserGroup 
-                  key={index} 
-                  data={item}  
+        return <RowUserGroup
+                  key={index}
+                  data={item}
                   setGroupList={props.setGroupList}
                   setGroupData={props.setGroupData}
                   setShow={props.setShow}
