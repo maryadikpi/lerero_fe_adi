@@ -7,14 +7,11 @@ const TableTaskManagement = () => (
           <div className="card-header border-0">
             <h3 className="card-title">List of Task</h3>
             <div className="card-tools">
-              <button
-                type="button"
-                className="btn btn-primary btn-sm"
-                data-toggle="modal"
-                data-target="#addGroup"
-              >
-                <i className="fas fa-shield-alt"></i> Add New Task
-              </button>
+              <Link href="/admin/task/add/">
+                <button type="button" className="btn btn-primary btn-sm">
+                  <i className="fas fa-shield-alt"></i> Add New Task
+                </button>
+              </Link>
             </div>
           </div>
           <div className="card-body table-responsive p-0">
