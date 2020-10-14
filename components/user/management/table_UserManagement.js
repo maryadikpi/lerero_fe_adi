@@ -64,6 +64,7 @@ function TabelUserManagement(props){
       if (resp.status) {
         setToast(true)
         setHeaderTitle('Import User Success')
+        setHeaderColor({color: 'green'})
         setRespMsg(resp.message)
         setSpinner(false)
         setSubmit(false)
