@@ -18,3 +18,7 @@ export const IMPORT_USER_LIST_FILE = 'api/users/import'
 export const GET_ALL_USER_GROUP = 'api/user-groups?' // GET
 export const CREATE_USER_GROUP = 'api/user-groups?'  // POST
 export const CHANGE_GROUP_STATUS = 'api/user-groups/status/' // PUT -> api/user-groups/status/12?
+export const USER_GROUP_BASE = 'api/user-groups/'
+export const GET_USERS_IN_GROUP = '/user?' // ex: USER_GROUP_BASE+{id}+GET_USERS_IN_GROUP
+export const GET_USER_NOT_IN_GROUP = '/user/not-in-group?' // ex: USER_GROUP_BASE+{id}+GET_USER_NOT_IN_GROUP
+export const ADD_USER_TO_GROUP = '/user/add?' // ex: USER_GROUP_BASE+{id}+ADD_USER_TO_GROUP

@@ -1,10 +1,39 @@
-import React, { useState, useEffect } from "react";
-import { Button, Modal, Dropdown } from "react-bootstrap";
+import React, { useState, useEffect } from "react"
+import { Button, Modal, Dropdown, Table } from "react-bootstrap"
+
+import ModalSearchUser from "./modalSearchUser"
+import kpiHelper, {kpiFetch} from 'kpi_helper'
+import {
+    USER_GROUP_BASE, 
+    GET_USERS_IN_GROUP,
+    GET_USER_NOT_IN_GROUP,
+    ADD_USER_TO_GROUP
+} from 'config/const_api_url'
+
 export default function addUserToGroup(props) {
     const styleInfo = {
         paddingRight:'10px'
       }
+    const [initFetch, setInitFetch] = useState(false)
     const [searchText, setSearchText] = useState('')
+    const [showSearchModal, setSearchModal] = useState(false)
+    const [userGroupList, setUserGroupList] = useState([])
+    const [userNotInGroupList, setUserNotInGroupList] = useState([])
+
+    async function initialize() {
+        if (props.groupData.group.id) {
+            const resp = await kpiFetch('GET', USER_GROUP_BASE+props.groupData.group.id+GET_USERS_IN_GROUP)
+            if (resp.status) {
+                setUserGroupList(resp.data.data)
+            }
+            const respNotInGroup = await kpiFetch('GET', USER_GROUP_BASE+props.groupData.group.id+GET_USER_NOT_IN_GROUP)
+            if (respNotInGroup.status) {
+                setUserNotInGroupList(respNotInGroup.data.data)
+            }
+        }
+    }
+
+
     function confirmAddUser() {
         props.setShow(false)
         $('#confimSave').modal('show')
@@ -12,33 +41,58 @@ export default function addUserToGroup(props) {
 
     let searchUser = (event) => {
         let keyword = event.target.value
+        setSearchModal(true)
+        setSearchText(keyword)
         console.log(keyword)
     }
 
-    const searchResult = () => { 
-        
+    const searchResult = userNotInGroupList.length > 0 ? userNotInGroupList.filter((data) => {
+        if (searchText == '' || searchText == null) return ''
+        else if (data.first_name.toLocaleLowerCase().includes(searchText) || data.last_name.toLocaleLowerCase().includes(searchText)) return data
+    }).map((data, index) => {
         return (
-            <div style={{zIndex: 9999}}>
-                <ul>
-                    <li style={{position:'relative'}}>
-                        <span style={styleInfo}>Name</span>
-                        <span style={styleInfo}>Age</span>
-                        <span style={styleInfo}>Countri</span>
-                    </li>
-                </ul>
-            </div>
+            <ModalSearchUser 
+                key={index}
+                data={data}
+                userGroup={userGroupList}
+                setUserGroup={setUserGroupList}
+                userNotGroup={userNotInGroupList}
+                setUserNotGroup={setUserNotInGroupList}
+            />
         )
-    }
+    }) : []
 
-    let searchResult1 
-
+    const userGroup = userGroupList.length > 0 ? userGroupList.map((item, index) => {
+        if (item) {
+            return (
+                <tr key={index}>
+                    <td><input type="checkbox" className="mr-2" defaultChecked={true}/> Yes</td>
+                    <td>{item.id}</td>
+                    <td>
+                        <img
+                            src="../../dist/img/default-150x150.png"
+                            alt="Product 1"
+                            className="img-circle img-size-32 mr-2"
+                        />
+                    </td>
+                    <td>{item.first_name} {item.last_name}</td>
+                    <td>{item.username}</td>
+                    <td>{item.status}</td>
+                </tr>
+            )
+        }
+    }) : []
+    
     useEffect(() => {
-        searchResult1 = () => {return 'Search Result'}
+        if (!initFetch && props.groupData.group.id) {
+            initialize()
+            setInitFetch(true)
+        }
     })
 
     return (
         <>
-            <Modal size="lg" show={props.show} onHide={() => props.setShow(false)}>
+            <Modal size="lg" show={props.show} onHide={() => props.setShow(false)} backdrop={false}>
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
                         Add User To Group
@@ -62,11 +116,6 @@ export default function addUserToGroup(props) {
                                     />
                                 </div>
                                 
-                                    <Dropdown.Menu show={true}>
-                                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                    </Dropdown.Menu>
                                 
                             </div>
                             <div className="col-12">
@@ -98,70 +147,7 @@ export default function addUserToGroup(props) {
                                             <td>makaryo123</td>
                                             <td>Active</td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                            <input type="checkbox" className="mr-2" /> Yes
-                                            </td>
-                                            <td>2</td>
-                                            <td>
-                                            <img
-                                                src="../../dist/img/default-150x150.png"
-                                                alt="Product 1"
-                                                className="img-circle img-size-32 mr-2"
-                                            />
-                                            </td>
-                                            <td>Makaryo Sregep</td>
-                                            <td>makaryo123</td>
-                                            <td>Active</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <input type="checkbox" className="mr-2" /> Yes
-                                            </td>
-                                            <td>3</td>
-                                            <td>
-                                            <img
-                                                src="../../dist/img/default-150x150.png"
-                                                alt="Product 1"
-                                                className="img-circle img-size-32 mr-2"
-                                            />
-                                            </td>
-                                            <td>Makaryo Sregep</td>
-                                            <td>makaryo123</td>
-                                            <td>Active</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <input type="checkbox" className="mr-2" /> Yes
-                                            </td>
-                                            <td>4</td>
-                                            <td>
-                                            <img
-                                                src="../../dist/img/default-150x150.png"
-                                                alt="Product 1"
-                                                className="img-circle img-size-32 mr-2"
-                                            />
-                                            </td>
-                                            <td>Makaryo Sregep</td>
-                                            <td>makaryo123</td>
-                                            <td>Active</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <input type="checkbox" className="mr-2" /> Yes
-                                            </td>
-                                            <td>5</td>
-                                            <td>
-                                            <img
-                                                src="../../dist/img/default-150x150.png"
-                                                alt="Product 1"
-                                                className="img-circle img-size-32 mr-2"
-                                            />
-                                            </td>
-                                            <td>Makaryo Sregep</td>
-                                            <td>makaryo123</td>
-                                            <td>Active</td>
-                                        </tr>
+                                        {userGroup}
                                     </tbody>
                                 </table>
                             </div>
@@ -186,7 +172,6 @@ export default function addUserToGroup(props) {
                             </Button>
                             </div>
                         </div>
-                            {searchResult1}
                     </div>
                 </Modal.Body>
             </Modal>
@@ -301,6 +286,24 @@ export default function addUserToGroup(props) {
                     </div>
                 </div>
             </div>
+        
+            <Modal
+                size="lg"
+                show={showSearchModal}
+                onHide={() => setSearchModal(false)}
+                keyboard={false}
+                autoFocus={false}
+                style={{marginTop: '125px'}}
+            >
+                <Modal.Body>
+                    <Table responsive>
+                        <tbody>
+                            {searchResult}
+                        </tbody>
+                    </Table>
+                </Modal.Body>
+                
+            </Modal>
         </>
     )
 }

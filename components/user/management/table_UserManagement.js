@@ -67,11 +67,22 @@ function TabelUserManagement(props){
         setRespMsg(resp.message)
         setSpinner(false)
         setSubmit(false)
+
+        let newUserList = [
+          ...props.userList.data.data,
+          ...resp.data
+        ]
+        props.setUserList({
+          data: {
+            data: newUserList
+          }
+        })
+
       } else {
         setToast(true)
         setHeaderTitle('Import User Failed')
-        // setRespMsg(resp.message)
-        setRespMsg("Error")
+        setRespMsg(JSON.stringify(resp.message))
+        // setRespMsg("Error")
         setHeaderColor({color: 'red'})
         setSpinner(false)
         setSubmit(false)
