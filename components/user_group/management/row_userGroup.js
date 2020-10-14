@@ -94,6 +94,17 @@ export default function rowUserGroup (props) {
         setActionType('')
     })
 
+    function handleGroupDetail() {
+        props.setShow(true)
+        props.setGroupData({
+            group: {
+                id: data.id,
+                name: data.name,
+                icon: data.picture
+            }
+        })
+    }
+
     return (
         <tr>
             <td>{data.id}</td>
@@ -105,7 +116,7 @@ export default function rowUserGroup (props) {
                     />) : 'Empty'
                 }
             </td>
-            <td onClick={() => {props.setShow(true)}}>{data.name}</td>
+            <td onClick={handleGroupDetail} style={{cursor: 'pointer'}}>{data.name}</td>
             <td>{data.total_user}</td>
             <td><span className={classStatus(data.status)}>{displayStatusText(data.status)}</span></td>
             <td>
