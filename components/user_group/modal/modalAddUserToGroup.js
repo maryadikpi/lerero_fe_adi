@@ -155,9 +155,6 @@ export default function addUserToGroup(props) {
 
 
     const handleUpdateGroup = async() => {
-        console.log('user ids before calling api')
-        console.log(ids)
-        console.log(groupUserIds)
         setSubmit(true)
         setSpinner(true)
         const resp = await kpiFetch('PUT', USER_GROUP_BASE+props.groupData.group.id+UPDATE_USER_GROUP, {'users': groupUserIds})
@@ -215,22 +212,6 @@ export default function addUserToGroup(props) {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                            <input type="checkbox" className="mr-2" /> Yes
-                                            </td>
-                                            <td>1</td>
-                                            <td>
-                                            <img
-                                                src="../../dist/img/default-150x150.png"
-                                                alt="Product 1"
-                                                className="img-circle img-size-32 mr-2"
-                                            />
-                                            </td>
-                                            <td>Makaryo Sregep</td>
-                                            <td>makaryo123</td>
-                                            <td>Active</td>
-                                        </tr>
                                         {userGroup}
                                     </tbody>
                                 </table>
