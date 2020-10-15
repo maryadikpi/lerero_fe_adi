@@ -39,7 +39,7 @@ function TabelUserManagement(props){
     )
   }
 
-  /* Process for importing user csv file */
+ 
   const [isSubmit, setSubmit] = useState(false)
   const [showSpinner, setSpinner] = useState(false)
   const [showToast, setToast] = useState(false)
@@ -47,55 +47,10 @@ function TabelUserManagement(props){
   const [headerColor, setHeaderColor] = useState({color: 'green'})
   const [headerTitle, setHeaderTitle] = useState('')
 
-  const inputFile = useRef(null)
-
   const handleImport = () => {
     $('#importUserCsv').modal('show')
   }
 
-  const browseFile = () => {
-    inputFile.current.click()
-  }
-
-  async function onChangeFile(event) {
-      event.stopPropagation()
-      event.preventDefault()
-      setSubmit(true)
-      setSpinner(true)
-      var file = event.target.files[0]
-      var formData = new FormData();
-      formData.append('file', file);
-      const resp = await kpiFetchFile('POST', IMPORT_USER_LIST_FILE, formData)
-      console.log(resp)
-      if (resp.status) {
-        setToast(true)
-        setHeaderTitle('Import User Success')
-        setHeaderColor({color: 'green'})
-        setRespMsg(resp.message)
-        setSpinner(false)
-        setSubmit(false)
-
-        let newUserList = [
-          ...props.userList.data.data,
-          ...resp.data
-        ]
-        props.setUserList({
-          data: {
-            data: newUserList
-          }
-        })
-
-      } else {
-        setToast(true)
-        setHeaderTitle('Import User Failed')
-        setRespMsg(JSON.stringify(resp.message))
-        // setRespMsg("Error")
-        setHeaderColor({color: 'red'})
-        setSpinner(false)
-        setSubmit(false)
-      }
-  }
-  
 
   return (
     <>
@@ -105,13 +60,6 @@ function TabelUserManagement(props){
           <div className="card-header border-0">
             <h3 className="card-title">List of User</h3>
             <div className="card-tools">
-              <input 
-                type='file' 
-                id='file' 
-                ref={inputFile} 
-                style={{display: 'none'}} 
-                onChange={(e) => onChangeFile(e)}
-              />
               <button
                 type="button"
                 className="btn btn-primary btn-sm m-2"
