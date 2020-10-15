@@ -3,7 +3,6 @@ import {kpiFetch} from 'kpi_helper'
 import {ACTIVATE_EMAIL} from 'config/const_api_url'
 
 export default function activateEmail(props) {
-    console.log(props)
     return (
         <>
             <Header />
@@ -12,7 +11,7 @@ export default function activateEmail(props) {
                     <div className="card">
                         <div className="card-body login-card-body">
                             <div className="login-logo">
-                                <h1>{props.data.message}</h1>
+                                <h3>{props.data.message}</h3>
                             </div>
                         </div>
                     </div>
