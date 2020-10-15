@@ -2,16 +2,16 @@ const ModalTaskManagement = () => (
   <>
     <div
       className="modal fade"
-      id="addGroup"
+      id="addNewTask"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog text-dark" role="document">
+      <div className="modal-dialog  modal-lg text-dark" role="document">
         <div className="modal-content">
           <div className="modal-header text-center">
-            <h5 className="modal-title width-100">Create User Group</h5>
+            <h5 className="modal-title width-100">Add New Task</h5>
             <button
               type="button"
               className="close"
