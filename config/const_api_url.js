@@ -13,6 +13,7 @@ export const CHANGE_USER_ROLE = 'api/users/role/' // api/users/role/6
 export const CHECK_ACTIVATION_TOKEN = 'api/auth/activation/' //api/auth/activation/tokenhere
 export const ACTIVATE_USER = 'api/auth/activation/user'
 export const IMPORT_USER_LIST_FILE = 'api/users/import'
+export const DOWNLOAD_USER_CSV = 'excel/imports/sample-import-user.csv'
 
 // USER GROUP
 export const GET_ALL_USER_GROUP = 'api/user-groups?' // GET

@@ -7,6 +7,7 @@ import ModalAdduser from '../modal/modalAddUser'
 import DeleteUserButton from '../modal/modalDeleteUser'
 import ChangeUserRole from '../modal/modalChangeUserRole'
 import ChangeUserEmail from '../modal/modalChangeUserEmail'
+import ImporUserCsv from '../modal/modalImportUserCsv'
 
 import {kpiFetchFile} from 'kpi_helper'
 import {IMPORT_USER_LIST_FILE} from 'config/const_api_url'
@@ -47,6 +48,11 @@ function TabelUserManagement(props){
   const [headerTitle, setHeaderTitle] = useState('')
 
   const inputFile = useRef(null)
+
+  const handleImport = () => {
+    $('#importUserCsv').modal('show')
+  }
+
   const browseFile = () => {
     inputFile.current.click()
   }
@@ -109,7 +115,7 @@ function TabelUserManagement(props){
               <button
                 type="button"
                 className="btn btn-primary btn-sm m-2"
-                onClick = {browseFile}
+                onClick = {handleImport}
                 disabled={isSubmit}
               >
                 <i className="fas fa-file-alt"></i> Import CSV
@@ -174,6 +180,10 @@ function TabelUserManagement(props){
     />
     <ChangeUserEmail
       userData={userRoleData}
+    />
+    <ImporUserCsv
+      userList={props.userList}
+      setUserList={props.setUserList}
     />
     <Toast 
       style={{

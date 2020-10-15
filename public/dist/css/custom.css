@@ -132,3 +132,11 @@ tr.hide-table-padding td {
 .float-left {
   float:left;
 }
+
+.valign-top {
+  vertical-align: top;
+}
+
+.border-thin-grey {
+  border: solid thin #d4d4d4;
+}
