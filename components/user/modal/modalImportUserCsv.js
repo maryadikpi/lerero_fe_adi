@@ -1,16 +1,77 @@
 import Link from "next/link";
 import {useState, useEffect, useRef } from 'react'
+import {Spinner, Toast} from "react-bootstrap"
 
 
 import {kpiFetch, kpiFetchFile} from 'kpi_helper'
-import {DOWNLOAD_USER_CSV} from 'config/const_api_url'
+import {DOWNLOAD_USER_CSV, IMPORT_USER_LIST_FILE} from 'config/const_api_url'
 
-export default function importUserCsv() {
+export default function importUserCsv(props) {
 
     const handleDownload = async () => {
         window.open(process.env.NEXT_PUBLIC_API_URL+DOWNLOAD_USER_CSV)
     }
 
+    const inputFile = useRef(null)
+    const handleBrowse = () => {
+        console.log('handle browse')
+    }
+
+    var file = null
+    async function onChangeFile(event) {
+        event.stopPropagation()
+        event.preventDefault()
+        file = event.target.files[0]
+    }
+
+    useEffect(() => {
+        $('#importUserCsv').on('hidden.bs.modal', function (e) {
+            console.log('import csv closed')
+            if (inputFile) {
+                console.log('isi files')
+                // inputFile.current.files[0].name('')
+                // console.log(inputFile.current.files[0].name)
+                // Will be continued later
+            }
+          })
+    })
+    
+
+    const [isSubmit, setSubmit] = useState(false)
+    const [showSpinner, setSpinner] = useState(false)
+    const [showToast, setToast] = useState(false)
+    const [respMsg, setRespMsg] = useState('')
+
+    const handleSendFile = async () => {
+        setSubmit(true)
+        setSpinner(true)
+        var formData = new FormData()
+        formData.append('file', file)
+        const resp = await kpiFetchFile('POST', IMPORT_USER_LIST_FILE, formData)
+        if (resp.status) {
+          setRespMsg(resp.message)
+          setSpinner(false)
+          setSubmit(false)
+          $('#warningUserSuccess').modal('hide')
+          $("#importUserSuccess").modal('show')
+  
+          let newUserList = [
+            ...props.userList.data.data,
+            ...resp.data
+          ]
+          props.setUserList({
+            data: {
+              data: newUserList
+            }
+          })
+  
+        } else {
+          setToast(true)
+          setRespMsg(JSON.stringify(resp.message))
+          setSpinner(false)
+          setSubmit(false)
+        }
+    }
 
     return (
         <>
@@ -49,7 +110,13 @@ export default function importUserCsv() {
                                     </p>
                                     <p className="mt-4">
                                         Please select your adjusted CSV file in here : <br />
-                                    <input type="file" className="btn btn-secondary mt-2" />
+                                        <input 
+                                            type="file"
+                                            className="btn btn-secondary mt-2"
+                                            ref={inputFile}
+                                            onClick={handleBrowse}
+                                            onChange={(e) => onChangeFile(e)}
+                                        />
                                     </p>
                                 </div>
                             </div>
@@ -70,7 +137,7 @@ export default function importUserCsv() {
                                         type="button"
                                         data-dismiss="modal"
                                         data-toggle="modal"
-                                        data-target="#warningQuestionSuccess"
+                                        data-target="#warningUserSuccess"
                                         className="btn width-90 btn-sm btn-primary"
                                     >
                                         Import
@@ -84,11 +151,12 @@ export default function importUserCsv() {
 
             <div
                 className="modal fade"
-                id="warningQuestionSuccess"
+                id="warningUserSuccess"
                 tabIndex="-1"
                 role="dialog"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
+                data-backdrop="static"
             >
                 <div className="modal-dialog text-dark" role="document">
                     <div className="modal-content">
@@ -99,6 +167,7 @@ export default function importUserCsv() {
                                 className="close"
                                 data-dismiss="modal"
                                 aria-label="Close"
+                                disabled={isSubmit}
                             >
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -111,6 +180,14 @@ export default function importUserCsv() {
                                     </p>
                                     <p>Are you sure want to Import this User List : </p>
                                 </div>
+                                { showSpinner ?
+                                    <Spinner 
+                                        animation="border" 
+                                        variant="primary" 
+                                        style={{position:'absolute', top: '50%', left: '45%', zIndex:'9999'}}
+                                    />
+                                    : ''
+                                }
                             </div>
                             <br />
 
@@ -120,6 +197,7 @@ export default function importUserCsv() {
                                         type="button"
                                         className="btn btn-sm btn-danger width-90 float-right"
                                         data-dismiss="modal"
+                                        disabled={isSubmit}
                                     >
                                         Cancel
                                     </button>
@@ -127,10 +205,9 @@ export default function importUserCsv() {
                                 <div className="col-6">
                                     <button
                                         type="button"
-                                        data-dismiss="modal"
-                                        data-toggle="modal"
-                                        data-target="#importQuestionSuccess"
+                                        onClick={handleSendFile}
                                         className="btn width-90 btn-sm btn-primary"
+                                        disabled={isSubmit}
                                     >
                                         Ok
                                     </button>
@@ -143,7 +220,7 @@ export default function importUserCsv() {
 
             <div
                 className="modal fade"
-                id="importQuestionSuccess"
+                id="importUserSuccess"
                 tabIndex="-1"
                 role="dialog"
                 aria-labelledby="exampleModalLabel"
@@ -188,6 +265,24 @@ export default function importUserCsv() {
                     </div>
                 </div>
             </div>
+
+            <Toast 
+                style={{
+                    position: 'absolute',
+                    top: 17,
+                    right: 17,
+                    zIndex: 9999
+                }}
+                onClose={() => setToast(false)}
+                show={showToast}
+                delay={3000}
+                autohide
+            >
+              <Toast.Header>
+                <strong className="mr-auto" style={{color: 'red'}}>Impor User Error</strong>
+              </Toast.Header>
+              <Toast.Body> <span style={{color: 'black'}}>{respMsg}</span></Toast.Body>
+          </Toast>
         </>
     )
 }
