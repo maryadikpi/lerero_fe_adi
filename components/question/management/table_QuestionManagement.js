@@ -1,5 +1,12 @@
-import Link from "next/link";
-const TableQuestionManagement = () => (
+import Link from "next/link"
+
+
+function  TableQuestionManagement(props) {
+  const handleImportCsv = () => {
+    $('#importQuestionCsv').modal('show')
+  }
+
+return (
   <>
     <div className="row mb-10">
       <div className="col-12">
@@ -10,8 +17,7 @@ const TableQuestionManagement = () => (
               <button
                 type="button"
                 className="btn btn-primary btn-sm mr-2"
-                data-toggle="modal"
-                data-target="#importCsv"
+                onClick={handleImportCsv}
               >
                 <i className="fas fa-shield-alt"></i> Import CSV
               </button>
@@ -257,6 +263,8 @@ const TableQuestionManagement = () => (
       </div>
     </div>
   </>
-);
+)
+
+}
 
 export default TableQuestionManagement;
