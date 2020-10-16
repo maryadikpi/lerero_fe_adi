@@ -1,18 +1,11 @@
-import {useState, useEffect} from 'react'
 import Header from "components/admin/header";
 import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
 
-import TableQuestionManagement from "components/question/management/table_QuestionManagement";
-import ModalQuestionManagement from "components/question/management/modal_QuestionManagement";
+import TableQuizManagement from "components/quiz/add/table_QuizManagement";
+import ModalQuizManagement from "components/quiz/add/modal_QuizManagement";
 
-import ModalImportQuestionCsv from "components/question/modal/modalImportQuestionCsv"
-
-const QuestionManagement = () => {
-
-  const [questionList, setQuestionList] = useState([])
-
-  return (
+const QuizManagement = () => (
   <>
     <Header />
     <Navbar />
@@ -24,12 +17,12 @@ const QuestionManagement = () => {
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1 className="m-0 text-dark">Question Management</h1>
+                  <h1 className="m-0 text-dark text-left">Add New Quiz</h1>
                 </div>
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
                     <li className="breadcrumb-item">
-                      <a href="#">Question</a>
+                      <a href="#">Quiz</a>
                     </li>
                     <li className="breadcrumb-item active">Management</li>
                   </ol>
@@ -40,20 +33,14 @@ const QuestionManagement = () => {
 
           <div className="content">
             <div className="container-fluid">
-              <TableQuestionManagement questionList={questionList} setQuestionList={setQuestionList}/>
-              <ModalQuestionManagement />
+              <TableQuizManagement />
+              <ModalQuizManagement />
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <ModalImportQuestionCsv 
-      questionList={questionList} 
-      setQuestionList={setQuestionList}
-      />
   </>
-)
-}
+);
 
-export default QuestionManagement;
+export default QuizManagement;

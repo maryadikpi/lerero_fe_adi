@@ -112,7 +112,7 @@ export default function modalBlockUser(props) {
                   disabled={isSubmit}
                   className="btn width-90 btn-sm btn-primary"
                 >
-                  Okie
+                  Ok
                 </button>
               </div>
             </div>

@@ -77,10 +77,15 @@ export default function rowUserManagement (props) {
             <td>{data.id}</td>
             <td>
             {data.avatar? (<img
-                    src="/public/dist/img/default-150x150.png"
+                    src={data.avatar}
                     alt="Avatar"
                     className="img-circle img-size-32 mr-2"
-                />) : 'Empty'
+                />) : 
+                (<img
+                    src="/dist/img/default-150x150.png"
+                    alt="Avatar"
+                    className="img-circle img-size-32 mr-2"
+                />)
             }
                 
             </td>

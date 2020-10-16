@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import ReactTags from 'react-tag-autocomplete'
+import { useState, useEffect } from "react"
+import AddNewCategory from "../modal/modalAddQuestionCategory"
+import CancelAddQuestion from "../modal/modalCancelAddQuestion"
 
 
 var idOption = [0, 0, 0];
@@ -14,31 +15,31 @@ function addOption(category) {
       $("#answer").append(
         '  <div id="id-' +
           option[idOption[0]] +
-          '" class="card singleQuestion text-dark card-primary mt-4 card-outline">' +
-          '    <div class="card-body table-responsive p-3">' +
-          '      <div class="row">' +
-          '        <div class="col-1"> Answer ' +
+          '" className="card singleQuestion text-dark card-primary mt-4 card-outline">' +
+          '    <div className="card-body table-responsive p-3">' +
+          '      <div className="row">' +
+          '        <div className="col-1"> Answer ' +
           option[idOption[0]] +
           " </div>" +
-          '        <div class="col-11">' +
-          '          <input type="checkbox" class="mr-2 p-2" />' +
+          '        <div className="col-11">' +
+          '          <input type="checkbox" className="mr-2 p-2" />' +
           "          Correct Answer ?" +
           "        </div>" +
           "      </div>" +
-          '      <div class="row mt-3">' +
-          '        <div class="col-12">' +
+          '      <div className="row mt-3">' +
+          '        <div className="col-12">' +
           "          Answer Description" +
           "          <br />" +
           "          <textarea" +
-          '            class="form-control mb-4 mt-2"' +
+          '            className="form-control mb-4 mt-2"' +
           '            rows="7"' +
           "          ></textarea>" +
           "        </div>" +
           "      </div>" +
-          '      <div class="row ml-2 mt-3 mb-4">' +
+          '      <div className="row ml-2 mt-3 mb-4">' +
           '        <table width="100%">' +
           "          <tbody>" +
-          '            <tr class="valign-top">' +
+          '            <tr className="valign-top">' +
           '              <td width="2%">' +
           '                <input type="checkbox" />' +
           "              </td>" +
@@ -46,7 +47,7 @@ function addOption(category) {
           "              <td>" +
           "                <input" +
           '                  type="text"' +
-          '                  class="form-control"' +
+          '                  className="form-control"' +
           "                />" +
           "              </td>" +
           "            </tr>" +
@@ -65,23 +66,23 @@ function addOption(category) {
       $("#answer").append(
         '  <div id="id-' +
           option[idOption[1]] +
-          '" class="card MultiQuestion text-dark card-primary mt-4 card-outline">' +
-          '    <div class="card-body table-responsive p-3">' +
-          '      <div class="row">' +
-          '        <div class="col-1"> Answer ' +
+          '" className="card MultiQuestion text-dark card-primary mt-4 card-outline">' +
+          '    <div className="card-body table-responsive p-3">' +
+          '      <div className="row">' +
+          '        <div className="col-1"> Answer ' +
           option[idOption[1]] +
           " </div>" +
-          '        <div class="col-11">' +
-          '          <input type="checkbox" class="mr-2 p-2" />' +
+          '        <div className="col-11">' +
+          '          <input type="checkbox" className="mr-2 p-2" />' +
           "          Correct Answer ?" +
           "        </div>" +
           "      </div>" +
-          '      <div class="row mt-3">' +
-          '        <div class="col-12">' +
+          '      <div className="row mt-3">' +
+          '        <div className="col-12">' +
           "          Answer Description" +
           "          <br />" +
           "          <textarea" +
-          '            class="form-control mb-4 mt-2"' +
+          '            className="form-control mb-4 mt-2"' +
           '            rows="7"' +
           "          ></textarea>" +
           "        </div>" +
@@ -93,6 +94,8 @@ function addOption(category) {
     }
   }
 }
+
+
 function btnOption(category) {
   if (category === "single") {
     $(".singleQuestion").show();
@@ -118,35 +121,24 @@ function btnOption(category) {
     $("#numberFeedBack").show();
   }
 }
-function TableQuestionManagement() {
-  var reactTags = []
-  const [tags, setTags] = useState([
-    { id: 1, name: "Apples" },
-    { id: 2, name: "Pears" }
-  ])
-  var suggestions = [
-    { id: 3, name: "Bananas" },
-    { id: 4, name: "Mangos" },
-    { id: 5, name: "Lemons" },
-    { id: 6, name: "Apricots" }
-  ]
 
-  function onDelete (i) {
-    console.log('on DELETE')
-    console.log(i)
-    //const tags = tags.slice(0)
-    //tags.splice(i, 1)
-    //this.setState(tags)
-  }
- 
-  function onAddition (tag) {
-    console.log('new Tag : ')
-    console.log(tag)
-    const newtags = [].concat(tags, tag)
-    setTags(newtags)
+
+function TableQuestionManagement(props) {
+  
+  
+  const handleNewCategory = () => {
+    $('#addNewQuestionCat').modal('show')
   }
 
-
+  var questCategory = []
+    if (props.questCategory) {
+      questCategory = props.questCategory.map((item, i) => {
+                    return <option key={i} value={item.name}>{item.display_name}</option>
+                })
+    }
+  const handleSelectCatg = (event) => {
+    console.log(event.target.value)
+  }
 
   return (
     <>
@@ -179,22 +171,32 @@ function TableQuestionManagement() {
                           <p htmlFor="leraningPathname" className="">
                             <b>Question Category : </b>
                           </p>
-
-
                           {/* <input
                             id="leraningPathname"
                             type="text"
                             className="form-control border-top-0 border-right-0 border-left-0 mb-5"
                             placeholder="Your Question Category"
                           /> */}
-                          <ReactTags
-                            ref={reactTags}
-                            tags={tags}
-                            suggestions={suggestions}
-                            onDelete={onDelete}
-                            onAddition={onAddition}
-                            className="form-control border-top-0 border-right-0 border-left-0 mb-5"
-                          />
+                          <select
+                              type="button"
+                              className="form-control border-top-0 border-right-0 border-left-0 mb-5"
+                              onChange={handleSelectCatg}
+                              style={{width: '67%', border: '1px solid gray'}}
+                              //value={data.role_id}
+                          >
+                              {questCategory}
+                          </select>
+
+                        </div>
+                        <div className="col-2 col-md-3 col-sm-3">
+                            <br/> <br/>
+                            <button
+                              type="button"
+                              className="btn btn-sm btn-success width-80 float-right"
+                              onClick={handleNewCategory}
+                            >
+                              + Add New Category
+                            </button>
 
                         </div>
                       </div>
@@ -254,16 +256,16 @@ function TableQuestionManagement() {
                         <div className="row">
                           <table width="100%">
                             <tbody>
-                              <tr class="valign-top">
+                              <tr className="valign-top">
                                 <td width="2%">
                                   <input type="checkbox" />
                                 </td>
                                 <td width="10%">Correct Feedback : </td>
                                 <td>
-                                  <input type="text" class="form-control" />
+                                  <input type="text" className="form-control" />
                                 </td>
                               </tr>
-                              <tr class="valign-top">
+                              <tr className="valign-top">
                                 <td width="2%">
                                   <input type="checkbox" className="mt-2" />
                                 </td>
@@ -273,7 +275,7 @@ function TableQuestionManagement() {
                                 <td>
                                   <input
                                     type="text"
-                                    class="form-control mt-2"
+                                    className="form-control mt-2"
                                   />
                                 </td>
                               </tr>
@@ -290,12 +292,12 @@ function TableQuestionManagement() {
                         >
                           <table width="100%">
                             <tbody>
-                              <tr class="valign-top">
+                              <tr className="valign-top">
                                 <td width="12%">Correct Answer : </td>
                                 <td>
                                   <input
                                     type="text"
-                                    class="form-control width-10"
+                                    className="form-control width-10"
                                   />
                                 </td>
                               </tr>
@@ -310,16 +312,16 @@ function TableQuestionManagement() {
                         >
                           <table width="100%">
                             <tbody>
-                              <tr class="valign-top">
+                              <tr className="valign-top">
                                 <td width="2%">
                                   <input type="checkbox" />
                                 </td>
                                 <td width="10%">Correct Feedback : </td>
                                 <td>
-                                  <input type="text" class="form-control" />
+                                  <input type="text" className="form-control" />
                                 </td>
                               </tr>
-                              <tr class="valign-top">
+                              <tr className="valign-top">
                                 <td width="2%">
                                   <input type="checkbox" className="mt-2" />
                                 </td>
@@ -329,7 +331,7 @@ function TableQuestionManagement() {
                                 <td>
                                   <input
                                     type="text"
-                                    class="form-control mt-2"
+                                    className="form-control mt-2"
                                   />
                                 </td>
                               </tr>
@@ -373,8 +375,9 @@ function TableQuestionManagement() {
                     </button>
                     <button
                       id="btnOptionMulti"
-                      data-toggle="modal"
-                      data-target="#cancelAddQuestion"
+                      onClick={() => {
+                        $('#cancelAddQuestion').modal('show')
+                      }}
                       className="btn btn-danger mt-3 width-10 float-left"
                     >
                       Cancel
@@ -386,6 +389,13 @@ function TableQuestionManagement() {
           </div>
         </div>
       </div>
+
+      <AddNewCategory
+        questCategory={props.questCategory}
+        setQuestCategory={props.setQuestCategory}
+      />
+
+      <CancelAddQuestion />
     </>
   );
 }
