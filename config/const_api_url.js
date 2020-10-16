@@ -23,3 +23,6 @@ export const USER_GROUP_BASE = 'api/user-groups/'
 export const GET_USERS_IN_GROUP = '/user?' // ex: USER_GROUP_BASE+{id}+GET_USERS_IN_GROUP
 export const GET_USER_NOT_IN_GROUP = '/user/not-in-group?' // ex: USER_GROUP_BASE+{id}+GET_USER_NOT_IN_GROUP
 export const UPDATE_USER_GROUP = '/user/add?' // ex: USER_GROUP_BASE+{id}+ADD_USER_TO_GROUP. Used to add or remove user from group
+
+// QUIZZ
+export const GET_ALL_QUIZZ = 'api/quizzes?' // GET

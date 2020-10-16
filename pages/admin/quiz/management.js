@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react'
 import Header from "components/admin/header";
 import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
@@ -5,7 +6,31 @@ import Sidebar from "components/admin/sidebar";
 import TableQuizManagement from "components/quiz/management/table_QuizManagement";
 import ModalQuizManagement from "components/quiz/management/modal_QuizManagement";
 
-const QuizManagement = () => (
+import {kpiFetch} from 'kpi_helper'
+import {GET_ALL_QUIZZ} from 'config/const_api_url'
+
+function QuizManagement(props) {
+  const [quizList, setQuizList] = useState([])
+
+  // set api
+  async function initialFetch() {
+    const quizList = await kpiFetch('GET', GET_ALL_QUIZZ)
+    console.log(quizList);
+    if (quizList.status) {
+      setQuizList(quizList)
+    }
+  }
+  // call api to get data
+  useEffect(
+    () => {
+      if (!props.quizList) {
+        initialFetch()
+      } else {
+        setQuizList(props.quizList)
+      }
+    }, []
+  )
+  return (
   <>
     <Header />
     <Navbar />
@@ -33,7 +58,9 @@ const QuizManagement = () => (
 
           <div className="content">
             <div className="container-fluid">
-              <TableQuizManagement />
+              <TableQuizManagement 
+                quizList={quizList} 
+              />
               <ModalQuizManagement />
             </div>
           </div>
@@ -41,6 +68,7 @@ const QuizManagement = () => (
       </div>
     </section>
   </>
-);
+  )
+  };
 
 export default QuizManagement;
