@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react'
 import Header from "components/admin/header";
 import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
@@ -5,7 +6,13 @@ import Sidebar from "components/admin/sidebar";
 import TableQuestionManagement from "components/question/management/table_QuestionManagement";
 import ModalQuestionManagement from "components/question/management/modal_QuestionManagement";
 
-const QuestionManagement = () => (
+import ModalImportQuestionCsv from "components/question/modal/modalImportQuestionCsv"
+
+const QuestionManagement = () => {
+
+  const [questionList, setQuestionList] = useState([])
+
+  return (
   <>
     <Header />
     <Navbar />
@@ -33,14 +40,20 @@ const QuestionManagement = () => (
 
           <div className="content">
             <div className="container-fluid">
-              <TableQuestionManagement />
+              <TableQuestionManagement questionList={questionList} setQuestionList={setQuestionList}/>
               <ModalQuestionManagement />
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <ModalImportQuestionCsv 
+      questionList={questionList} 
+      setQuestionList={setQuestionList}
+      />
   </>
-);
+)
+}
 
 export default QuestionManagement;

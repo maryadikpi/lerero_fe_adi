@@ -1,3 +1,5 @@
+import {useState, useEffect} from 'react'
+
 import Header from "components/admin/header";
 import Navbar from "components/admin/navbar";
 import Sidebar from "components/admin/sidebar";
@@ -5,7 +7,26 @@ import Sidebar from "components/admin/sidebar";
 import TableQuestionManagement from "components/question/add/table_QuestionManagement";
 import ModalQuestionManagement from "components/question/add/modal_QuestionManagement";
 
-const QuestionManagement = () => (
+import {kpiFetch} from 'kpi_helper'
+import {GET_QUESTION_CATEGORY} from 'config/const_api_url'
+
+const QuestionManagement = () => {
+
+  const [questionCategory, setQuestionCategory] = useState([])
+  const initialFetch = async () => {
+    const catlist = await kpiFetch('GET', GET_QUESTION_CATEGORY)
+      if (catlist.status) {
+        setQuestionCategory(catlist.data.data)
+      }
+  }
+
+  useEffect(() => {
+    if(questionCategory.length < 1) {
+      initialFetch()
+    }
+  })
+
+  return (
   <>
     <Header />
     <Navbar />
@@ -33,7 +54,10 @@ const QuestionManagement = () => (
 
           <div className="content">
             <div className="container-fluid">
-              <TableQuestionManagement />
+              <TableQuestionManagement 
+                questCategory={questionCategory}
+                setQuestCategory={setQuestionCategory}
+              />
               <ModalQuestionManagement />
             </div>
           </div>
@@ -41,6 +65,6 @@ const QuestionManagement = () => (
       </div>
     </section>
   </>
-);
+)}
 
 export default QuestionManagement;

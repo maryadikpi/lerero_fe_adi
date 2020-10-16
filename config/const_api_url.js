@@ -14,6 +14,7 @@ export const CHECK_ACTIVATION_TOKEN = 'api/auth/activation/' //api/auth/activati
 export const ACTIVATE_USER = 'api/auth/activation/user'
 export const IMPORT_USER_LIST_FILE = 'api/users/import'
 export const DOWNLOAD_USER_CSV = 'excel/imports/sample-import-user.csv'
+export const ACTIVATE_EMAIL = 'api/users/email/' // ACTIVATE_EMAIL+TOKEN
 
 // USER GROUP
 export const GET_ALL_USER_GROUP = 'api/user-groups?' // GET
@@ -23,3 +24,11 @@ export const USER_GROUP_BASE = 'api/user-groups/'
 export const GET_USERS_IN_GROUP = '/user?' // ex: USER_GROUP_BASE+{id}+GET_USERS_IN_GROUP
 export const GET_USER_NOT_IN_GROUP = '/user/not-in-group?' // ex: USER_GROUP_BASE+{id}+GET_USER_NOT_IN_GROUP
 export const UPDATE_USER_GROUP = '/user/add?' // ex: USER_GROUP_BASE+{id}+ADD_USER_TO_GROUP. Used to add or remove user from group
+
+
+// QUESTION
+export const DOWNLOAD_QUESTION_CSV = 'api/question/sampel-import/download' // GET
+export const IMPORT_QUESTION_FILE = 'api/questions/import' // POST
+export const GET_QUESTION_LIST = 'api/questions' // GET
+export const GET_QUESTION_CATEGORY = 'api/question/categories' // GET
+export const ADD_QUESTION_CATEGORY = 'api/question/categories' // POST
