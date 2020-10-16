@@ -21,7 +21,7 @@ const QuestionManagement = () => {
   }
 
   useEffect(() => {
-    if(questionCategory.length < 1) {
+    if(questionCategory && questionCategory.length < 1) {
       initialFetch()
     }
   })

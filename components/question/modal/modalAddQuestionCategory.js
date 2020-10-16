@@ -55,13 +55,11 @@ export default function addQuestionCategory(props) {
             // Update new category list
             let data = resp.data.data
             setNewCatg({display_name: data.display_name})
-            let arr = [
-              ...props.questCategory,
-              {
-                name: data.name,
-                display_name: data.display_name
-              }
-            ]
+            const oldCategory = props.questCategory? props.questCategory : []
+            let arr = oldCategory.concat([{
+              name: data.name,
+              display_name: data.display_name
+            }])
             props.setQuestCategory(arr)
             setMessage('Success Add New Category')
         } else {
