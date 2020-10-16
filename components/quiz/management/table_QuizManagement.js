@@ -7,14 +7,11 @@ const TableQuizManagement = () => (
           <div className="card-header border-0">
             <h3 className="card-title">List of Quiz</h3>
             <div className="card-tools">
-              <button
-                type="button"
-                className="btn btn-primary btn-sm"
-                data-toggle="modal"
-                data-target="#addGroup"
-              >
-                <i className="fas fa-shield-alt"></i> Add New Quiz
-              </button>
+              <Link href="/admin/quiz/add/">
+                <button type="button" className="btn btn-primary btn-sm">
+                  <i className="fas fa-shield-alt"></i> Add New Quiz
+                </button>
+              </Link>
             </div>
           </div>
           <div className="card-body table-responsive p-0">
