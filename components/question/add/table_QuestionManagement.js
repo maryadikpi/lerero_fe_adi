@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import ReactTags from 'react-tag-autocomplete'
+import { useState, useEffect } from "react"
 
 
 var idOption = [0, 0, 0];
@@ -120,31 +119,7 @@ function btnOption(category) {
 }
 function TableQuestionManagement() {
   var reactTags = []
-  const [tags, setTags] = useState([
-    { id: 1, name: "Apples" },
-    { id: 2, name: "Pears" }
-  ])
-  var suggestions = [
-    { id: 3, name: "Bananas" },
-    { id: 4, name: "Mangos" },
-    { id: 5, name: "Lemons" },
-    { id: 6, name: "Apricots" }
-  ]
 
-  function onDelete (i) {
-    console.log('on DELETE')
-    console.log(i)
-    //const tags = tags.slice(0)
-    //tags.splice(i, 1)
-    //this.setState(tags)
-  }
- 
-  function onAddition (tag) {
-    console.log('new Tag : ')
-    console.log(tag)
-    const newtags = [].concat(tags, tag)
-    setTags(newtags)
-  }
 
 
 
@@ -181,19 +156,11 @@ function TableQuestionManagement() {
                           </p>
 
 
-                          {/* <input
+                          <input
                             id="leraningPathname"
                             type="text"
                             className="form-control border-top-0 border-right-0 border-left-0 mb-5"
                             placeholder="Your Question Category"
-                          /> */}
-                          <ReactTags
-                            ref={reactTags}
-                            tags={tags}
-                            suggestions={suggestions}
-                            onDelete={onDelete}
-                            onAddition={onAddition}
-                            className="form-control border-top-0 border-right-0 border-left-0 mb-5"
                           />
 
                         </div>
