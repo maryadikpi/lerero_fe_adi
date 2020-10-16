@@ -1,8 +1,21 @@
+import { useRouter } from 'next/router'
+import {useEffect} from 'react'
+
 import Header from "components/admin/header"
 import {kpiFetch} from 'kpi_helper'
 import {ACTIVATE_EMAIL} from 'config/const_api_url'
+import {USER_LOGIN} from "config/const_url"
 
 export default function activateEmail(props) {
+    const router = useRouter()
+    useEffect(() => {
+        if (props.data.status) {
+            setTimeout(() => {
+                router.push({pathname: USER_LOGIN})
+              }, 3000)
+        }
+    })
+    
     return (
         <>
             <Header />
@@ -12,6 +25,7 @@ export default function activateEmail(props) {
                         <div className="card-body login-card-body">
                             <div className="login-logo">
                                 <h3>{props.data.message}</h3>
+                                {props.data.status && (<h6>You will be redirected to login page in 3 seconds</h6>)}
                             </div>
                         </div>
                     </div>
