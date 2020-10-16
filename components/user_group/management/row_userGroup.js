@@ -110,10 +110,15 @@ export default function rowUserGroup (props) {
             <td>{data.id}</td>
             <td>
                 {data.picture? (<img
+                        src={data.picture}
+                        alt="Avatar"
+                        className="img-circle img-size-32 mr-2"
+                    />) : 
+                    (<img
                         src="/dist/img/default-150x150.png"
                         alt="Avatar"
                         className="img-circle img-size-32 mr-2"
-                    />) : 'Empty'
+                    />)
                 }
             </td>
             <td onClick={handleGroupDetail} style={{cursor: 'pointer'}}>{data.name}</td>
