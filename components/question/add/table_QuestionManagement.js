@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react"
+import AddNewCategory from "../modal/modalAddQuestionCategory"
 
 
 var idOption = [0, 0, 0];
@@ -92,6 +93,8 @@ function addOption(category) {
     }
   }
 }
+
+
 function btnOption(category) {
   if (category === "single") {
     $(".singleQuestion").show();
@@ -117,11 +120,24 @@ function btnOption(category) {
     $("#numberFeedBack").show();
   }
 }
-function TableQuestionManagement() {
-  var reactTags = []
 
 
+function TableQuestionManagement(props) {
+  
+  
+  const handleNewCategory = () => {
+    $('#addNewQuestionCat').modal('show')
+  }
 
+  var questCategory = []
+    if (props.questCategory) {
+      questCategory = props.questCategory.map((item, i) => {
+                    return <option key={i} value={item.name}>{item.display_name}</option>
+                })
+    }
+  const handleSelectCatg = (event) => {
+    console.log(event.target.value)
+  }
 
   return (
     <>
@@ -154,14 +170,32 @@ function TableQuestionManagement() {
                           <p htmlFor="leraningPathname" className="">
                             <b>Question Category : </b>
                           </p>
-
-
-                          <input
+                          {/* <input
                             id="leraningPathname"
                             type="text"
                             className="form-control border-top-0 border-right-0 border-left-0 mb-5"
                             placeholder="Your Question Category"
-                          />
+                          /> */}
+                          <select
+                              type="button"
+                              className="form-control border-top-0 border-right-0 border-left-0 mb-5"
+                              onChange={handleSelectCatg}
+                              style={{width: '67%', border: '1px solid gray'}}
+                              //value={data.role_id}
+                          >
+                              {questCategory}
+                          </select>
+
+                        </div>
+                        <div className="col-2 col-md-3 col-sm-3">
+                            <br/> <br/>
+                            <button
+                              type="button"
+                              className="btn btn-sm btn-success width-80 float-right"
+                              onClick={handleNewCategory}
+                            >
+                              + Add New Category
+                            </button>
 
                         </div>
                       </div>
@@ -353,6 +387,11 @@ function TableQuestionManagement() {
           </div>
         </div>
       </div>
+
+      <AddNewCategory
+        questCategory={props.questCategory}
+        setQuestCategory={props.setQuestCategory}
+      />
     </>
   );
 }

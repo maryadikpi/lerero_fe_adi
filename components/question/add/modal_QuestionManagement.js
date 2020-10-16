@@ -109,7 +109,7 @@ const ModalQuestionManagement = () => (
                   data-dismiss="modal"
                   className="btn width-90 btn-sm btn-primary"
                 >
-                  Ok
+                  Okie
                 </button>
               </div>
             </div>

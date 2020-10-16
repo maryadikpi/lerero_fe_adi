@@ -29,3 +29,6 @@ export const UPDATE_USER_GROUP = '/user/add?' // ex: USER_GROUP_BASE+{id}+ADD_US
 // QUESTION
 export const DOWNLOAD_QUESTION_CSV = 'api/question/sampel-import/download' // GET
 export const IMPORT_QUESTION_FILE = 'api/questions/import' // POST
+export const GET_QUESTION_LIST = 'api/questions' // GET
+export const GET_QUESTION_CATEGORY = 'api/question/categories' // GET
+export const ADD_QUESTION_CATEGORY = 'api/question/categories' // POST

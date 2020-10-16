@@ -33,7 +33,7 @@ return (
               <thead>
                 <tr>
                   <th width="2%">Id</th>
-                  <th>Question Titale</th>
+                  <th>Question Title</th>
                   <th>Category</th>
                   <th>Question Type</th>
                   <th>Status</th>
