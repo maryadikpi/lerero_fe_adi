@@ -1,4 +1,5 @@
 import Link from "next/link"
+import {ADMIN_ADD_NEW_QUESTION} from 'config/const_url'
 
 
 function  TableQuestionManagement(props) {
@@ -21,7 +22,7 @@ return (
               >
                 <i className="fas fa-shield-alt"></i> Import CSV
               </button>
-              <Link as="/admin/question/add" href="/admin/question/add">
+              <Link as={ADMIN_ADD_NEW_QUESTION} href={ADMIN_ADD_NEW_QUESTION}>
                 <button type="button" className="btn btn-primary btn-sm">
                   <i className="fas fa-shield-alt"></i> Add New Question
                 </button>
