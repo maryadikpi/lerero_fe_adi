@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import AddNewCategory from "../modal/modalAddQuestionCategory"
 import CancelAddQuestion from "../modal/modalCancelAddQuestion"
 import QuestionOptions from "./QuestionOptions"
+import AnswerFeedback from "./answerFeedback"
 
 
 var idOption = [0, 0, 0];
@@ -26,9 +27,52 @@ function TableQuestionManagement(props) {
 
   const maxQuestionOption = 4
   const [currQuestOpt, setCurrQuestOpt] = useState([])
+  const [currQuestType, setCurrQuestType] = useState('')
+  const [showAnswerFeedback, setShowAnswerFeedback] = useState(false)
+  const [showAddAnswerBtn, setShowAddAnswerBtn] = useState(false)
   const handleQuestionType = (type) => {
-    console.log('handle question type : '+type)
-    setCurrQuestOpt([].concat(currQuestOpt, [1]))
+    
+    switch (type) {
+      case 'single':
+        if (currQuestType !== 'single') {
+          // First time
+          setCurrQuestOpt([])
+          setCurrQuestType('single')
+          setCurrQuestOpt([1])
+        } else {
+          //
+          setCurrQuestOpt([].concat(currQuestOpt, [1]))
+        }
+        setShowAnswerFeedback(false)
+        setShowAddAnswerBtn(true)
+      break
+      case 'multi':
+        if (currQuestType !== 'multi') {
+          // First time
+          setCurrQuestOpt([])
+          setCurrQuestType('multi')
+          setCurrQuestOpt([1])
+        } else {
+          //
+          setCurrQuestOpt([].concat(currQuestOpt, [1]))
+        }
+        setShowAnswerFeedback(true)
+        setShowAddAnswerBtn(true)
+      break
+      case 'number':
+        if (currQuestType !== 'number') {
+          // First time
+          setCurrQuestOpt([])
+          setCurrQuestType('number')
+          setCurrQuestOpt([1])
+        } else {
+          //
+          setCurrQuestOpt([].concat(currQuestOpt, [1]))
+        }
+        setShowAnswerFeedback(true)
+        setShowAddAnswerBtn(false)
+      break
+    }
   }
 
   return (
@@ -141,22 +185,29 @@ function TableQuestionManagement(props) {
                       // OPTION QUESTION TYPE WILL BE HERE
                     }
 
-                    {currQuestOpt.length > 0 &&
-                      currQuestOpt.map((item, index) => {
-                        return <QuestionOptions key={index}/>
-                      })
-                    }
+                      {currQuestOpt.length > 0 &&
+                        currQuestOpt.map((item, index) => {
+                          return <QuestionOptions key={index} type={currQuestType}/>
+                        })
+                      }
+
+                      {showAnswerFeedback && 
+                        <AnswerFeedback />
+                      }
 
                     {
                       // ********************************* //
                     }
+
+                    {showAddAnswerBtn &&
                       <button
-                        id="btnOptionSingle"
-                        onClick={() => addOption("single")}
-                        className="btn btn-primary float-right"
-                      >
-                        + Add Answer
-                      </button>
+                      id="btnAddAnswer"
+                      onClick={() => addOption("single")}
+                      className="btn btn-primary float-right"
+                    >
+                      + Add Answer
+                    </button>
+                    }
 
                     </div>
                   </div>
