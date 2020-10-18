@@ -2,129 +2,13 @@ import Link from "next/link";
 import { useState, useEffect } from "react"
 import AddNewCategory from "../modal/modalAddQuestionCategory"
 import CancelAddQuestion from "../modal/modalCancelAddQuestion"
+import QuestionOptions from "./QuestionOptions"
 
 
 var idOption = [0, 0, 0];
 var option = ["A", "B", "C", "D"];
 
-function addOption(category) {
-  if (category === "single") {
-    if (!option[idOption[0]]) {
-      alert("Cannot Add More Option");
-    } else {
-      $("#answer").append(
-        '  <div id="id-' +
-          option[idOption[0]] +
-          '" className="card singleQuestion text-dark card-primary mt-4 card-outline">' +
-          '    <div className="card-body table-responsive p-3">' +
-          '      <div className="row">' +
-          '        <div className="col-1"> Answer ' +
-          option[idOption[0]] +
-          " </div>" +
-          '        <div className="col-11">' +
-          '          <input type="checkbox" className="mr-2 p-2" />' +
-          "          Correct Answer ?" +
-          "        </div>" +
-          "      </div>" +
-          '      <div className="row mt-3">' +
-          '        <div className="col-12">' +
-          "          Answer Description" +
-          "          <br />" +
-          "          <textarea" +
-          '            className="form-control mb-4 mt-2"' +
-          '            rows="7"' +
-          "          ></textarea>" +
-          "        </div>" +
-          "      </div>" +
-          '      <div className="row ml-2 mt-3 mb-4">' +
-          '        <table width="100%">' +
-          "          <tbody>" +
-          '            <tr className="valign-top">' +
-          '              <td width="2%">' +
-          '                <input type="checkbox" />' +
-          "              </td>" +
-          '              <td width="7%">Feedback : </td>' +
-          "              <td>" +
-          "                <input" +
-          '                  type="text"' +
-          '                  className="form-control"' +
-          "                />" +
-          "              </td>" +
-          "            </tr>" +
-          "          </tbody>" +
-          "        </table>" +
-          "      </div>" +
-          "    </div>" +
-          "  </div>"
-      );
-      idOption[0] = idOption[0] + 1;
-    }
-  } else if (category === "multi") {
-    if (!option[idOption[1]]) {
-      alert("Cannot Add More Option");
-    } else {
-      $("#answer").append(
-        '  <div id="id-' +
-          option[idOption[1]] +
-          '" className="card MultiQuestion text-dark card-primary mt-4 card-outline">' +
-          '    <div className="card-body table-responsive p-3">' +
-          '      <div className="row">' +
-          '        <div className="col-1"> Answer ' +
-          option[idOption[1]] +
-          " </div>" +
-          '        <div className="col-11">' +
-          '          <input type="checkbox" className="mr-2 p-2" />' +
-          "          Correct Answer ?" +
-          "        </div>" +
-          "      </div>" +
-          '      <div className="row mt-3">' +
-          '        <div className="col-12">' +
-          "          Answer Description" +
-          "          <br />" +
-          "          <textarea" +
-          '            className="form-control mb-4 mt-2"' +
-          '            rows="7"' +
-          "          ></textarea>" +
-          "        </div>" +
-          "      </div>" +
-          "    </div>" +
-          "  </div>"
-      );
-      idOption[1] = idOption[1] + 1;
-    }
-  }
-}
-
-
-function btnOption(category) {
-  if (category === "single") {
-    $(".singleQuestion").show();
-    $("#btnOptionSingle").show();
-    $("#btnOptionMulti").hide();
-    $("#multiFeedBack").hide();
-    $(".MultiQuestion").hide();
-    $("#numberFeedBack").hide();
-  } else if (category === "multi") {
-    $("#btnOptionSingle").hide();
-    $(".singleQuestion").hide();
-    $("#multiFeedBack").show();
-    $("#btnOptionMulti").show();
-    $(".MultiQuestion").show();
-
-    $("#numberFeedBack").hide();
-  } else if (category === "number") {
-    $("#btnOptionSingle").hide();
-    $(".singleQuestion").hide();
-    $("#multiFeedBack").hide();
-    $("#btnOptionMulti").hide();
-    $(".MultiQuestion").hide();
-    $("#numberFeedBack").show();
-  }
-}
-
-
 function TableQuestionManagement(props) {
-  
   
   const handleNewCategory = () => {
     $('#addNewQuestionCat').modal('show')
@@ -138,6 +22,13 @@ function TableQuestionManagement(props) {
     }
   const handleSelectCatg = (event) => {
     console.log(event.target.value)
+  }
+
+  const maxQuestionOption = 4
+  const [currQuestOpt, setCurrQuestOpt] = useState([])
+  const handleQuestionType = (type) => {
+    console.log('handle question type : '+type)
+    setCurrQuestOpt([].concat(currQuestOpt, [1]))
   }
 
   return (
@@ -214,7 +105,7 @@ function TableQuestionManagement(props) {
                             <td>Select question type : </td>
                             <td>
                               <input
-                                onClick={() => btnOption("single")}
+                                onClick={() => handleQuestionType("single")}
                                 id="single"
                                 type="radio"
                                 name="question_type"
@@ -224,7 +115,7 @@ function TableQuestionManagement(props) {
                             </td>
                             <td>
                               <input
-                                onClick={() => btnOption("multi")}
+                                onClick={() => handleQuestionType("multi")}
                                 id="multi"
                                 type="radio"
                                 name="question_type"
@@ -234,7 +125,7 @@ function TableQuestionManagement(props) {
                             </td>
                             <td>
                               <input
-                                onClick={() => btnOption("number")}
+                                onClick={() => handleQuestionType("number")}
                                 id="number"
                                 type="radio"
                                 name="question_type"
@@ -245,115 +136,28 @@ function TableQuestionManagement(props) {
                           </tr>
                         </tbody>
                       </table>
+                      
+                    {
+                      // OPTION QUESTION TYPE WILL BE HERE
+                    }
 
-                      <div
-                        id="multiFeedBack"
-                        style={{
-                          border: "solid thin #2424"
-                        }}
-                        className="p-3 mt-4 display-none"
-                      >
-                        <div className="row">
-                          <table width="100%">
-                            <tbody>
-                              <tr className="valign-top">
-                                <td width="2%">
-                                  <input type="checkbox" />
-                                </td>
-                                <td width="10%">Correct Feedback : </td>
-                                <td>
-                                  <input type="text" className="form-control" />
-                                </td>
-                              </tr>
-                              <tr className="valign-top">
-                                <td width="2%">
-                                  <input type="checkbox" className="mt-2" />
-                                </td>
-                                <td width="10%" className="mt-2">
-                                  Wrong Feedback :
-                                </td>
-                                <td>
-                                  <input
-                                    type="text"
-                                    className="form-control mt-2"
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div id="numberFeedBack" className=" mt-4 display-none">
-                        <div
-                          className="row p-3"
-                          style={{
-                            border: "solid thin #2424"
-                          }}
-                        >
-                          <table width="100%">
-                            <tbody>
-                              <tr className="valign-top">
-                                <td width="12%">Correct Answer : </td>
-                                <td>
-                                  <input
-                                    type="text"
-                                    className="form-control width-10"
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div
-                          className="row p-3 mt-4"
-                          style={{
-                            border: "solid thin #2424"
-                          }}
-                        >
-                          <table width="100%">
-                            <tbody>
-                              <tr className="valign-top">
-                                <td width="2%">
-                                  <input type="checkbox" />
-                                </td>
-                                <td width="10%">Correct Feedback : </td>
-                                <td>
-                                  <input type="text" className="form-control" />
-                                </td>
-                              </tr>
-                              <tr className="valign-top">
-                                <td width="2%">
-                                  <input type="checkbox" className="mt-2" />
-                                </td>
-                                <td width="10%" className="mt-2">
-                                  Wrong Feedback :
-                                </td>
-                                <td>
-                                  <input
-                                    type="text"
-                                    className="form-control mt-2"
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div id="answer"></div>
+                    {currQuestOpt.length > 0 &&
+                      currQuestOpt.map((item, index) => {
+                        return <QuestionOptions key={index}/>
+                      })
+                    }
+
+                    {
+                      // ********************************* //
+                    }
                       <button
                         id="btnOptionSingle"
                         onClick={() => addOption("single")}
-                        className="btn btn-primary float-right display-none"
+                        className="btn btn-primary float-right"
                       >
                         + Add Answer
                       </button>
-                      <button
-                        id="btnOptionMulti"
-                        onClick={() => addOption("multi")}
-                        className="btn btn-primary mt-3 float-right display-none"
-                      >
-                        + Add Answer
-                      </button>
+
                     </div>
                   </div>
                   <div className="mt-5">
