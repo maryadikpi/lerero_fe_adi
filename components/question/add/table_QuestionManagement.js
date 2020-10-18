@@ -25,8 +25,13 @@ function TableQuestionManagement(props) {
     console.log(event.target.value)
   }
 
+  function nextChar(c) {
+    return String.fromCharCode(c.charCodeAt(0) + 1);
+  }
+
   const maxQuestionOption = 4
   const [currQuestOpt, setCurrQuestOpt] = useState([])
+  const [currLetter, setCurrLetter] = useState('a')
   const [currQuestType, setCurrQuestType] = useState('')
   const [showAnswerFeedback, setShowAnswerFeedback] = useState(false)
   const [showAddAnswerBtn, setShowAddAnswerBtn] = useState(false)
@@ -38,10 +43,12 @@ function TableQuestionManagement(props) {
           // First time
           setCurrQuestOpt([])
           setCurrQuestType('single')
-          setCurrQuestOpt([1])
+          setCurrLetter('a')
+          setCurrQuestOpt([{title: 'a'}])
         } else {
           //
-          setCurrQuestOpt([].concat(currQuestOpt, [1]))
+          setCurrLetter(nextChar(currLetter))
+          setCurrQuestOpt([].concat(currQuestOpt, [{title: nextChar(currLetter)}]))
         }
         setShowAnswerFeedback(false)
         setShowAddAnswerBtn(true)
@@ -51,10 +58,12 @@ function TableQuestionManagement(props) {
           // First time
           setCurrQuestOpt([])
           setCurrQuestType('multi')
-          setCurrQuestOpt([1])
+          setCurrLetter('a')
+          setCurrQuestOpt([{title: 'a'}])
         } else {
           //
-          setCurrQuestOpt([].concat(currQuestOpt, [1]))
+          setCurrLetter(nextChar(currLetter))
+          setCurrQuestOpt([].concat(currQuestOpt, [{title: currLetter}]))
         }
         setShowAnswerFeedback(true)
         setShowAddAnswerBtn(true)
@@ -64,15 +73,22 @@ function TableQuestionManagement(props) {
           // First time
           setCurrQuestOpt([])
           setCurrQuestType('number')
-          setCurrQuestOpt([1])
+          setCurrLetter('a')
+          setCurrQuestOpt([{title: 'a'}])
         } else {
           //
-          setCurrQuestOpt([].concat(currQuestOpt, [1]))
+          setCurrLetter(nextChar(currLetter))
+          setCurrQuestOpt([].concat(currQuestOpt, [{title: currLetter}]))
         }
         setShowAnswerFeedback(true)
         setShowAddAnswerBtn(false)
       break
     }
+  }
+
+  const handleAddAnswer = () => {
+    setCurrLetter(nextChar(currLetter))
+    setCurrQuestOpt([].concat(currQuestOpt, [{title: nextChar(currLetter)}]))
   }
 
   return (
@@ -187,7 +203,7 @@ function TableQuestionManagement(props) {
 
                       {currQuestOpt.length > 0 &&
                         currQuestOpt.map((item, index) => {
-                          return <QuestionOptions key={index} type={currQuestType}/>
+                          return <QuestionOptions key={index} type={currQuestType} item={item}/>
                         })
                       }
 
@@ -201,10 +217,10 @@ function TableQuestionManagement(props) {
 
                     {showAddAnswerBtn &&
                       <button
-                      id="btnAddAnswer"
-                      onClick={() => addOption("single")}
-                      className="btn btn-primary float-right"
-                    >
+                        id="btnAddAnswer"
+                        onClick={handleAddAnswer}
+                        className="btn btn-primary float-right"
+                      >
                       + Add Answer
                     </button>
                     }

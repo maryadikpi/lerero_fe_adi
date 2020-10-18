@@ -28,7 +28,7 @@ export default function questionOptions(props) {
                 <div id="id-option" className="card singleQuestion text-dark card-primary mt-4 card-outline">
                     <div className="card-body table-responsive p-3">
                         <div className="row">
-                            <div className="col-1"> Answer </div>
+                            <div className="col-1"> Answer {props.item?.title?.toUpperCase()}</div>
                             <div className="col-11">
                                 <input type="checkbox" className="mr-2 p-2" />
                                     Correct Answer ?
@@ -42,19 +42,12 @@ export default function questionOptions(props) {
                         </div>
                         {props.type === 'single' &&
                             <div className="row ml-2 mt-3 mb-4">
-                                <table width="100%">
-                                    <tbody>
-                                        <tr className="valign-top">
-                                            <td width="2%">
-                                                <input type="checkbox" />
-                                            </td>
-                                            <td width="7%">Feedback : </td>
-                                            <td>
-                                                <input type="text" className="form-control" />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div className="col-lg-2 col-md-4 col-s-12">
+                                    <input type="checkbox" />&nbsp;Feedback : 
+                                </div>
+                                <div className="col-lg-6 col-md-8 col-s-12">
+                                    <input type="text" className="form-control pr-1" />
+                                </div>
                             </div>
                         }
                     </div>
