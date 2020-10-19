@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react"
 import AddNewCategory from "../modal/modalAddQuestionCategory"
 import CancelAddQuestion from "../modal/modalCancelAddQuestion"
-import QuestionOptions from "./QuestionOptions"
+import QuestionOptions from "./questionOptions"
 import AnswerFeedback from "./answerFeedback"
 
 
