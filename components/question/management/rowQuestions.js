@@ -1,16 +1,16 @@
 
 
-export default function rowQuestion() {
+export default function rowQuestion(props) {
 
 
     return (
         <>
             <tr>
-                <td>1</td>
-                <td>Question 1</td>
-                <td>Category 1</td>
-                <td>Single Choice</td>
-                <td>Active</td>
+                <td>{props.data.id}</td>
+                <td>{props.data.name}</td>
+                <td>{props.data.category_name}</td>
+                <td>{props.data.type}</td>
+                <td>{props.data.status}</td>
                 <td>
                     <center>
                         <button

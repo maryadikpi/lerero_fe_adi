@@ -14,7 +14,7 @@ function TableQuestionManagement(props) {
   
   const [questionName, setQuestionName] = useState('')
   const [questionDesc, setQuestionDesc] = useState('')
-  const [questionCatgId, setQuestionCatg] = useState(1)
+  const [questionCatgId, setQuestionCatg] = useState()
   const [isSubmit, setSubmit] = useState(false)
   const [showSpinner, setSpinner] = useState(false)
   const [showToast, setToast] = useState(false)
@@ -240,7 +240,7 @@ function TableQuestionManagement(props) {
                               className="form-control border-top-0 border-right-0 border-left-0 mb-5"
                               onChange={handleSelectCatg}
                               style={{width: '67%', border: '1px solid gray'}}
-                              //value={data.role_id}
+                              value={questionCatgId}
                           >
                               {questCategory}
                           </select>
@@ -252,6 +252,7 @@ function TableQuestionManagement(props) {
                               type="button"
                               className="btn btn-sm btn-success width-80 float-right"
                               onClick={handleNewCategory}
+                              disabled={isSubmit}
                             >
                               + Add New Category
                             </button>

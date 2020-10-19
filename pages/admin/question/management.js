@@ -8,9 +8,27 @@ import ModalQuestionManagement from "components/question/management/modal_Questi
 
 import ModalImportQuestionCsv from "components/question/modal/modalImportQuestionCsv"
 
+
+import {kpiFetch} from 'kpi_helper'
+import {GET_QUESTION_LIST} from 'config/const_api_url'
+
 const QuestionManagement = () => {
 
   const [questionList, setQuestionList] = useState([])
+
+  const initialFetch = async () => {
+    const questList = await kpiFetch('GET', GET_QUESTION_LIST)
+      if (questList.status) {
+        setQuestionList(questList.data.data)
+      }
+  }
+
+  useEffect(() => {
+    if(questionList && questionList.length < 1) {
+      initialFetch()
+    }
+  })
+
 
   return (
   <>
