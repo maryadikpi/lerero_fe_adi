@@ -163,9 +163,6 @@ function TableQuestionManagement(props) {
       }
     })
 
-    console.log('ISI FINAL OPTION')
-    console.log(tempOptions)
-
     if (kpiHelper.getQuestionType() === 'add') {
 
       tempData = {

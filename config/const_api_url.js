@@ -36,3 +36,5 @@ export const GET_QUESTION_CATEGORY = 'api/question/categories' // GET
 export const ADD_QUESTION_CATEGORY = 'api/question/categories' // POST
 export const ADD_QUESTION = 'api/questions' // POST
 export const UPDATE_QUESTION = 'api/questions/' // PUT /1= question_id
+export const POST_DUPLICATE_QUESTION = 'api/questions/duplicate/' // /1=id question that will be duplicated
+export const PUT_CHANGE_QUESTION_STATUS = 'api/questions/status/' // /1= question id

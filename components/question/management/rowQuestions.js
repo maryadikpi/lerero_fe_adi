@@ -2,7 +2,18 @@
 
 export default function rowQuestion(props) {
 
+    function displayStatusText(status) {
+        return status ? 'Active' : 'Inactive'
+    }
 
+    function displayButtonText(status) {
+        return status ? 'Deactivate' : 'Publish'
+    }
+
+    const handleDuplicate = () => {
+        props.setQuestData({id: props.data.id})
+        $("#duplicateQuestion").modal('show')
+    }
     return (
         <>
             <tr>
@@ -10,13 +21,12 @@ export default function rowQuestion(props) {
                 <td>{props.data.name}</td>
                 <td>{props.data.category_name}</td>
                 <td>{props.data.type}</td>
-                <td>{props.data.status}</td>
+                <td>{displayStatusText(props.data.status)}</td>
                 <td>
                     <center>
                         <button
                             type="button"
-                            data-toggle="modal"
-                            data-target="#duplicateQuestion"
+                            onClick={handleDuplicate}
                             className="btn btn-success width-80px btn-sm m-1"
                         >
                             Duplicate
@@ -35,7 +45,7 @@ export default function rowQuestion(props) {
                             data-target="#deactiveQuestion"
                             className="btn btn-warning width-100px btn-sm m-1"
                         >
-                            Deactivate
+                            {displayButtonText(props.data.status)}
                         </button>
                         <button
                             type="button"

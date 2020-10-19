@@ -1,12 +1,18 @@
 import Link from "next/link"
+import {useState, useEffect} from 'react'
 
 import RowQuestion from './rowQuestions'
+import DuplicateModal from '../modal/modalDuplicateQuestion'
+
+
 import kpiHelper, {kpiFetch} from 'kpi_helper'
 import {ADMIN_ADD_NEW_QUESTION} from 'config/const_url'
 
 
 function  TableQuestionManagement(props) {
   
+  const [questionData, setQuestionData] = useState({})
+
   const handleImportCsv = () => {
     $('#importQuestionCsv').modal('show')
   }
@@ -52,7 +58,7 @@ return (
               <tbody>
                 {props.questionList && props.questionList.length > 0 && 
                   props.questionList.map((item, index) => {
-                    return <RowQuestion data={item}/>
+                    return <RowQuestion key={index} data={item} setQuestData={setQuestionData}/>
                   })
                 }
               </tbody>
@@ -61,6 +67,13 @@ return (
         </div>
       </div>
     </div>
+
+    <DuplicateModal 
+      questData={questionData} 
+      questList={props.questionList}
+      setQuestList={props.setQuestionList}
+    />
+
   </>
 )
 
