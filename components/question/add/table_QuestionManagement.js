@@ -41,7 +41,8 @@ function TableQuestionManagement(props) {
   ]
 
   const defaultFeedback= {
-    correct: '', wrong: ''
+    correct: '', 
+    wrong: ''
   }
 
   const maxQuestionOption = 4
