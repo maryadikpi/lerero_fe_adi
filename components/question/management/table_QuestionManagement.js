@@ -1,6 +1,8 @@
 import Link from "next/link"
 import {useState, useEffect} from 'react'
 
+import KpiSpinner from 'components/kpi_components/kpiSpinner'
+import KpiToast from 'components/kpi_components/KpiToast'
 import RowQuestion from './rowQuestions'
 import DuplicateModal from '../modal/modalDuplicateQuestion'
 
@@ -11,7 +13,13 @@ import {ADMIN_ADD_NEW_QUESTION} from 'config/const_url'
 
 function  TableQuestionManagement(props) {
   
+  const [showKpiSpinner, setKpiSpinner] = useState(false)
   const [questionData, setQuestionData] = useState({})
+
+  const [showToast, setToast] = useState(false)
+  const [toastTitleColor, setToastTitleColor] = useState('black')
+  const [toastTitle, setToastTitle] = useState('')
+  const [toastMessage, setToastMessage] = useState('')
 
   const handleImportCsv = () => {
     $('#importQuestionCsv').modal('show')
@@ -44,6 +52,7 @@ return (
             </div>
           </div>
           <div className="card-body table-responsive p-0">
+            {showKpiSpinner && <KpiSpinner />}
             <table className="table text-center table-striped table-valign-middle">
               <thead>
                 <tr>
@@ -58,7 +67,16 @@ return (
               <tbody>
                 {props.questionList && props.questionList.length > 0 && 
                   props.questionList.map((item, index) => {
-                    return <RowQuestion key={index} data={item} setQuestData={setQuestionData}/>
+                    return <RowQuestion 
+                      key={index} 
+                      data={item} 
+                      setQuestData={setQuestionData}
+                      setKpiSpinner={setKpiSpinner}
+                      setShowToast={setToast}
+                      setToastColor={setToastTitleColor}
+                      setToastTitle={setToastTitle}
+                      setToastMessage={setToastMessage}
+                    />
                   })
                 }
               </tbody>
@@ -67,7 +85,13 @@ return (
         </div>
       </div>
     </div>
-
+    <KpiToast 
+      showToast={showToast} 
+      setShowToast={setToast}
+      color={toastTitleColor}
+      title={toastTitle}
+      message={toastMessage}
+    />
     <DuplicateModal 
       questData={questionData} 
       questList={props.questionList}

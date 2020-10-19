@@ -1,4 +1,10 @@
+import Router from 'next/router'
+import {useState, useEffect} from 'react'
 
+
+import kpiHelper, {kpiFetch} from 'kpi_helper'
+import {GET_QUESTION_DETAILS} from 'config/const_api_url'
+import {ADMIN_ADD_NEW_QUESTION} from "config/const_url"
 
 export default function rowQuestion(props) {
 
@@ -14,6 +20,24 @@ export default function rowQuestion(props) {
         props.setQuestData({id: props.data.id})
         $("#duplicateQuestion").modal('show')
     }
+
+    const handleEdit = async () => {
+        props.setKpiSpinner(true)
+        const resp = await kpiFetch('GET', GET_QUESTION_DETAILS+props.data.id)
+        if (resp.status) {
+            props.setKpiSpinner(false)
+            kpiHelper.setQuestionType('edit')
+            kpiHelper.setQuestionInfo(resp.data)
+            Router.push(ADMIN_ADD_NEW_QUESTION)
+        } else {
+            props.setKpiSpinner(false)
+            props.setToastColor('red')
+            props.setToastTitle('Edit Error')
+            props.setShowToast(true)
+            props.setToastMessage(resp.message)
+        }
+    }
+
     return (
         <>
             <tr>
@@ -33,8 +57,7 @@ export default function rowQuestion(props) {
                         </button>
                         <button
                             type="button"
-                            data-toggle="modal"
-                            data-target="#editQuestion"
+                            onClick={handleEdit}
                             className="btn btn-primary width-80px btn-sm m-1"
                         >
                             Edit

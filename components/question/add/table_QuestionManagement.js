@@ -15,10 +15,23 @@ function TableQuestionManagement(props) {
   const [questionName, setQuestionName] = useState('')
   const [questionDesc, setQuestionDesc] = useState('')
   const [questionCatgId, setQuestionCatg] = useState()
+
   const [isSubmit, setSubmit] = useState(false)
   const [showSpinner, setSpinner] = useState(false)
   const [showToast, setToast] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+
+  if (typeof window !== 'undefined') {
+    console.log('question type in kpihelper')
+    console.log(kpiHelper.getQuestionType())
+    if (kpiHelper.getQuestionType() === 'edit') {
+      // Initialize add question field for editing questions
+      console.log('EDIT QUESTION')
+
+    } else {
+      console.log('ADD NEW QUESTION')
+    }
+  }
 
   const handleQuestionName = (e) => {
     setQuestionName(e.target.value)
@@ -272,6 +285,7 @@ function TableQuestionManagement(props) {
                             <td>
                               <input
                                 onClick={() => handleQuestionType("single")}
+                                defaultChecked
                                 id="single"
                                 type="radio"
                                 name="question_type"
