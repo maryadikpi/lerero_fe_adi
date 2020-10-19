@@ -1,10 +1,16 @@
 import Link from "next/link"
+import kpiHelper, {kpiFetch} from 'kpi_helper'
 import {ADMIN_ADD_NEW_QUESTION} from 'config/const_url'
 
 
 function  TableQuestionManagement(props) {
   const handleImportCsv = () => {
     $('#importQuestionCsv').modal('show')
+  }
+
+  const handleAddQuestion = () => {
+    console.log('handleAdd Question')
+    kpiHelper.setQuestionType('add')
   }
 
 return (
@@ -23,7 +29,7 @@ return (
                 <i className="fas fa-shield-alt"></i> Import CSV
               </button>
               <Link as={ADMIN_ADD_NEW_QUESTION} href={ADMIN_ADD_NEW_QUESTION}>
-                <button type="button" className="btn btn-primary btn-sm">
+                <button type="button" className="btn btn-primary btn-sm" onClick={handleAddQuestion}>
                   <i className="fas fa-shield-alt"></i> Add New Question
                 </button>
               </Link>

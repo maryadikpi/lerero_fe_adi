@@ -36,23 +36,23 @@ class kpiHelper {
 
     // Data contains access_token and refresh_token
     static setLogin = (data) => {
-        this.globalStore.isAuth = true;
-        this.globalStore.loginInfo.accessToken = data.access_token;
-        this.globalStore.loginInfo.refreshToken = data.refresh_token;
-        this.globalStore.loginInfo.user = data.user;
-        store.set('kpi', this.globalStore);
+        this.globalStore.isAuth = true
+        this.globalStore.loginInfo.accessToken = data.access_token
+        this.globalStore.loginInfo.refreshToken = data.refresh_token
+        this.globalStore.loginInfo.user = data.user
+        store.set('kpi', this.globalStore)
     }
 
   static unsetLogin = () => {
-    let kpi = store.get("kpi");
+    let kpi = store.get("kpi")
     if (kpi) {
-      kpi.isAuth = false;
-      store.set("kpi", kpi);
-      return true;
+      kpi.isAuth = false
+      store.set("kpi", kpi)
+      return true
     } else {
-      return false;
+      return false
     }
-  };
+  }
 
   static getLoginStatus = () => {
     let kpi = store.get("kpi");
@@ -61,7 +61,31 @@ class kpiHelper {
     } else {
       return false;
     }
-  };
+  }
+
+  static setQuestionType = (type) => {
+    store.set('questionType', type)
+  }
+
+  static getQuestionType = () => {
+    let res = store.get('questionType')
+    if(!res) {
+      res = 'add'
+    }
+    return res
+  }
+
+  static setQuestionInfo = (info) => {
+    store.set('questionInfo', info)
+  }
+
+  static getQuestionInfo = () => {
+    let res = store.get('questionInfo')
+    if(!res) {
+      res = null
+    }
+    return res
+  }
 }
 
 export default kpiHelper;

@@ -34,3 +34,5 @@ export const IMPORT_QUESTION_FILE = 'api/questions/import' // POST
 export const GET_QUESTION_LIST = 'api/questions' // GET
 export const GET_QUESTION_CATEGORY = 'api/question/categories' // GET
 export const ADD_QUESTION_CATEGORY = 'api/question/categories' // POST
+export const ADD_QUESTION = 'api/questions' // POST
+export const UPDATE_QUESTION = 'api/questions/' // PUT /1= question_id

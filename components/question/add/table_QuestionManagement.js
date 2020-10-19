@@ -1,16 +1,33 @@
 import Link from "next/link";
 import { useState, useEffect } from "react"
+import {Spinner, Toast} from "react-bootstrap"
+
+import kpiHelper, {kpiFetch} from 'kpi_helper'
+import {ADD_QUESTION, UPDATE_QUESTION} from 'config/const_api_url'
+
 import AddNewCategory from "../modal/modalAddQuestionCategory"
 import CancelAddQuestion from "../modal/modalCancelAddQuestion"
 import QuestionOptions from "./questionOptions"
 import AnswerFeedback from "./answerFeedback"
 
-
-var idOption = [0, 0, 0];
-var option = ["A", "B", "C", "D"];
-
 function TableQuestionManagement(props) {
   
+  const [questionName, setQuestionName] = useState('')
+  const [questionDesc, setQuestionDesc] = useState('')
+  const [questionCatgId, setQuestionCatg] = useState(1)
+  const [isSubmit, setSubmit] = useState(false)
+  const [showSpinner, setSpinner] = useState(false)
+  const [showToast, setToast] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const handleQuestionName = (e) => {
+    setQuestionName(e.target.value)
+  }
+
+  const handleQuestionDesc = (e) => {
+    setQuestionDesc(e.target.value)
+  }
+
   const handleNewCategory = () => {
     $('#addNewQuestionCat').modal('show')
   }
@@ -18,11 +35,12 @@ function TableQuestionManagement(props) {
   var questCategory = []
     if (props.questCategory) {
       questCategory = props.questCategory.map((item, i) => {
-                    return <option key={i} value={item.name}>{item.display_name}</option>
+                    return <option key={i} value={item.id}>{item.display_name}</option>
                 })
     }
+
   const handleSelectCatg = (event) => {
-    console.log(event.target.value)
+    setQuestionCatg(event.target.value)
   }
 
   function nextChar(c) {
@@ -41,14 +59,21 @@ function TableQuestionManagement(props) {
   ]
 
   const defaultFeedback= {
-    correct: '', 
-    wrong: ''
+    correct: {
+      status: false,
+      content: null
+    }, 
+    wrong: {
+      status: false,
+      content: null
+    }
   }
 
   const maxQuestionOption = 4
   const [currQuestOpt, setCurrQuestOpt] = useState([])
   const [currLetter, setCurrLetter] = useState('a')
   const [currQuestType, setCurrQuestType] = useState('')
+  const [questTypeNumber, setQuestTypeNumber] = useState(0)
   const [showAnswerFeedback, setShowAnswerFeedback] = useState(false)
   const [showAddAnswerBtn, setShowAddAnswerBtn] = useState(false)
   const [optionParams, setOptionParams] = useState(defaultOptParams)
@@ -66,6 +91,7 @@ function TableQuestionManagement(props) {
           setCurrQuestOpt([{title: 'a'}])
           setOptionParams(defaultOptParams)
           setFeedback(defaultFeedback)
+          setQuestTypeNumber(1)
         } else {
           // Second time and so on
           setCurrLetter(nextChar(currLetter))
@@ -75,15 +101,16 @@ function TableQuestionManagement(props) {
         setShowAnswerFeedback(false)
         setShowAddAnswerBtn(true)
       break
-      case 'multi':
-        if (currQuestType !== 'multi') {
+      case 'multiple':
+        if (currQuestType !== 'multiple') {
           // First time
           setCurrQuestOpt([])
-          setCurrQuestType('multi')
+          setCurrQuestType('multiple')
           setCurrLetter('a')
           setCurrQuestOpt([{title: 'a'}])
           setOptionParams(defaultOptParams)
           setFeedback(defaultFeedback)
+          setQuestTypeNumber(2)
         } else { 
           // Second time and so on
           setCurrLetter(nextChar(currLetter))
@@ -102,6 +129,7 @@ function TableQuestionManagement(props) {
           setCurrQuestOpt([{title: 'a'}])
           setOptionParams(defaultOptParams)
           setFeedback(defaultFeedback)
+          setQuestTypeNumber(3)
         } else {
           // Second time and so on
           setCurrLetter(nextChar(currLetter))
@@ -121,9 +149,52 @@ function TableQuestionManagement(props) {
   }
 
   const handleSaveQuestion = async () => {
-    console.log("OPTION PARAM")
-    console.log(optionParams)
-    $('#saveQuestionSuccess').modal('show')
+    setSpinner(true)
+    setSubmit(true)
+
+    let tempOptions = []
+    let tempData = []
+    let url = ''
+    // Extract value of optionParams
+    optionParams.forEach(item => {
+      let tempVal = Object.values(item)
+      if (tempVal) {
+        tempOptions = tempOptions.concat(tempVal)
+      }
+    })
+
+    console.log('ISI FINAL OPTION')
+    console.log(tempOptions)
+
+    if (kpiHelper.getQuestionType() === 'add') {
+
+      tempData = {
+        company_id: kpiHelper.getGlobalStore().loginInfo? kpiHelper.getGlobalStore().loginInfo.user.company_id : '',
+        question_category_id: questionCatgId,
+        name: questionName,
+        question: questionDesc,
+        type: currQuestType,
+        status: null,
+        detail: {
+          option: tempOptions,
+          feedback: feedback
+        }
+      }
+      url = ADD_QUESTION
+    } else {
+      url = UPDATE_QUESTION
+    }
+
+    const resp = await kpiFetch('POST', url, tempData)
+    if (resp.status) {
+      $('#saveQuestionSuccess').modal('show')
+    } else {
+      setToast(true)
+      setErrorMsg(resp.message)
+    }
+
+    setSpinner(false)
+    setSubmit(false)
   }
 
   return (
@@ -150,6 +221,7 @@ function TableQuestionManagement(props) {
                             type="text"
                             className="form-control border-top-0 border-right-0 border-left-0 mb-5"
                             placeholder="Your Question Name"
+                            onChange={(e) => {handleQuestionName(e)}}
                           />
                         </div>
                         <div className="col-1"></div>
@@ -188,11 +260,12 @@ function TableQuestionManagement(props) {
                       </div>
 
                       <p htmlFor="leraningPathname" className="">
-                        <b>Learning Path Description : </b>
+                        <b>Question Description : </b>
                       </p>
                       <textarea
                         className="form-control mb-4"
                         rows="7"
+                        onChange={(e) => {handleQuestionDesc(e)}}
                       ></textarea>
                       <table width="800px" className="text-left">
                         <tbody>
@@ -210,7 +283,7 @@ function TableQuestionManagement(props) {
                             </td>
                             <td>
                               <input
-                                onClick={() => handleQuestionType("multi")}
+                                onClick={() => handleQuestionType("multiple")}
                                 id="multi"
                                 type="radio"
                                 name="question_type"
@@ -250,6 +323,7 @@ function TableQuestionManagement(props) {
 
                       {showAnswerFeedback && 
                         <AnswerFeedback 
+                          feedback={feedback}
                           setFeedback={setFeedback}
                         />
                       }
@@ -270,11 +344,20 @@ function TableQuestionManagement(props) {
 
                     </div>
                   </div>
+                  { showSpinner ?
+                        <Spinner 
+                          animation="border" 
+                          variant="primary" 
+                          style={{position:'absolute', top: '50%', left: '45%', zIndex:'9999'}}
+                        />
+                        : ''
+                      }
                   <div className="mt-5">
                     <button
                       id="btnOptionMulti"
                       onClick={handleSaveQuestion}
                       className="btn btn-primary mt-3 width-10 ml-2 float-right"
+                      disabled={isSubmit}
                     >
                       Save
                     </button>
@@ -283,6 +366,7 @@ function TableQuestionManagement(props) {
                       data-toggle="modal"
                       data-target="#publishAddQuestion"
                       className="btn btn-success mt-3 width-10 float-right"
+                      disabled={isSubmit}
                     >
                       Publish
                     </button>
@@ -292,6 +376,7 @@ function TableQuestionManagement(props) {
                         $('#cancelAddQuestion').modal('show')
                       }}
                       className="btn btn-danger mt-3 width-10 float-left"
+                      disabled={isSubmit}
                     >
                       Cancel
                     </button>
@@ -458,6 +543,24 @@ function TableQuestionManagement(props) {
           </div>
         </div>
       </div>
+
+      <Toast 
+            style={{
+                position: 'absolute',
+                top: 17,
+                right: 17,
+                zIndex: 9999
+            }}
+            onClose={() => setToast(false)}
+            show={showToast}
+            delay={3000}
+            autohide
+            >
+              <Toast.Header>
+                <strong className="mr-auto" style={{color: 'red'}}>Create Question Error</strong>
+              </Toast.Header>
+              <Toast.Body> <span style={{color: 'black'}}>{errorMsg}</span></Toast.Body>
+          </Toast>
     
       <AddNewCategory
         questCategory={props.questCategory}
