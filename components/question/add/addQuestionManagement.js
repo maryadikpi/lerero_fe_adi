@@ -7,11 +7,12 @@ import {ADD_QUESTION, UPDATE_QUESTION} from 'config/const_api_url'
 
 import AddNewCategory from "../modal/modalAddQuestionCategory"
 import CancelAddQuestion from "../modal/modalCancelAddQuestion"
-import QuestionOptions from "./questionOptions"
-import AnswerFeedback from "./answerFeedback"
+import QuestionOptions from "../components/questionOptions"
+import AnswerFeedback from "../components/answerFeedback"
 
 function TableQuestionManagement(props) {
-  
+  const GqType = ['single', 'multiple', 'number']
+  let qName, qDesc, qCatgId, qType = ''
   const [questionName, setQuestionName] = useState('')
   const [questionDesc, setQuestionDesc] = useState('')
   const [questionCatgId, setQuestionCatg] = useState()
@@ -27,9 +28,33 @@ function TableQuestionManagement(props) {
     if (kpiHelper.getQuestionType() === 'edit') {
       // Initialize add question field for editing questions
       console.log('EDIT QUESTION')
-
+      let questInfo = kpiHelper.getQuestionInfo()
+      if (questInfo) {
+        qName = questInfo.name
+        qDesc = questInfo.question
+        qCatgId = questInfo.question_category_id
+        qType = questInfo.type
+        handleQType(qType, questInfo.detail)
+      }
+      console.log(questInfo)
     } else {
       console.log('ADD NEW QUESTION')
+    }
+  }
+
+  function handleQType(qType, qDetail) {
+    switch (qType) {
+      case GqType[0]:
+        console.log('SINGLE SINGLE')
+        let detail = JSON.parse(qDetail)
+        console.log(detail)
+      break
+      case GqType[1]:
+
+      break
+      case GqType[2]:
+
+      break
     }
   }
 
@@ -95,11 +120,11 @@ function TableQuestionManagement(props) {
   const handleQuestionType = (type) => {
     
     switch (type) {
-      case 'single':
-        if (currQuestType !== 'single') {
+      case GqType[0]:
+        if (currQuestType !== GqType[0]) {
           // First time
           setCurrQuestOpt([])
-          setCurrQuestType('single')
+          setCurrQuestType(GqType[0])
           setCurrLetter('a')
           setCurrQuestOpt([{title: 'a'}])
           setOptionParams(defaultOptParams)
@@ -114,11 +139,11 @@ function TableQuestionManagement(props) {
         setShowAnswerFeedback(false)
         setShowAddAnswerBtn(true)
       break
-      case 'multiple':
-        if (currQuestType !== 'multiple') {
+      case GqType[1]:
+        if (currQuestType !== GqType[1]) {
           // First time
           setCurrQuestOpt([])
-          setCurrQuestType('multiple')
+          setCurrQuestType(GqType[1])
           setCurrLetter('a')
           setCurrQuestOpt([{title: 'a'}])
           setOptionParams(defaultOptParams)
@@ -133,11 +158,11 @@ function TableQuestionManagement(props) {
         setShowAnswerFeedback(true)
         setShowAddAnswerBtn(true)
       break
-      case 'number':
-        if (currQuestType !== 'number') {
+      case GqType[2]:
+        if (currQuestType !== GqType[2]) {
           // First time
           setCurrQuestOpt([])
-          setCurrQuestType('number')
+          setCurrQuestType(GqType[2])
           setCurrLetter('a')
           setCurrQuestOpt([{title: 'a'}])
           setOptionParams(defaultOptParams)
@@ -231,6 +256,7 @@ function TableQuestionManagement(props) {
                             type="text"
                             className="form-control border-top-0 border-right-0 border-left-0 mb-5"
                             placeholder="Your Question Name"
+                            value={qName}
                             onChange={(e) => {handleQuestionName(e)}}
                           />
                         </div>
@@ -250,7 +276,7 @@ function TableQuestionManagement(props) {
                               className="form-control border-top-0 border-right-0 border-left-0 mb-5"
                               onChange={handleSelectCatg}
                               style={{width: '67%', border: '1px solid gray'}}
-                              value={questionCatgId}
+                              value={qCatgId}
                           >
                               {questCategory}
                           </select>
@@ -276,6 +302,7 @@ function TableQuestionManagement(props) {
                       <textarea
                         className="form-control mb-4"
                         rows="7"
+                        value={qDesc}
                         onChange={(e) => {handleQuestionDesc(e)}}
                       ></textarea>
                       <table width="800px" className="text-left">
@@ -285,7 +312,7 @@ function TableQuestionManagement(props) {
                             <td>
                               <input
                                 onClick={() => handleQuestionType("single")}
-                                defaultChecked
+                                defaultChecked={qType === 'single'}
                                 id="single"
                                 type="radio"
                                 name="question_type"
@@ -296,6 +323,7 @@ function TableQuestionManagement(props) {
                             <td>
                               <input
                                 onClick={() => handleQuestionType("multiple")}
+                                defaultChecked={qType === 'multiple'}
                                 id="multi"
                                 type="radio"
                                 name="question_type"
@@ -306,6 +334,7 @@ function TableQuestionManagement(props) {
                             <td>
                               <input
                                 onClick={() => handleQuestionType("number")}
+                                defaultChecked={qType === 'number'}
                                 id="number"
                                 type="radio"
                                 name="question_type"

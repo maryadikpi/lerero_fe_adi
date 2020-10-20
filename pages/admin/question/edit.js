@@ -1,11 +1,10 @@
 import {useState, useEffect} from 'react'
 
-import Header from "components/admin/header";
-import Navbar from "components/admin/navbar";
-import Sidebar from "components/admin/sidebar";
+import Header from "components/admin/header"
+import Navbar from "components/admin/navbar"
+import Sidebar from "components/admin/sidebar"
 
-import TableQuestionManagement from "components/question/add/addQuestionManagement";
-import ModalQuestionManagement from "components/question/add/modal_QuestionManagement";
+import TableQuestionManagement from "components/question/edit/editQuestionManagement"
 
 import {kpiFetch} from 'kpi_helper'
 import {GET_QUESTION_CATEGORY} from 'config/const_api_url'
@@ -38,7 +37,7 @@ const QuestionManagement = () => {
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1 className="m-0 text-dark">Add New Question</h1>
+                  <h1 className="m-0 text-dark">Edit Question</h1>
                 </div>
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
@@ -58,7 +57,6 @@ const QuestionManagement = () => {
                 questCategory={questionCategory}
                 setQuestCategory={setQuestionCategory}
               />
-              <ModalQuestionManagement />
             </div>
           </div>
         </div>

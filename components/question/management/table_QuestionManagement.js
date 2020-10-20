@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 
 import KpiSpinner from 'components/kpi_components/kpiSpinner'
 import KpiToast from 'components/kpi_components/KpiToast'
-import RowQuestion from './rowQuestions'
+import RowQuestion from '../components/rowQuestions'
 import DuplicateModal from '../modal/modalDuplicateQuestion'
 
 

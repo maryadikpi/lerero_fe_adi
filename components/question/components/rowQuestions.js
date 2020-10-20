@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react'
 
 import kpiHelper, {kpiFetch} from 'kpi_helper'
 import {GET_QUESTION_DETAILS} from 'config/const_api_url'
-import {ADMIN_ADD_NEW_QUESTION} from "config/const_url"
+import {ADMIN_EDIT_NEW_QUESTION} from "config/const_url"
 
 export default function rowQuestion(props) {
 
@@ -28,7 +28,7 @@ export default function rowQuestion(props) {
             props.setKpiSpinner(false)
             kpiHelper.setQuestionType('edit')
             kpiHelper.setQuestionInfo(resp.data)
-            Router.push(ADMIN_ADD_NEW_QUESTION)
+            Router.push(ADMIN_EDIT_NEW_QUESTION)
         } else {
             props.setKpiSpinner(false)
             props.setToastColor('red')
